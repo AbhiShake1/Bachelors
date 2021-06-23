@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Perimeter
+comment1.params=sc
+comment1.target=Perimeter(java.util.Scanner)
+comment1.text=\nThis\ {}\ is\ an\ example\ of\ constructor\ <init>\ method\ and\ Scanner\ is\ a\ parameter.\ It\ receives\ a\ value\ when\ the\ method\ is\ invoked.\nIt\ can\ be\ used\ as\ local\ variable.\nIt\ is\ the\ method\ that\ loads\ at\ first\ when\ a\ class\ is\ invoked.\n
+numComments=2

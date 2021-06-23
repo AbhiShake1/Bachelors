@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Square
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=num
+comment2.target=float\ square(float)
+numComments=3

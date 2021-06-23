@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- metadata for website and search engine optimization -->
+    <meta name="description" content="This a main page for portfolio website" />
+    <meta name="keywords" content="portfolio,coursework, abhi " />
+    <meta name="author" content="Abhishek Pandey" />
+    <!-- title will be displayed as name of tab -->
+    <title>Portfolio</title>
+    <!-- external css -->
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./hireme.css" />
+    <style>
+      /* internal css */
+    .contact-text {
+      background: #0099f7;
+      background: -webkit-linear-gradient(to top, #b0f3f1, #ffcfdf);
+      background: linear-gradient(to top, #b0f3f1, #ffcfdf);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      cursor: auto;
+      text-decoration: none;
+      font-size: 4rem;
+      font-weight: bold;
+    }
+    .contact-text:hover {
+      cursor: url("icons/circle-cursor-active.png"), auto;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- navigation elements -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="./index.html" id="navbar-logo">HOME</a>
+        <ul class="navbar-menu">
+          <li class="navbar-btn">
+            <!-- CV page -->
+            <a href="./CV.html" class="navbar-links" id="cv-page">CV</a>
+          </li>
+          <li class="navbar-btn">
+            <!-- How tech has affected activities page -->
+            <a href="./blogs.html" class="navbar-links" id="contactme-page"
+              >BLOGS</a
+            >
+          </li>
+          <li class="navbar-btn">
+            <a href="./research.html" class="navbar-links" id="research-page"
+              >RESEARCH</a
+            >
+          </li>
+          <li class="navbar-btn">
+            <a
+              href="./contactme.html"
+              class="navbar-links"
+              id="contactme-page"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: none;
+                outline: none;
+                border-radius: 20vw;
+                background: #434343;
+                background: linear-gradient(to top, var(--root-abhi-white), var(--root-background-color));
+                color: #fffff0;
+                transition: all 0.3s ease;
+              "
+              >CONTACT</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- start of main content -->
+        <div class="container">
+          <div class="row">
+            <div class="column">
+              <img src="./icons/contact-bg.jpg" style="width: 100%; border-radius: 30px;"/>
+              <span class="contact-text" style="padding: 5% 0%; font-size: 2.9rem;">CONTACT ME</span>
+            </div>
+            <div class="column">
+              <form onsubmit="submit$onClickListener()"> <!--validation script on pressing submit button-->
+                <label for="fname">First Name<h2 style="color: red; display: inline-block;">*</h2></label>
+                <input
+                  type="text"
+                  id="fname"
+                  name="firstname"
+                  placeholder="Enter your first name"
+                />
+                <label for="lname">Last Name</label>
+                <input
+                  type="text"
+                  id="lname"
+                  name="lastname"
+                  placeholder="Enter your surname"
+                />
+                <label for="email">E-mail<h2 style="color: red; display: inline-block;">*</h2></label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email address"
+                />
+                <label for="country">Country</label>
+                <!-- list prefererence -->
+                <select id="country" name="country">
+                  <option value="Nepal">Nepal</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="India">India</option>
+                </select>
+                <label for="subject">Subject<h2 style="color: red; display: inline-block;">*</h2></label>
+                <!-- taking feedback or description -->
+                <textarea
+                  id="subject"
+                  name="subject"
+                  placeholder="Leave your thoughts and feedback on this site"
+                  style="height: 170px"
+                ></textarea>
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

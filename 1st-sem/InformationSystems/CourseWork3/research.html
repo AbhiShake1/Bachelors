@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="This a main page for portfolio website" />
+    <meta name="keywords" content="portfolio,coursework, abhi " />
+    <meta name="author" content="Abhishek Pandey" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="./main.css" />
+    <style>
+      a {
+        text-decoration: none;
+        background-color: transparent;
+      }
+
+      .img {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .header-text {
+        color: var(--root-abhi-white);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navigation elements -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="./index.html" id="navbar-logo">HOME</a>
+        <ul class="navbar-menu">
+          <li class="navbar-btn">
+            <!-- CV page -->
+            <a href="./CV.html" class="navbar-links" id="cv-page">CV</a>
+          </li>
+          <li class="navbar-btn">
+            <!-- How tech has affected activities page -->
+            <a href="./blogs.html" class="navbar-links" id="blogs-page"
+              >BLOGS</a
+            >
+          </li>
+          <li class="navbar-btn">
+            <a
+              href="./research.html"
+              class="navbar-links"
+              id="research-page"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: none;
+                outline: none;
+                border-radius: 20vw;
+                background: #434343;
+                background: linear-gradient(to top, var(--root-abhi-white), var(--root-background-color));
+                color: #fffff0;
+                transition: all 0.3s ease;
+              "
+              >RESEARCH</a
+            >
+          </li>
+          <li class="navbar-btn">
+            <a href="./contactme.html" class="navbar-links" id="contactme-page"
+              >CONTACT</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- start of main content -->
+    <div class="container" style="justify-content: center; margin: 70px 0 0 120px">
+      <div class="row">
+        <table class="table table-bordered">
+          <tr>
+            <th class="header-text">Reference Website</th>
+            <th class="header-text">My Website</th>
+            <th class="header-text">Observation</th>
+            <th class="header-text">Source</th>
+            <th class="header-text">Takeaway</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <a href="https:onenil.com"
+                  ><div
+                    class="img"
+                    style="background-image: url(./icons/source-home.png)"
+                  ></div>
+                  Home</a
+                >
+              </td>
+              <td>
+                <a href="./index.html">
+                  <div
+                    class="img"
+                    style="background-image: url(./icons/my-home.png)"
+                  ></div>
+                  Home</a
+                >
+              </td>
+              <td>
+                There were gradient colors added using --webkit property and a slight
+                delay in animation that took experience to next level.
+              </td>
+              <td>Inspection</td>
+              <td>
+                I took the idea of gradient colors and some milli seconds delay
+                in animation and implemented my own way.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https:www.nikoeverett.com/about"
+                  ><div
+                    class="img"
+                    style="background-image: url(./icons/source-cv.png)"
+                  ></div>
+                  CV</a
+                >
+              </td>
+              <td>
+                <a href="./CV.html">
+                  <div
+                    class="img"
+                    style="background-image: url(./icons/my-cv.png)"
+                  ></div>
+                  CV</a
+                >
+              </td>
+              <td>
+                &nsbp; character code was used to force 2 or more specific words to not be in different lines. The site was simple with no fancy and gimmicky elements. Different font families and sizes were used to separate important text from not-so-important ones. Different semantic tags were used.
+              </td>
+              <td>
+                Inspection 
+              </td>
+              <td>
+                I learned about some character codes and took simple yet effective design inspiration.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="https:www.xda-developers.com/google-pixel-6-same-gpu-exynos-galaxy-s21/"
+                  ><div
+                    class="img"
+                    style="background-image: url(./icons/source-blogs.png)"
+                  ></div>
+                  Blogs</a
+                >
+              </td>
+              <td>
+                <a href="./blogs.html"
+                  ><div
+                    class="img"
+                    style="background-image: url(./icons/my-blogs.png)"
+                  ></div>
+                  Blogs</a
+                >
+              </td>
+              <td>
+                Article was well structured with proper info about name of writer, date of publication. Href were used where needed.
+              </td>
+              <td>
+                Inspection and Mishal Rahman, the chief editor of that site(For insights)
+              </td>
+              <td>
+                I took the idea of including name of author and date of publication.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https:sleeknote.com/contact">
+                  <div
+                    class="img"
+                    style="background-image: url(./icons/source-contact.png)"
+                  ></div>
+                  Contact</a
+                >
+              </td>
+              <td>
+                <a href="./contactme.html">
+                  <div
+                    class="img"
+                    style="background-image: url(./icons/my-contact.png)"
+                  ></div>
+                  Contact</a
+                >
+              </td>
+              <td>
+                Frequently used colors were defined using :root in css to prevent hex code repetition. The interface was simple and text that were mandatory to fill were marked using * sign.
+              </td>
+              <td>
+                Inspection
+              </td>
+              <td>
+                I took the idea of setting color presets using :root and marking mandatory text with * sign.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https:bslthemes.site/myour/">
+                  <div
+                    class="img"
+                    style="background-image: url(./icons/source-navigation.png)"
+                  ></div>
+                  Navigation</a
+                >
+              </td>
+              <td>
+                <a href="#">
+                  <div
+                    class="img"
+                    style="background-image: url(./icons/my-navigation.png)"
+                  ></div>
+                  Navigation</a
+                >
+              </td>
+              <td>
+                Everything was well separated with tags such as header and footer. There was a hover effect for navigation and current screen could be identified distinctively.
+              </td>
+              <td>
+                Inspection
+              </td>
+              <td>
+                I learned the convection of wraping navigation elements inside unordered list, using semantic tags and took inspiration for hover effects.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <caption>Tap on images to open respective links</caption>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

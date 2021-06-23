@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Sum
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=numArr
+comment2.target=int\ sumOf(java.lang.String[])
+numComments=3

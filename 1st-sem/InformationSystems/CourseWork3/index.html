@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- metadata for website and search engine optimization -->
+    <meta name="description" content="This a main page for portfolio website" />
+    <meta name="keywords" content="portfolio,coursework, abhi " />
+    <meta name="author" content="Abhishek Pandey" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="./main.css" />
+    <style>
+      .abhi {
+        filter: brightness(100%);
+        opacity: 30%;
+        border-radius: 50%;
+        height: auto;
+        margin-top: -13rem;
+        margin-left: 600px;
+        padding-left: 10%;
+      }
+      #navbar-logo {
+        background: #0099f7;
+        background: -webkit-linear-gradient(to top, #b0f3f1, #ffcfdf);
+        background: linear-gradient(to top, #b0f3f1, #ffcfdf);
+        background-size: 100%;
+        background-clip: unset;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: bold;
+        padding-bottom: 1px;
+        border-bottom: 1px var(--root-abhi-white) solid;
+      }
+      #navbar-logo:hover {
+        cursor: url("./icons/circle-cursor-active.png"), auto;
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navigation elements -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="./index.html" id="navbar-logo">HOME</a>
+        <ul class="navbar-menu">
+          <li class="navbar-btn">
+            <!-- CV page -->
+            <a href="./CV.html" class="navbar-links" id="cv-page">CV</a>
+          </li>
+          <li class="navbar-btn">
+            <!-- How tech has affected activities page -->
+            <a href="./blogs.html" class="navbar-links" id="blogs-page"
+              >BLOGS</a
+            >
+          </li>
+          <li class="navbar-btn">
+            <a href="./research.html" class="navbar-links" id="research-page"
+              >RESEARCH</a
+            >
+          </li>
+          <li class="navbar-btn">
+            <a href="./contactme.html" class="navbar-links" id="contactme-page"
+              >CONTACT</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="text">
+      <h1 class="typing-text">
+        I am <br /><span class="typing-text type-prop"></span>
+        <br />
+        <span class="type-prop-sub"></span>
+      </h1>
+    </div>
+    <center>
+      <!-- partiaal backgroung image -->
+      <img class="abhi" src="./icons/abhi.png" alt="Abhi background picture" />
+    </center>
+    <div style="margin-bottom: 30rem" class="social-icons-main">
+      <!-- social media links -->
+      <a href="https:facebook.com/100003104344547" target="newtab">
+        <!-- target="newtab" opens link in new tab when respective element is clicked -->
+        <img
+          id="social-facebook"
+          src="./icons/facebook.png"
+          alt="Instagram link"
+        />
+      </a>
+      <a href="https:instagram.com/onfire_abhi/" target="newtab">
+        <img
+          style="padding: 0 30px"
+          id="social-instagram"
+          src="./icons/instagram.png"
+          alt="Instagram link"
+        />
+      </a>
+      <a href="https:github.com/AbhiShake1" target="newtab">
+        <img id="social-github" src="./icons/github.png" alt="Github link" />
+      </a>
+    </div>
+
+    <!-- calling script file that sets typing effect -->
+    <script src="./typeeffect.js"></script>
+    <!-- internal js. Making instance object of typeeffect.js and initializing the script -->
+    <script>
+      // set type effects from typeeffects.js
+      new typeeffects(".type-prop", {
+        strings: ["a student.", "a developer.", "a reverse engineer.", "Abhi."],
+        typeSpeed: 60,
+        backSpeed: 28,
+        loop: true,
+        smartBackspace: true,
+        showCursor: false,
+      });
+
+      new typeeffects(".type-prop-sub", {
+        strings: [
+          "I am studying BSc. Computing.",
+          "I develop cross-platform apps.",
+          "I reverse softwares to assembly and examine them.",
+          "That's my name!",
+        ],
+        typeSpeed: 20,
+        backSpeed: 9.5,
+        loop: true,
+        smartBackspace: true,
+      });
+    </script>
+    <script src="./app.js"></script>
+  </body>
+</html>

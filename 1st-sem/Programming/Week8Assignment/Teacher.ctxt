@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Teacher
+comment1.params=
+comment1.target=java.lang.String\ getDesignation()
+comment2.params=designation
+comment2.target=void\ setDesignation(java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getCollegeName()
+comment4.params=collegeName
+comment4.target=void\ setCollegeName(java.lang.String)
+comment5.params=
+comment5.target=void\ does()
+numComments=6
