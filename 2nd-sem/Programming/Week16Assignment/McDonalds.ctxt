@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=McDonalds
+comment1.params=price
+comment1.target=void\ totalPrice(int)
+comment2.params=
+comment2.target=void\ menuItems()
+comment3.params=
+comment3.target=java.lang.String\ location()
+comment4.params=
+comment4.target=boolean\ hasPlayPlace()
+numComments=5
