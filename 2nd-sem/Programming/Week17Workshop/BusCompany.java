@@ -12,6 +12,12 @@ public class BusCompany{
         Bus b4 = new Bus("ABC126","green","kep-ktm","person4",true,900);
         Bus b5 = new Bus("ABC127","white","skt-ktm","person5",true,700);
         Bus b6 = new Bus("ABC128","yellow","pkr-ktm","person6",false,400);
+        busList.add(b1);
+        busList.add(b2);
+        busList.add(b3);
+        busList.add(b4);
+        busList.add(b5);
+        busList.add(b6);
     }
 
     public void remove(int index){//throw error if invalid index
@@ -19,7 +25,7 @@ public class BusCompany{
         if(index>busList.size()-1 || index<0) System.err.println("Illegal index");
         busList.remove(index);
     }
-    
+
     //for reusability
     Consumer<Bus> details = b->System.out.printf(
                 "number plate: %s, color: %s, route: %s, rate: %d, available?: %b\n",
