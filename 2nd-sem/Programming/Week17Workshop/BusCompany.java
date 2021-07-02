@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.Random;
 
 public class BusCompany{
     private static List<Bus> busList = new ArrayList();
@@ -24,6 +25,7 @@ public class BusCompany{
         //since index starts from 0 and ends in size-1,;
         if(index>busList.size()-1 || index<0) System.err.println("Illegal index");
         busList.remove(index);
+        System.out.println("removed data from index "+index);
     }
 
     //for reusability
@@ -32,12 +34,18 @@ public class BusCompany{
                 b.getNumberPlate(),b.getColor(),b.getRoute(),b.getRate(),b.getAvailable()
             );
 
-    public void book(boolean available, int index){
+    public void book(boolean available){
         if(available){
-            System.out.println("bus is boooked with following details:\n");
-            busList.forEach(details);
+            System.out.println("bus is boooked with following details:");
+            int busNum = new Random().nextInt(busList.size()-1);
+            Bus bus = busList.get(busNum);
+            System.out.printf(
+                "number plate: %s, color: %s, route: %s, rate: %d, available?: %b\n",
+                bus.getNumberPlate(),bus.getColor(),bus.getRoute(),bus.getRate(),bus.getAvailable()
+            );
+            bus.setAvailable(false);
         }else{
-            System.out.println("Not available. Can not be booked");
+            System.out.println("Not available. Can not be booked currently");
         }
     }
 

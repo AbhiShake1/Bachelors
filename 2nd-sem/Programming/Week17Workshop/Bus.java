@@ -25,15 +25,15 @@ public class Bus{
 
     public int getRate(){return rate;}
 
-    public void setNumberPlate(){this.numberPlate=numberPlate;}
+    public void setNumberPlate(String numberPlate){this.numberPlate=numberPlate;}
 
-    public void setColor(){this.color=color;}
+    public void setColor(String color){this.color=color;}
 
-    public void setRoute(){this.route=route;}
+    public void setRoute(String route){this.route=route;}
 
-    public void setCustomerName(){this.customerName=customerName;}
+    public void setCustomerName(String customerName){this.customerName=customerName;}
 
-    public void setAvailable(){this.available=available;}
+    public void setAvailable(boolean available){this.available=available;}
 
     public void setRate(){this.rate=rate;}
 }
