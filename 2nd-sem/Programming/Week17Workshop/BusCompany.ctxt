@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=BusCompany
+comment1.params=
+comment1.target=void\ add()
+comment2.params=index
+comment2.target=void\ remove(int)
+comment3.params=available\ index
+comment3.target=void\ book(boolean,\ int)
+comment4.params=
+comment4.target=void\ display()
+comment5.params=
+comment5.target=void\ displayIfLessThan500()
+comment6.params=
+comment6.target=void\ displayIfRB()
+comment7.params=
+comment7.target=void\ displayIfGG500()
+numComments=8

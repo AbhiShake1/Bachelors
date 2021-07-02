@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Student
+comment1.params=name\ group\ phone
+comment1.target=Student(java.lang.String,\ java.lang.String,\ long)
+comment2.params=name
+comment2.target=void\ setName(java.lang.String)
+comment3.params=name
+comment3.target=void\ setGroup(java.lang.String)
+comment4.params=name
+comment4.target=void\ setPhone(java.lang.String)
+comment5.params=
+comment5.target=java.lang.String\ getName()
+comment6.params=
+comment6.target=java.lang.String\ getGroup()
+comment7.params=
+comment7.target=long\ getPhone()
+numComments=8
