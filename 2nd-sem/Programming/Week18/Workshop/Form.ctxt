@@ -1,9 +1,12 @@
 #BlueJ class context
 comment0.target=Form
+comment0.text=\n\ package\ private(default\ access\ modifier)\ class\n\ sets\ up\ UI\ for\ form\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 comment2.params=name\ fontSize\ bounds
 comment2.target=void\ setLabel(java.lang.String,\ int,\ int[])
+comment2.text=\n\ @params\:\ name\ of\ label,\ font\ size,\ x\ coordinate,\ y\ coordinate\n\ width,\ height\n\ adds\ a\ label\ as\ per\ arguments\n\ @returns\ void\n
 comment3.params=bounds
 comment3.target=void\ setTextField(int[])
+comment3.text=\n\ @params\:\ x\ coordinate,\ y\ coordinate,\ width,\ height\n\ adds\ a\ text\ field\ as\ per\ arguments\n\ @returns\ void\n
 numComments=4
