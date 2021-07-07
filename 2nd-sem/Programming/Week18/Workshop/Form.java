@@ -18,6 +18,8 @@ class Form{
 
     public static void main(String[] args){
         //create main/root frame
+        //title of frame(String) can optionally be passed as
+        //argument in the constructor
         JFrame frame = new JFrame();
         //create a panel to store components
         panel = new JPanel();
@@ -49,7 +51,7 @@ class Form{
         //inside it to the main frame
         frame.add(panel);
         //600 width 350 height
-        //setPreferredSize was used instead of setLayoutSize
+        //setPreferredSize was used instead of setSize
         //because parent layout manager(of frame) exists and
         //setSize would not allow to use frame.pack() normally
         panel.setPreferredSize(new Dimension(600,350));
