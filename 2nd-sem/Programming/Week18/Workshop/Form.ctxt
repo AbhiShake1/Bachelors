@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Form
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=name\ fontSize\ bounds
+comment2.target=void\ setLabel(java.lang.String,\ int,\ int[])
+comment3.params=bounds
+comment3.target=void\ setTextField(int[])
+numComments=4
