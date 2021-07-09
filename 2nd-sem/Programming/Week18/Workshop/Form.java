@@ -5,6 +5,8 @@ import java.awt.Font;
 //class that defines width and height. setPreferredSize function
 //takes this class as an argument
 import java.awt.Dimension;
+//class to deal with colors
+import java.awt.Color;
 
 /*
  * package private(default access modifier) class
@@ -20,14 +22,16 @@ class Form{
         //create main/root frame
         //title of frame(String) can optionally be passed as
         //argument in the constructor
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame();        
         //create a panel to store components
         panel = new JPanel();
+        //set background color for panel
+        panel.setBackground(new Color(169,169,169)); //grey rgb
         //null layout manager to make position absolute 
         //instead of relative
         panel.setLayout(null);
         //add labels. see method description for more details
-        setLabel("Register User",20,220,0,500,100);
+        setLabel("Register User",30,220,0,500,100);
         setLabel("First name",15,10,50,100,100);
         setLabel("Last name",15,10,120,100,100);
         setLabel("Email",15,10,190,100,100);
@@ -54,9 +58,9 @@ class Form{
         //setPreferredSize was used instead of setSize
         //because parent layout manager(of frame) exists and
         //setSize would not allow to use frame.pack() normally
-        panel.setPreferredSize(new Dimension(600,350));
+        panel.setSize(600,400);
         //set size of frame as per preferred size of components inside
-        frame.pack();
+        frame.setSize(600,400);
         //terminate the program when app is closed
         //only hides the app by default
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
