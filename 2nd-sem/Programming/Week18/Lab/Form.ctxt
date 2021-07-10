@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Form
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=bounds
+comment2.target=void\ setDatePicker(int[])
+comment3.params=elements\ bounds
+comment3.target=void\ setComboBox(java.lang.String[],\ int[])
+comment4.params=radioGroup\ text\ bounds
+comment4.target=void\ setRadioButton(javax.swing.ButtonGroup,\ java.lang.String,\ int[])
+comment5.params=name\ sizes
+comment5.target=void\ setLabel(java.lang.String,\ int[])
+comment6.params=bounds
+comment6.target=void\ setTextField(int[])
+comment7.params=bounds
+comment7.target=void\ setTextArea(int[])
+comment8.params=text\ bounds
+comment8.target=void\ setButton(java.lang.String,\ int[])
+numComments=9
