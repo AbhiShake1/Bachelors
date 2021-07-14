@@ -14,23 +14,23 @@ public class Form{
         
         //labels
         setLabel("Student's Registration Form",30,200,-15,500,90);
-        setLabel("Student ID:",12,36,85,85,15);
-        setLabel("School Year:",12,566,85,95,15);
-        setLabel("First Name:",12,36,115,90,15);
-        setLabel("Middle Name:",12,566,115,100,15);
-        setLabel("Last Name:",12,312,115,90,15);
-        setLabel("Address:",12,36,145,85,15);
-        setLabel("Date of Birth:",12,290,145,100,15);
-        setLabel("Place of Birth:",12,571,145,105,15);
-        setLabel("Age:",12,36,195,85,15);
-        setLabel("Gender:",12,338,195,90,15);
-        setLabel("Status:",12,589,195,110,15);
-        setLabel("Year:",12,36,225,85,15);
-        setLabel("Guardian:",12,326,225,90,15);
-        setLabel("Relation:",12,584,225,110,15);
-        setLabel("Contact#:",12,453,255,90,15);
-        setLabel("Address:",12,36,255,85,15);
-        setLabel("0  OF  0",12,415,332,85,15);
+        setLabel("Student ID:",14,36,85,85,15);
+        setLabel("School Year:",14,566,85,95,15);
+        setLabel("First Name:",14,36,115,90,15);
+        setLabel("Middle Name:",13,566,115,100,15);
+        setLabel("Last Name:",14,312,115,90,15);
+        setLabel("Address:",14,36,145,85,15);
+        setLabel("Date of Birth:",14,290,145,100,15);
+        setLabel("Place of Birth:",14,571,145,105,15);
+        setLabel("Age:",14,36,195,85,15);
+        setLabel("Gender:",14,338,195,90,15);
+        setLabel("Status:",14,589,195,110,15);
+        setLabel("Year:",14,36,225,85,15);
+        setLabel("Guardian:",14,326,225,90,15);
+        setLabel("Relation:",14,584,225,110,15);
+        setLabel("Contact#:",14,453,255,90,15);
+        setLabel("Address:",14,36,255,85,15);
+        setLabel("0  OF  0",14,415,332,85,15);
         
         //text fields
         setTextField(130,82,112,18);
@@ -64,7 +64,7 @@ public class Form{
         //elements to string using declarative approach
         //(jdk8 feature) or streams
         BiFunction<Integer, Integer, String[]> generateArray =
-        (l,u)->IntStream.range(l,u)
+        (l,u)->IntStream.range(l,u+1)
                 .mapToObj(String::valueOf)
                     .toArray(String[]::new);
                     
@@ -105,7 +105,7 @@ public class Form{
     private static void setLabel(String name, int...sizes){
         JLabel label = new JLabel(name);
         label.setBounds(sizes[1],sizes[2],sizes[3],sizes[4]);
-        label.setFont(new Font("SansSerif",Font.BOLD,sizes[0]));
+        label.setFont(new Font("Noto Serif CJK JP Black",0,sizes[0]));
         panel.add(label);
     }
     
@@ -123,7 +123,7 @@ public class Form{
     
     private static void setButton(String text, int...bounds){
         JButton button = new JButton(text);
-        button.setFont(new Font("SansSerif",Font.BOLD,15));
+        button.setFont(new Font("Noto Serif CJK JP Blackd",Font.BOLD,15));
         button.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
         panel.add(button);
     }
