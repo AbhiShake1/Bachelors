@@ -123,7 +123,7 @@ public class Form{
     
     private static void setButton(String text, int...bounds){
         JButton button = new JButton(text);
-        button.setFont(new Font("Noto Serif CJK JP Blackd",Font.BOLD,15));
+        button.setFont(new Font("Noto Serif CJK JP Black",Font.BOLD,15));
         button.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
         panel.add(button);
     }
