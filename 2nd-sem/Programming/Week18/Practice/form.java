@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.stream.IntStream;
+import java.util.function.BiFunction;
 
 public class form{
     private static JPanel panel;
@@ -46,10 +48,35 @@ public class form{
         setButton("Submit",13, 80, 400, 80, 20);
         setButton("Reset",13, 180, 400, 80, 20);
         
+        //combo boxes
+        BiFunction<Integer, Integer, String[]> range =
+            (l,u)->IntStream.range(l,u+1)
+                .mapToObj(String::valueOf)
+                .toArray(String[]::new);
+        
+        String[] day = range.apply(1,31);
+        setComboBox(day, 120, 240, 40, 20);
+        
+        String[] year = range.apply(1990,2018);
+        setComboBox(year, 260, 240, 60, 20);
+        
+        String[] month = {"January","February","March","April",
+        "May","June","July","August","September","October",
+        "November","December"};
+        setComboBox(month, 170, 240, 80, 20);
+        
+        
         panel.setSize(800,500);
         frame.add(panel);
         frame.setSize(800,500);
         frame.setVisible(true);
+    }
+    
+    private static void setComboBox(String[] values, int x, int y,
+    int width, int height){
+        JComboBox comboBox = new JComboBox(values);
+        comboBox.setBounds(x,y,width,height);
+        panel.add(comboBox);
     }
     
     private static void addMenuBar(){
