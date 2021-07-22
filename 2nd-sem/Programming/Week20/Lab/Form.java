@@ -172,21 +172,18 @@ public class Form{
             String cmd = e.getActionCommand();
             if(cmd=="New") reset(panel.getParent());
             else if(cmd=="Save") save();
-            else if(cmd=="Exit") System.exit(0); //safely terminate prograam
+            else if(cmd=="Exit") System.exit(0); //safely terminate program
         }
 
         private static void reset(Container container){
             for(Component c : container.getComponents()){
                 if(c instanceof JTextArea||c instanceof JTextField){
                     ((JTextComponent)c).setText("");
-                }else if(c instanceof JRadioButton){
-                    ((JRadioButton)c).setSelected(false);
-                }else if(c instanceof JComboBox){
+                }else if(c instanceof JRadioButton)genderGroup.clearSelection();
+                else if(c instanceof JComboBox){
                     JComboBox box = (JComboBox)c;
                     box.setSelectedItem(box.getItemAt(0));
-                }else if(c instanceof Container){
-                    reset((Container)c);
-                }
+                }else if(c instanceof Container)reset((Container)c);
             }
         }
 
