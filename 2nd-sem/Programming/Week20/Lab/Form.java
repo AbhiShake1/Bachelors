@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.text.*;
 import java.util.stream.IntStream;
 import java.util.function.BiFunction;
-import java.util.function.Consumer;
 
 public class Form{
     private static JPanel panel;
@@ -11,6 +11,8 @@ public class Form{
     private static ButtonGroup genderGroup;
 
     private static JTextField firstNameField;
+    
+    private static ActionListener actionListener = new FormEventListener();
 
     public static void main(String[] args){
         JFrame frame = new JFrame("Form1"); //arg to constructor->title
@@ -56,13 +58,12 @@ public class Form{
         setTextArea(675,142,152,48); //place of birth
 
         //buttons
-        setButton("|<",null,15,322,80,30);
-        setButton("<<",null,115,322,80,30);
-        setButton(">>",null,215,322,80,30);
-        setButton(">|",null,315,322,80,30);
-        setButton("New",e->reset(panel.getParent())
-        ,565,322,80,30);
-        setButton("Save",e-> save(),665,322,160,30);
+        setButton("|<",15,322,80,30);
+        setButton("<<",115,322,80,30);
+        setButton(">>",215,322,80,30);
+        setButton(">|",315,322,80,30);
+        setButton("New",565,322,80,30);
+        setButton("Save",665,322,160,30);
 
         //combo boxes
         setComboBox(new String[]{"2014-2015","2015-2016","2016-2017",
@@ -131,10 +132,10 @@ public class Form{
         panel.add(textArea);
     }
 
-    private static void setButton(String text, Consumer action, int x, int y, int width, int height){
+    private static void setButton(String text, int x, int y, int width, int height){
         JButton button = new JButton(text);
         button.setFont(new Font(null,Font.BOLD,15));
-        if(action!=null)button.addActionListener(action::accept);
+        button.addActionListener(actionListener);
         button.setBounds(x, y, width, height);
         panel.add(button);
     }
@@ -167,13 +168,13 @@ public class Form{
         JMenu file = new JMenu("File");
         file.add(new JMenuItem("Open"));
         JMenuItem itemNew = new JMenuItem("New");
-        itemNew.addActionListener(e->reset(panel.getParent()));
+        itemNew.addActionListener(actionListener);
         file.add(itemNew);
         JMenuItem itemSave = new JMenuItem("Save");
-        itemSave.addActionListener(e->save());
+        itemSave.addActionListener(actionListener);
         file.add(itemSave);
         JMenuItem exit = new JMenuItem("Exit");
-        exit.addActionListener(e->System.exit(0));//terminate program
+        exit.addActionListener(actionListener);//terminate program
         file.add(exit);
         menuBar.add(file);
 
@@ -184,5 +185,15 @@ public class Form{
         menuBar.add(view);
 
         panel.add(menuBar);
+    }
+
+    private static class FormEventListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            String cmd = e.getActionCommand();
+            if(cmd=="New") reset(panel.getParent());
+            else if(cmd=="Save") save();
+            else if(cmd=="Exit") System.exit(0); //safely terminate prograam
+        }
     }
 }
