@@ -2,8 +2,6 @@
 comment0.target=Form
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-comment10.params=
-comment10.target=void\ save()
 comment2.params=elements\ x\ y\ width\ height
 comment2.target=void\ setComboBox(java.lang.String[],\ int,\ int,\ int,\ int)
 comment3.params=radioGroup\ text\ x\ y\ width\ height
@@ -18,6 +16,4 @@ comment7.params=text\ x\ y\ width\ height
 comment7.target=void\ setButton(java.lang.String,\ int,\ int,\ int,\ int)
 comment8.params=
 comment8.target=void\ addMenuBar()
-comment9.params=container
-comment9.target=void\ reset(java.awt.Container)
-numComments=11
+numComments=9

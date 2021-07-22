@@ -174,9 +174,8 @@ public class Form{
             else if(cmd=="Save") save();
             else if(cmd=="Exit") System.exit(0); //safely terminate prograam
         }
-    }
-    
-    private static void reset(Container container){
+        
+        private static void reset(Container container){
         for(Component c : container.getComponents()){
             if(c instanceof JTextArea||c instanceof JTextField){
                 ((JTextComponent)c).setText("");
@@ -195,5 +194,6 @@ public class Form{
         JOptionPane.showMessageDialog(null, "Hello! "+
             firstNameField.getText()+" \nYour record is being saved"
         );
+    }
     }
 }
