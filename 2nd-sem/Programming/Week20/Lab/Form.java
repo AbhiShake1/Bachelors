@@ -1,19 +1,28 @@
 import javax.swing.*;
 import java.awt.*;
-import javafx.scene.control.DatePicker;
 import java.util.stream.IntStream;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Form{
     private static JPanel panel;
+
+    private static ButtonGroup genderGroup;
+
+    private static JTextField firstNameField;
 
     public static void main(String[] args){
         JFrame frame = new JFrame("Form1"); //arg to constructor->title
         panel = new JPanel(null); //arg to constructor->layout manager
         //panel.setBackground(new Color(190, 190, 190, 1));
 
+        //menu bar
+        addMenuBar();
+
         //labels
-        setLabel("Student's Registration Form",30,200,-15,500,90);
+        setLabel("Student's Registration Form",30,200,5,500,90);
         setLabel("Student ID:",14,36,85,85,15);
         setLabel("School Year:",14,566,85,95,15);
         setLabel("First Name:",14,36,115,90,15);
@@ -34,7 +43,7 @@ public class Form{
 
         //text fields
         setTextField(130,82,112,18);
-        setTextField(130,112,152,18);
+        firstNameField = setTextField(130,112,152,18);
         setTextField(405,112,152,18); //last name
         setTextField(405,222,152,18); //guardian
         setTextField(675,112,152,18); //middle name
@@ -48,12 +57,13 @@ public class Form{
         setTextArea(675,142,152,48); //place of birth
 
         //buttons
-        setButton("|<",15,322,80,30);
-        setButton("<<",115,322,80,30);
-        setButton(">>",215,322,80,30);
-        setButton(">|",315,322,80,30);
-        setButton("New",565,322,80,30);
-        setButton("Save",665,322,160,30);
+        setButton("|<",null,15,322,80,30);
+        setButton("<<",null,115,322,80,30);
+        setButton(">>",null,215,322,80,30);
+        setButton(">|",null,315,322,80,30);
+        setButton("New",e->reset()
+        ,565,322,80,30);
+        setButton("Save",e-> save(),665,322,160,30);
 
         //combo boxes
         setComboBox(new String[]{"2014-2015","2015-2016","2016-2017",
@@ -78,7 +88,7 @@ public class Form{
         setComboBox(day,531,142,34,21);
 
         //radio buttons
-        ButtonGroup genderGroup = new ButtonGroup(); //only 1 radio button in a group can be active at a time
+        genderGroup = new ButtonGroup(); //only 1 radio button in a group can be active at a time
         setRadioButton(genderGroup,"Male",408,195,60,15);
         setRadioButton(genderGroup,"Female",468,195,80,15);
 
@@ -92,6 +102,7 @@ public class Form{
     private static void setComboBox(String[] elements, int...bounds){
         JComboBox dropdown = new JComboBox(elements);
         dropdown.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        comboBoxData.add(dropdown);
         panel.add(dropdown);
     }
 
@@ -105,26 +116,74 @@ public class Form{
     private static void setLabel(String name, int...sizes){
         JLabel label = new JLabel(name);
         label.setBounds(sizes[1],sizes[2],sizes[3],sizes[4]);
-        label.setFont(new Font("Noto Serif CJK JP Black",0,sizes[0]));
+        label.setFont(new Font(null,0,sizes[0]));
         panel.add(label);
     }
 
-    private static void setTextField(int...bounds){
+    private static JTextField setTextField(int...bounds){
         JTextField textField = new JTextField();
         textField.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        textFieldData.add(textField);
         panel.add(textField);
+        return textField;
     }
+    //sets can not have duplicates. if obj1==obj2 and hashcode is 
+    //same too, it will not be added to list
+    private static Set<JTextArea> textAreaData = new HashSet();
+    private static Set<JTextField> textFieldData = new HashSet();
+    private static Set<JComboBox> comboBoxData = new HashSet();
 
     private static void setTextArea(int...bounds){
         JTextArea textArea = new JTextArea();
         textArea.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        textAreaData.add(textArea);
         panel.add(textArea);
     }
 
-    private static void setButton(String text, int...bounds){
+    private static void setButton(String text, Consumer action, int...bounds){
         JButton button = new JButton(text);
-        button.setFont(new Font("Noto Serif CJK JP Black",Font.BOLD,15));
+        button.setFont(new Font(null,Font.BOLD,15));
+        if(action!=null)button.addActionListener(action::accept);
         button.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
         panel.add(button);
+    }
+
+    private static void reset(){
+        textAreaData.forEach(e->e.setText(""));
+        textFieldData.forEach(e->e.setText(""));
+        comboBoxData.forEach(e->e.setSelectedItem(e.getItemAt(0)));
+        genderGroup.clearSelection();
+    }
+
+    private static void save(){
+        JOptionPane.showMessageDialog(null, "Hello! "+
+            firstNameField.getText()+" \nYour record is being saved"
+        );
+    }
+
+    private static void addMenuBar(){
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setSize(1000,30); //entire width of panel
+
+        JMenu file = new JMenu("File");
+        file.add(new JMenuItem("Open"));
+        JMenuItem itemNew = new JMenuItem("New");
+        itemNew.addActionListener(e->reset());
+        file.add(itemNew);
+        JMenuItem itemSave = new JMenuItem("Save");
+        itemSave.addActionListener(e->save());
+        file.add(itemSave);
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.addActionListener(e->System.exit(0));//terminate program
+        file.add(exit);
+        menuBar.add(file);
+
+        JMenu options = new JMenu("About");
+        menuBar.add(options);
+
+        JMenu view = new JMenu("Help");
+        menuBar.add(view);
+
+        panel.add(menuBar);
     }
 }
