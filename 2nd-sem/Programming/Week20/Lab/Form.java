@@ -1,10 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.text.*;
 import java.util.stream.IntStream;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
-import java.util.Set;
-import java.util.HashSet;
 
 public class Form{
     private static JPanel panel;
@@ -61,7 +60,7 @@ public class Form{
         setButton("<<",null,115,322,80,30);
         setButton(">>",null,215,322,80,30);
         setButton(">|",null,315,322,80,30);
-        setButton("New",e->reset()
+        setButton("New",e->reset(panel.getParent())
         ,565,322,80,30);
         setButton("Save",e-> save(),665,322,160,30);
 
@@ -99,60 +98,60 @@ public class Form{
         frame.setVisible(true);
     }
 
-    private static void setComboBox(String[] elements, int...bounds){
+    private static void setComboBox(String[] elements, int x, int y, int width, int height){
         JComboBox dropdown = new JComboBox(elements);
-        dropdown.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
-        comboBoxData.add(dropdown);
+        dropdown.setBounds(x,y,width,height);
         panel.add(dropdown);
     }
 
-    private static void setRadioButton(ButtonGroup radioGroup, String text, int...bounds){
+    private static void setRadioButton(ButtonGroup radioGroup, String text, int x, int y, int width, int height){
         JRadioButton radioButton = new JRadioButton(text);
         radioGroup.add(radioButton);
-        radioButton.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        radioButton.setBounds(x,y,width,height);
         panel.add(radioButton);
     }
 
-    private static void setLabel(String name, int...sizes){
+    private static void setLabel(String name, int textSize, int x, int y, int width, int height){
         JLabel label = new JLabel(name);
-        label.setBounds(sizes[1],sizes[2],sizes[3],sizes[4]);
-        label.setFont(new Font(null,0,sizes[0]));
+        label.setBounds(x, y, width, height);
+        label.setFont(new Font(null,0,textSize));
         panel.add(label);
     }
 
-    private static JTextField setTextField(int...bounds){
+    private static JTextField setTextField(int x, int y, int width, int height){
         JTextField textField = new JTextField();
-        textField.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
-        textFieldData.add(textField);
+        textField.setBounds(x, y, width, height);
         panel.add(textField);
         return textField;
     }
-    //sets can not have duplicates. if obj1==obj2 and hashcode is 
-    //same too, it will not be added to list
-    private static Set<JTextArea> textAreaData = new HashSet();
-    private static Set<JTextField> textFieldData = new HashSet();
-    private static Set<JComboBox> comboBoxData = new HashSet();
 
-    private static void setTextArea(int...bounds){
+    private static void setTextArea(int x, int y, int width, int height){
         JTextArea textArea = new JTextArea();
-        textArea.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
-        textAreaData.add(textArea);
+        textArea.setBounds(x, y, width, height);
         panel.add(textArea);
     }
 
-    private static void setButton(String text, Consumer action, int...bounds){
+    private static void setButton(String text, Consumer action, int x, int y, int width, int height){
         JButton button = new JButton(text);
         button.setFont(new Font(null,Font.BOLD,15));
         if(action!=null)button.addActionListener(action::accept);
-        button.setBounds(bounds[0],bounds[1],bounds[2],bounds[3]);
+        button.setBounds(x, y, width, height);
         panel.add(button);
     }
 
-    private static void reset(){
-        textAreaData.forEach(e->e.setText(""));
-        textFieldData.forEach(e->e.setText(""));
-        comboBoxData.forEach(e->e.setSelectedItem(e.getItemAt(0)));
-        genderGroup.clearSelection();
+    private static void reset(Container container){
+        for(Component c : container.getComponents()){
+            if(c instanceof JTextArea||c instanceof JTextField){
+                ((JTextComponent)c).setText("");
+            }else if(c instanceof JRadioButton){
+                ((JRadioButton)c).setSelected(false);
+            }else if(c instanceof JComboBox){
+                JComboBox box = (JComboBox)c;
+                box.setSelectedItem(box.getItemAt(0));
+            }else if(c instanceof Container){
+                reset((Container)c);
+            }
+        }
     }
 
     private static void save(){
@@ -168,7 +167,7 @@ public class Form{
         JMenu file = new JMenu("File");
         file.add(new JMenuItem("Open"));
         JMenuItem itemNew = new JMenuItem("New");
-        itemNew.addActionListener(e->reset());
+        itemNew.addActionListener(e->reset(panel.getParent()));
         file.add(itemNew);
         JMenuItem itemSave = new JMenuItem("Save");
         itemSave.addActionListener(e->save());
