@@ -140,27 +140,6 @@ public class Form{
         panel.add(button);
     }
 
-    private static void reset(Container container){
-        for(Component c : container.getComponents()){
-            if(c instanceof JTextArea||c instanceof JTextField){
-                ((JTextComponent)c).setText("");
-            }else if(c instanceof JRadioButton){
-                ((JRadioButton)c).setSelected(false);
-            }else if(c instanceof JComboBox){
-                JComboBox box = (JComboBox)c;
-                box.setSelectedItem(box.getItemAt(0));
-            }else if(c instanceof Container){
-                reset((Container)c);
-            }
-        }
-    }
-
-    private static void save(){
-        JOptionPane.showMessageDialog(null, "Hello! "+
-            firstNameField.getText()+" \nYour record is being saved"
-        );
-    }
-
     private static void addMenuBar(){
         JMenuBar menuBar = new JMenuBar();
         menuBar.setSize(1000,30); //entire width of panel
@@ -195,5 +174,26 @@ public class Form{
             else if(cmd=="Save") save();
             else if(cmd=="Exit") System.exit(0); //safely terminate prograam
         }
+    }
+    
+    private static void reset(Container container){
+        for(Component c : container.getComponents()){
+            if(c instanceof JTextArea||c instanceof JTextField){
+                ((JTextComponent)c).setText("");
+            }else if(c instanceof JRadioButton){
+                ((JRadioButton)c).setSelected(false);
+            }else if(c instanceof JComboBox){
+                JComboBox box = (JComboBox)c;
+                box.setSelectedItem(box.getItemAt(0));
+            }else if(c instanceof Container){
+                reset((Container)c);
+            }
+        }
+    }
+
+    private static void save(){
+        JOptionPane.showMessageDialog(null, "Hello! "+
+            firstNameField.getText()+" \nYour record is being saved"
+        );
     }
 }
