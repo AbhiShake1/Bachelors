@@ -110,14 +110,10 @@ public class INGCollege{
 
     private static JButton academicButton;
     private static JButton nonAcademicButton;
-    private static ButtonGroup optionsGroup;
 
     private static void addSwitcher(JPanel panel){
-        //optionsGroup = new ButtonGroup();
         academicButton = new JButton("Academic");//enabled by default
         nonAcademicButton = new JButton("Non Academic");
-        //optionsGroup.add(academicButton);
-        //optionsGroup.add(nonAcademicButton);
         academicButton.setBackground(Color.BLUE);
         nonAcademicButton.setBackground(Color.GRAY);
         academicButton.setBounds(350,5,100,20);
