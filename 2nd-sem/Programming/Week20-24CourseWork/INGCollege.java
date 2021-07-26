@@ -62,8 +62,8 @@ public class INGCollege{
         setTextField(p,180, 190, 170, 25); //prerequisite
         setTextField(p,180, 240, 170, 25); //course leader
         setTextField(p,535, 185, 160, 25); //start date
-        setTextField(p,535, 235, 160, 25); //exam date
-        setTextField(p,535, 295, 160, 25); //completion date
+        setTextField(p,535, 285, 160, 25); //exam date
+        setTextField(p,535, 235, 160, 25); //completion date
 
         //buttons
         setButton(p,"Remove", 290, 330, 130, 30);
