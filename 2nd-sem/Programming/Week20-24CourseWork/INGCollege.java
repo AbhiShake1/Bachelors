@@ -207,7 +207,8 @@ public class INGCollege{
                 value = Integer.parseInt(s);
             }catch(NumberFormatException nfe){
                 if(errorNumber == 0)
-                    JOptionPane.showMessageDialog(null, "Please input valid integer", "Error", JOptionPane.ERROR_MESSAGE);
+                //parent component->main frame
+                    JOptionPane.showMessageDialog(frame, "Please input valid integer", "Error", JOptionPane.ERROR_MESSAGE);
                 errorNumber++;
             }
             return value;
