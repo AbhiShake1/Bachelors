@@ -164,7 +164,7 @@ public class INGCollege{
         public void actionPerformed(ActionEvent e){
             switch(e.getActionCommand()){
                 case "Clear":
-                    clearAll(academicPanel.getParent());
+                    clearAll();
                     break;
                 case "Add Academic Course":
                     addAcademicCourse();
@@ -213,7 +213,7 @@ public class INGCollege{
             return value;
         }
 
-        private void clearAll(Container container){
+        private void clearAll(){
             textFields.forEach(l->l.setText(""));
         }
 
