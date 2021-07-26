@@ -164,7 +164,7 @@ public class INGCollege{
         public void actionPerformed(ActionEvent e){
             switch(e.getActionCommand()){
                 case "Clear":
-                    clearAll();
+                    textFields.forEach(l->l.setText(""));
                     break;
                 case "Add Academic Course":
                     addAcademicCourse();
@@ -211,10 +211,6 @@ public class INGCollege{
                 errorNumber++;
             }
             return value;
-        }
-
-        private void clearAll(){
-            textFields.forEach(l->l.setText(""));
         }
 
         private void addAcademicCourse(){
