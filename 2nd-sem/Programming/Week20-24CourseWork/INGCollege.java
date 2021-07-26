@@ -33,7 +33,7 @@ public class INGCollege{
         nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         nonAcademicPanel.setSize(740,500);
         frame.setSize(740,500);
-        frame.add(nonAcademicPanel);
+        //frame.add(nonAcademicPanel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -41,10 +41,41 @@ public class INGCollege{
 
     private static void setUpNonAcademicPanel(JPanel p){
         addSwitcher(p);
+
+        //labels
+        setLabel(p,"Non Academic Course", 250, 0, 800, 100, 30);
+        setLabel(p,"CourseID:", 20, 90, 70, 20, 15);
+        setLabel(p,"Course Name:", 20, 140, 125, 20, 15);
+        setLabel(p,"Instructor Name:", 400, 90, 125, 20, 15);
+        setLabel(p,"Duration:", 400, 140, 130, 20, 15);
+        setLabel(p,"Prerequisite:", 20, 195, 125, 20, 15);
+        setLabel(p,"Course Leader:", 20, 245, 125, 20, 15);
+        setLabel(p,"Start Date:", 400, 190, 130, 20, 15);
+        setLabel(p,"Completion Date:", 400, 240, 130, 20, 15);
+        setLabel(p,"Exam Date:", 400, 290, 130, 20, 15);
+
+        //text fields
+        setTextField(p,180, 85, 170, 25); //course id
+        setTextField(p,180, 135, 170, 25); //course name
+        setTextField(p,535, 85, 160, 25); //level
+        setTextField(p,535, 135, 160, 25); //duration
+        setTextField(p,180, 190, 170, 25); //prerequisite
+        setTextField(p,180, 240, 170, 25); //course leader
+        setTextField(p,535, 185, 160, 25); //start date
+        setTextField(p,535, 235, 160, 25); //exam date
+        setTextField(p,535, 295, 160, 25); //completion date
+
+        //buttons
+        setButton(p,"Remove", 290, 330, 130, 30);
+        setButton(p,"Add Non Academic Course", 5, 380, 250, 30);
+        setButton(p,"Display Non Academic Courses", 5, 330, 250, 30);
+        setButton(p,"Clear", 465, 330, 260, 30);
+        setButton(p,"Register Non Academic Course", 465, 380, 260, 30);
     }
 
     private static void setUpAcademicPanel(JPanel p){
         addSwitcher(p);
+
         //labels
         setLabel(p,"Academic Course", 250, 0, 800, 100, 30);
         setLabel(p,"CourseID:", 20, 90, 70, 20, 15);
@@ -56,25 +87,25 @@ public class INGCollege{
         setLabel(p,"Start Date:", 400, 240, 125, 20, 15);
         setLabel(p,"Credit:", 20, 240, 125, 20, 15);
         setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
+        setLabel(p,"Course Leader:", 20, 290, 125, 20, 15);
 
         //text fields
         setTextField(p,180, 85, 170, 25); //course id
         setTextField(p,535, 85, 160, 25); //course name
         setTextField(p,180, 135, 170, 25); //duration
         setTextField(p,535, 190, 160, 25); //level
-        setTextField(p,535, 285, 160, 25); //prerequisite
+        setTextField(p,535, 285, 160, 25); //completion date
         setTextField(p,535, 235, 160, 25); //course leader
         setTextField(p,180, 235, 170, 25); //credit
         setTextField(p,535, 135, 160, 25); //number of assessments
         setTextField(p,180, 190, 170, 25); //lecturer name
+        setTextField(p,180, 285, 170, 25); //course leader
 
         //buttons
-        //setButton("Add", 535, 170, 160, 30);
-        setButton(p,"Register", 535, 320, 160, 30);
-        setButton(p,"Add Academic Course", 5, 380, 190, 30);
-        setButton(p,"Display", 205, 380, 130, 30);
-        setButton(p,"Clear", 350, 380, 120, 30);
-        setButton(p,"Add Non Academic Course", 485, 380, 230, 30);
+        setButton(p,"Add Academic Course", 5, 380, 250, 30);
+        setButton(p,"Display Academic Courses", 5, 330, 250, 30);
+        setButton(p,"Clear", 465, 330, 260, 30);
+        setButton(p,"Register Academic Course", 465, 380, 260, 30);
     }
 
     private static JButton academicButton;
@@ -103,7 +134,9 @@ public class INGCollege{
         JLabel label = new JLabel(text);
         label.setBounds(x, y, width, height);
         label.setFont(new Font(null, 0, fontSize));
-        if(label.getText().contains("Academic"))label.setForeground(Color.BLUE);
+        String txt = label.getText();
+        if(txt.contains("Academic"))label.setForeground(Color.BLUE);
+        else if(txt.contains("Which"))label.setForeground(Color.MAGENTA);
         panel.add(label);
     }
 
@@ -129,22 +162,42 @@ public class INGCollege{
 
         @Override
         public void actionPerformed(ActionEvent e){
-            String action = e.getActionCommand();
-            if(action=="Clear")clearAll(academicPanel.getParent());
-            if(action=="Add Academic Course")addAcademicCourse();
-            if(action=="Add Non Academic Course")addNonAcademicCourse();
-            if(action=="Display")courses.forEach(System.out::println);
-
-            if(action=="Academic"){
-                frame.remove(nonAcademicPanel);
-                frame.add(academicPanel);
-                frame.repaint();
-            }else if(action=="Non Academic"){
-                nonAcademicButton.setBackground(Color.RED);
-                academicButton.setBackground(Color.GRAY);
-                frame.remove(academicPanel);
-                frame.add(nonAcademicPanel);
-                frame.repaint();
+            switch(e.getActionCommand()){
+                case "Clear":
+                    clearAll(academicPanel.getParent());
+                    break;
+                case "Add Academic Course":
+                    addAcademicCourse();
+                    break;
+                case "Add Non Academic Course":
+                    addNonAcademicCourse();
+                    break;
+                case "Display Academic Courses":
+                    courses.stream().filter(a->a instanceof AcademicCourse).forEach(System.out::println);
+                    break;
+                case "Display Non Academic Courses":
+                    courses.stream().filter(n->n instanceof NonAcademicCourse).forEach(System.out::println);
+                    break;
+                case "Remove":
+                    courses.removeIf(n->n instanceof NonAcademicCourse
+                    && n.getCourseID().equals(textFields.get(10).getText()));
+                    break;
+                case "Register Academic Course":
+                case "Register Non Academic Course":
+                    //#TODO: implement
+                    break;
+                case "Academic":
+                    frame.remove(nonAcademicPanel);
+                    frame.add(academicPanel);
+                    frame.repaint();
+                    break;
+                case "Non Academic":
+                    nonAcademicButton.setBackground(Color.RED);
+                    academicButton.setBackground(Color.GRAY);
+                    frame.remove(academicPanel);
+                    frame.add(nonAcademicPanel);
+                    frame.repaint();
+                    break;
             }
         }
 
@@ -178,11 +231,13 @@ public class INGCollege{
 
         public void addNonAcademicCourse(){
             errorNumber = 0;
-            String courseID = textFields.get(0).getText();
-            String courseName = textFields.get(1).getText();
-            int duration = parseInt(textFields.get(2).getText());
-            String level = textFields.get(3).getText();
-            String prerequisite = textFields.get(4).getText();
+            String courseID = textFields.get(10).getText();
+            String courseName = textFields.get(11).getText();
+            int duration = parseInt(textFields.get(13).getText());
+            String level = textFields.get(12).getText();
+            String prerequisite = textFields.get(14).getText();
+            Course course = new NonAcademicCourse(courseID, courseName, duration, level, prerequisite);
+            courses.add(course);
         }
     }
 }

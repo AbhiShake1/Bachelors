@@ -2,4 +2,6 @@
 comment0.target=Course
 comment1.params=courseID\ courseName\ duration
 comment1.target=Course(java.lang.String,\ java.lang.String,\ int)
-numComments=2
+comment2.params=
+comment2.target=java.lang.String\ getCourseID()
+numComments=3
