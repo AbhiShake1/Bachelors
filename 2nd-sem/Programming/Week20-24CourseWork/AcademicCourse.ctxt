@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=AcademicCourse
+comment1.params=courseID\ courseName\ duration\ level\ credit\ noOfAssessments
+comment1.target=AcademicCourse(java.lang.String,\ java.lang.String,\ int,\ java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ toString()
+numComments=3

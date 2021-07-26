@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=INGCollege
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=p
+comment2.target=void\ setUpNonAcademicPanel(javax.swing.JPanel)
+comment3.params=p
+comment3.target=void\ setUpAcademicPanel(javax.swing.JPanel)
+comment4.params=panel
+comment4.target=void\ addSwitcher(javax.swing.JPanel)
+comment5.params=panel\ text\ x\ y\ width\ height\ fontSize
+comment5.target=void\ setLabel(javax.swing.JPanel,\ java.lang.String,\ int,\ int,\ int,\ int,\ int)
+comment6.params=panel\ text\ x\ y\ width\ height
+comment6.target=void\ setButton(javax.swing.JPanel,\ java.lang.String,\ int,\ int,\ int,\ int)
+comment7.params=panel\ x\ y\ width\ height
+comment7.target=void\ setTextField(javax.swing.JPanel,\ int,\ int,\ int,\ int)
+numComments=8

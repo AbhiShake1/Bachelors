@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.swing.text.*;
 import java.util.stream.IntStream;
 import java.util.function.BiFunction;
+import javax.swing.event.*;
 
 public class Form{
     private static JPanel panel;
@@ -13,6 +14,8 @@ public class Form{
     private static JTextField firstNameField;
 
     private static ActionListener actionListener = new FormEventListener();
+    
+    private static MenuListener menuListener = new FormEventListener();
 
     public static void main(String[] args){
         JFrame frame = new JFrame("Form1"); //arg to constructor->title
@@ -166,7 +169,7 @@ public class Form{
         panel.add(menuBar);
     }
 
-    private static class FormEventListener implements ActionListener{
+    private static class FormEventListener implements ActionListener, MenuListener{
         @Override
         public void actionPerformed(ActionEvent e){
             String cmd = e.getActionCommand();
@@ -185,12 +188,31 @@ public class Form{
                     box.setSelectedItem(box.getItemAt(0));
                 }else if(c instanceof Container)reset((Container)c);
             }
+            /*
+            frame.dispose();
+            main(null);
+            */
         }
 
         private static void save(){
             JOptionPane.showMessageDialog(null, "Hello! "+
                 firstNameField.getText()+" \nYour record is being saved"
             );
+        }
+        
+        @Override 
+        public void menuCanceled(MenuEvent e){
+            
+        }
+        
+        @Override 
+        public void menuDeselected(MenuEvent e){
+            
+        }
+        
+        @Override 
+        public void menuSelected(MenuEvent e){
+            System.out.println("jdwioa");
         }
     }
 }
