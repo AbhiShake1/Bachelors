@@ -5,7 +5,7 @@ public class NonAcademicCourse extends Course{
     private final String level, prerequisite;
     private String instructorName, examDate, startDate;
     private boolean isRegistered;
-    
+
     public NonAcademicCourse(String courseID, String courseName, int duration, String level, String prerequisite){
         super(courseID, courseName, duration);
         this.prerequisite = prerequisite;
@@ -15,7 +15,7 @@ public class NonAcademicCourse extends Course{
         completionDate = "";
         isRegistered = false;//reset for every instance
     }
-    
+
     public void display(){
         out.println("Course ID: "+super.courseID);
         out.println("Course Name: "+super.courseName);
@@ -27,14 +27,8 @@ public class NonAcademicCourse extends Course{
             out.println("Completion Date: "+completionDate);
             out.println("Exam Date: "+examDate);
         }
-        StringBuilder info = new StringBuilder("Non Academic Course:\n");
-        if(!courseID.isBlank()) info.append("Course ID: "+courseID+"\n");
-        if(!courseName.isBlank()) info.append("Course name: "+courseName+"\n");
-        if(!level.isBlank()) info.append("Level: "+level+"\n");
-        info.append("Duration: "+duration+"\n");
-        System.out.println(info);
     }
-    
+
     public void register(String courseLeader, String instructorName, String startDate, String completionDate, String examDate){
         if(!isRegistered){
             this.instructorName = instructorName;
@@ -45,8 +39,8 @@ public class NonAcademicCourse extends Course{
             isRegistered=true; //if block will not be executed next time if isRegertered is true
         }else{
             JOptionPane.showMessageDialog(
-            INGCollege.getFrame(),"The course has already been registered.",
-            "Warning",JOptionPane.WARNING_MESSAGE
+                INGCollege.getFrame(),"The course has already been registered.",
+                "Warning",JOptionPane.WARNING_MESSAGE
             ); //pop if course has already been registered
         }
     }

@@ -4,9 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
-public class INGCollege{    
+public class INGCollege{
     private static JFrame frame;
 
     private static JPanel academicPanel, nonAcademicPanel;
@@ -14,7 +13,7 @@ public class INGCollege{
     private static final EventHandler eventHandler = new EventHandler();
 
     //store objects
-    private static final List<Course> courses = new ArrayList();
+    private static final List<Course> courses = new ArrayList<>();
 
     public static void main(String[] args){
         frame = new JFrame("Course Registration");
@@ -56,22 +55,22 @@ public class INGCollege{
         setLabel(p,"Exam Date:", 400, 290, 130, 20, 15);
 
         //text fields
-        setTextField(p,180, 85, 170, 25); //course id
-        setTextField(p,180, 135, 170, 25); //course name
-        setTextField(p,535, 85, 160, 25); //level
-        setTextField(p,535, 135, 160, 25); //duration
-        setTextField(p,180, 190, 170, 25); //prerequisite
-        setTextField(p,180, 240, 170, 25); //course leader
-        setTextField(p,535, 185, 160, 25); //start date
-        setTextField(p,535, 285, 160, 25); //exam date
-        setTextField(p,535, 235, 160, 25); //completion date
+        setTextField(p,180, 85, 170); //course id
+        setTextField(p,180, 135, 170); //course name
+        setTextField(p,535, 85, 160); //level
+        setTextField(p,535, 135, 160); //duration
+        setTextField(p,180, 190, 170); //prerequisite
+        setTextField(p,180, 240, 170); //course leader
+        setTextField(p,535, 185, 160); //start date
+        setTextField(p,535, 285, 160); //exam date
+        setTextField(p,535, 235, 160); //completion date
 
         //buttons
-        setButton(p,"Remove", 290, 330, 130, 30);
-        setButton(p,"Add Non Academic Course", 5, 380, 250, 30);
-        setButton(p,"Display Non Academic Courses", 5, 330, 250, 30);
-        setButton(p,"Clear", 465, 330, 260, 30);
-        setButton(p,"Register Non Academic Course", 465, 380, 260, 30);
+        setButton(p,"Remove", 290, 330, 130);
+        setButton(p,"Add Non Academic Course", 5, 380, 250);
+        setButton(p,"Display Non Academic Courses", 5, 330, 250);
+        setButton(p,"Clear", 465, 330, 260);
+        setButton(p,"Register Non Academic Course", 465, 380, 260);
     }
 
     private static void setUpAcademicPanel(JPanel p){
@@ -91,22 +90,22 @@ public class INGCollege{
         setLabel(p,"Course Leader:", 20, 290, 125, 20, 15);
 
         //text fields
-        setTextField(p,180, 85, 170, 25); //course id
-        setTextField(p,535, 85, 160, 25); //course name
-        setTextField(p,180, 135, 170, 25); //duration
-        setTextField(p,535, 190, 160, 25); //level
-        setTextField(p,535, 285, 160, 25); //completion date
-        setTextField(p,535, 235, 160, 25); //start date
-        setTextField(p,180, 235, 170, 25); //credit
-        setTextField(p,535, 135, 160, 25); //number of assessments
-        setTextField(p,180, 190, 170, 25); //lecturer name
-        setTextField(p,180, 285, 170, 25); //course leader
+        setTextField(p,180, 85, 170); //course id
+        setTextField(p,535, 85, 160); //course name
+        setTextField(p,180, 135, 170); //duration
+        setTextField(p,535, 190, 160); //level
+        setTextField(p,535, 285, 160); //completion date
+        setTextField(p,535, 235, 160); //start date
+        setTextField(p,180, 235, 170); //credit
+        setTextField(p,535, 135, 160); //number of assessments
+        setTextField(p,180, 190, 170); //lecturer name
+        setTextField(p,180, 285, 170); //course leader
 
         //buttons
-        setButton(p,"Add Academic Course", 5, 380, 250, 30);
-        setButton(p,"Display Academic Courses", 5, 330, 250, 30);
-        setButton(p,"Clear", 465, 330, 260, 30);
-        setButton(p,"Register Academic Course", 465, 380, 260, 30);
+        setButton(p,"Add Academic Course", 5, 380, 250);
+        setButton(p,"Display Academic Courses", 5, 330, 250);
+        setButton(p,"Clear", 465, 330, 260);
+        setButton(p,"Register Academic Course", 465, 380, 260);
     }
 
     private static JButton academicButton, nonAcademicButton;
@@ -129,29 +128,29 @@ public class INGCollege{
     private static void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize){
         JLabel label = new JLabel(text);
         label.setBounds(x, y, width, height);
-        label.setFont(new Font(null, 0, fontSize));
+        label.setFont(new Font(null, Font.PLAIN, fontSize));
         String txt = label.getText();
         if(txt.contains("Academic"))label.setForeground(Color.BLUE);
         else if(txt.contains("Which"))label.setForeground(Color.MAGENTA);
         panel.add(label);
     }
 
-    private static void setButton(JPanel panel, String text, int x, int y, int width, int height){
+    private static void setButton(JPanel panel, String text, int x, int y, int width){
         JButton button = new JButton(text);
-        button.setBounds(x, y, width, height);
+        button.setBounds(x, y, width, 30);
         button.addActionListener(eventHandler);
         panel.add(button);
     }
 
-    private static void setTextField(JPanel panel, int x, int y, int width, int height){
+    private static void setTextField(JPanel panel, int x, int y, int width){
         JTextField textField = new JTextField();
-        textField.setBounds(x, y, width, height);
+        textField.setBounds(x, y, width, 25);
         textField.addActionListener(eventHandler);
         textFields.add(textField);
         panel.add(textField);
     }
 
-    private static List<JTextField> textFields = new ArrayList();
+    private static final List<JTextField> textFields = new ArrayList<>();
 
     public static JFrame getFrame(){
         return frame;
@@ -176,10 +175,10 @@ public class INGCollege{
                     addNonAcademicCourse();
                     break;
                 case "Display Academic Courses":
-                    courses.stream().filter(a->a instanceof AcademicCourse).map(c->(AcademicCourse)c).forEach(c->c.display());
+                    courses.stream().filter(a->a instanceof AcademicCourse).map(c->(AcademicCourse)c).forEach(AcademicCourse::display);
                     break;
                 case "Display Non Academic Courses":
-                    courses.stream().filter(n->n instanceof NonAcademicCourse).map(c->(NonAcademicCourse)c).forEach(c->c.display());
+                    courses.stream().filter(n->n instanceof NonAcademicCourse).map(c->(NonAcademicCourse)c).forEach(NonAcademicCourse::display);
                     break;
                 case "Remove":
                     courses.removeIf(n->n instanceof NonAcademicCourse
@@ -248,23 +247,23 @@ public class INGCollege{
             String startingDate = getText(5);
             String completionDate = getText(4);
             courses.stream().filter(c->c instanceof AcademicCourse
-            && getText(0) == c.getCourseID()
+                    && getText(0).equals(c.getCourseID())
             ).map(c->(AcademicCourse)c).forEach(c->c.register(
-                courseLeader, lecturerName, startingDate, completionDate
-            ));
+                        courseLeader, lecturerName, startingDate, completionDate
+                    ));
         }
-        
+
         public void registerNonAcademicCourse(){
             String courseLeader = getText(15);
             String courseName = getText(11);
             String startingDate = getText(16);
             String completionDate = getText(18);
             String examDate = getText(17);
-            courses.stream().filter(c->c instanceof AcademicCourse
-            && getText(0) == c.getCourseID()
+            courses.stream().filter(c->c instanceof NonAcademicCourse
+                    && getText(0).equals(c.getCourseID())
             ).map(c->(NonAcademicCourse)c).forEach(c->c.register(
-                courseLeader, courseName, startingDate, completionDate, examDate
-            ));
+                        courseLeader, courseName, startingDate, completionDate, examDate
+                    ));
         }
     }
 }

@@ -10,11 +10,11 @@ public abstract class Course{
         completionDate = "";
         courseLeader = "";
     }
-    
+
     public String getCourseID(){
         return courseID;
     }
-    
+
     //display suitable values
     public void display(){
         out.println("courseID: "+courseID);
