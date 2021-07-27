@@ -108,16 +108,11 @@ public class INGCollege{
         setButton(p,"Register Academic Course", 465, 380, 260, 30);
     }
 
-    private static JButton academicButton;
-    private static JButton nonAcademicButton;
-    private static ButtonGroup optionsGroup;
+    private static JButton academicButton, nonAcademicButton;
 
     private static void addSwitcher(JPanel panel){
-        //optionsGroup = new ButtonGroup();
         academicButton = new JButton("Academic");//enabled by default
         nonAcademicButton = new JButton("Non Academic");
-        //optionsGroup.add(academicButton);
-        //optionsGroup.add(nonAcademicButton);
         academicButton.setBackground(Color.BLUE);
         nonAcademicButton.setBackground(Color.GRAY);
         academicButton.setBounds(350,5,100,20);
@@ -173,10 +168,10 @@ public class INGCollege{
                     addNonAcademicCourse();
                     break;
                 case "Display Academic Courses":
-                    courses.stream().filter(a->a instanceof AcademicCourse).forEach(System.out::println);
+                    courses.stream().filter(a->a instanceof AcademicCourse).map(c->(AcademicCourse)c).forEach(c->c.display());
                     break;
                 case "Display Non Academic Courses":
-                    courses.stream().filter(n->n instanceof NonAcademicCourse).forEach(System.out::println);
+                    courses.stream().filter(n->n instanceof NonAcademicCourse).map(c->(NonAcademicCourse)c).forEach(c->c.display());
                     break;
                 case "Remove":
                     courses.removeIf(n->n instanceof NonAcademicCourse

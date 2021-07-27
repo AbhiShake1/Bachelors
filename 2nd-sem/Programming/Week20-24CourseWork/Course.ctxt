@@ -4,4 +4,6 @@ comment1.params=courseID\ courseName\ duration
 comment1.target=Course(java.lang.String,\ java.lang.String,\ int)
 comment2.params=
 comment2.target=java.lang.String\ getCourseID()
-numComments=3
+comment3.params=
+comment3.target=void\ display()
+numComments=4
