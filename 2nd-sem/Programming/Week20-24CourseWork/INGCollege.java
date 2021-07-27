@@ -4,8 +4,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class INGCollege{
+public class INGCollege{    
     private static JFrame frame;
 
     private static JPanel academicPanel, nonAcademicPanel;
@@ -108,12 +109,7 @@ public class INGCollege{
         setButton(p,"Register Academic Course", 465, 380, 260, 30);
     }
 
-<<<<<<< HEAD
     private static JButton academicButton, nonAcademicButton;
-=======
-    private static JButton academicButton;
-    private static JButton nonAcademicButton;
->>>>>>> 49d01c22244ea4f1d81139c731fdf567655bf151
 
     private static void addSwitcher(JPanel panel){
         academicButton = new JButton("Academic");//enabled by default
@@ -162,6 +158,9 @@ public class INGCollege{
     }
 
     private static class EventHandler implements ActionListener{
+        private static  String getText(int index){
+            return textFields.get(index).getText();
+        }
         private static int errorNumber;
 
         @Override
@@ -184,7 +183,7 @@ public class INGCollege{
                     break;
                 case "Remove":
                     courses.removeIf(n->n instanceof NonAcademicCourse
-                            && n.getCourseID().equals(textFields.get(10).getText()));
+                            && n.getCourseID().equals(getText(10)));
                     break;
                 case "Register Academic Course":
                     registerAcademicCourse();
@@ -222,47 +221,47 @@ public class INGCollege{
 
         private void addAcademicCourse(){
             errorNumber = 0;
-            String courseID = textFields.get(0).getText();
-            String courseName = textFields.get(1).getText();
-            int duration = parseInt(textFields.get(2).getText());
-            String level = textFields.get(3).getText();
-            int credit = parseInt(textFields.get(6).getText());
-            int noOfAssessments = parseInt(textFields.get(7).getText());
+            String courseID = getText(0);
+            String courseName = getText(1);
+            int duration = parseInt(getText(2));
+            String level = getText(3);
+            int credit = parseInt(getText(6));
+            int noOfAssessments = parseInt(getText(7));
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
             courses.add(course);
         }
 
         public void addNonAcademicCourse(){
             errorNumber = 0;
-            String courseID = textFields.get(10).getText();
-            String courseName = textFields.get(11).getText();
-            int duration = parseInt(textFields.get(13).getText());
-            String level = textFields.get(12).getText();
-            String prerequisite = textFields.get(14).getText();
+            String courseID = getText(10);
+            String courseName = getText(11);
+            int duration = parseInt(getText(13));
+            String level = getText(12);
+            String prerequisite = getText(14);
             Course course = new NonAcademicCourse(courseID, courseName, duration, level, prerequisite);
             courses.add(course);
         }
 
         public void registerAcademicCourse(){
-            String courseLeader = textFields.get(9).getText();
-            String lecturerName = textFields.get(8).getText();
-            String startingDate = textFields.get(5).getText();
-            String completionDate = textFields.get(4).getText();
+            String courseLeader = getText(9);
+            String lecturerName = getText(8);
+            String startingDate = getText(5);
+            String completionDate = getText(4);
             courses.stream().filter(c->c instanceof AcademicCourse
-            && textFields.get(0).getText() == c.getCourseID()
+            && getText(0) == c.getCourseID()
             ).map(c->(AcademicCourse)c).forEach(c->c.register(
                 courseLeader, lecturerName, startingDate, completionDate
             ));
         }
         
         public void registerNonAcademicCourse(){
-            String courseLeader = textFields.get(16).getText();
-            String courseName = textFields.get(11).getText();
-            String startingDate = textFields.get(16).getText();
-            String completionDate = textFields.get(18).getText();
-            String examDate = textFields.get(17).getText();
+            String courseLeader = getText(15);
+            String courseName = getText(11);
+            String startingDate = getText(16);
+            String completionDate = getText(18);
+            String examDate = getText(17);
             courses.stream().filter(c->c instanceof AcademicCourse
-            && textFields.get(0).getText() == c.getCourseID()
+            && getText(0) == c.getCourseID()
             ).map(c->(NonAcademicCourse)c).forEach(c->c.register(
                 courseLeader, courseName, startingDate, completionDate, examDate
             ));
