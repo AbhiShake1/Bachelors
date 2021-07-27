@@ -14,4 +14,6 @@ comment6.params=panel\ text\ x\ y\ width\ height
 comment6.target=void\ setButton(javax.swing.JPanel,\ java.lang.String,\ int,\ int,\ int,\ int)
 comment7.params=panel\ x\ y\ width\ height
 comment7.target=void\ setTextField(javax.swing.JPanel,\ int,\ int,\ int,\ int)
-numComments=8
+comment8.params=
+comment8.target=javax.swing.JFrame\ getFrame()
+numComments=9

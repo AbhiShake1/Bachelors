@@ -1,4 +1,5 @@
 import static java.lang.System.out;
+import javax.swing.JOptionPane;
 
 public class NonAcademicCourse extends Course{
     private final String level, prerequisite;
@@ -43,7 +44,10 @@ public class NonAcademicCourse extends Course{
             super.courseLeader = courseLeader;
             isRegistered=true; //if block will not be executed next time if isRegertered is true
         }else{
-            System.out.println("The course has already been registered"); //write a message to console if course has already been registered
+            JOptionPane.showMessageDialog(
+            INGCollege.getFrame(),"The course has already been registered.",
+            "Warning",JOptionPane.WARNING_MESSAGE
+            ); //pop if course has already been registered
         }
     }
 }
