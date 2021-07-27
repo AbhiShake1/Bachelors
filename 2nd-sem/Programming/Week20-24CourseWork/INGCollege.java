@@ -108,7 +108,12 @@ public class INGCollege{
         setButton(p,"Register Academic Course", 465, 380, 260, 30);
     }
 
+<<<<<<< HEAD
     private static JButton academicButton, nonAcademicButton;
+=======
+    private static JButton academicButton;
+    private static JButton nonAcademicButton;
+>>>>>>> 49d01c22244ea4f1d81139c731fdf567655bf151
 
     private static void addSwitcher(JPanel panel){
         academicButton = new JButton("Academic");//enabled by default
