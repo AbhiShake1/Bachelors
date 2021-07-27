@@ -30,9 +30,9 @@ public class AcademicCourse extends Course{
 
     public void register(String courseLeader, String lecturerName, String startingDate, String completionDate){
         if(isRegistered){
-            System.out.println("Lecturer name: "+this.lecturerName);
-            System.out.println("Starting date: "+this.startingDate);
-            System.out.println("Completion date: "+this.completionDate);
+            out.println("Lecturer name: "+this.lecturerName);
+            out.println("Starting date: "+this.startingDate);
+            out.println("Completion date: "+this.completionDate);
         }else{
             this.lecturerName = lecturerName;
             this.startingDate = startingDate;

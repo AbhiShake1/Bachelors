@@ -211,7 +211,7 @@ public class INGCollege{
                 value = Integer.parseInt(s);
             }catch(NumberFormatException nfe){
                 if(errorNumber == 0)
-                //parent component->main frame
+                    //parent component->main frame
                     JOptionPane.showMessageDialog(frame, "Please input valid integer", "Error", JOptionPane.ERROR_MESSAGE);
                 errorNumber++;
             }
@@ -249,8 +249,8 @@ public class INGCollege{
             courses.stream().filter(c->c instanceof AcademicCourse
                     && getText(0).equals(c.getCourseID())
             ).map(c->(AcademicCourse)c).forEach(c->c.register(
-                        courseLeader, lecturerName, startingDate, completionDate
-                    ));
+                    courseLeader, lecturerName, startingDate, completionDate
+            ));
         }
 
         public void registerNonAcademicCourse(){
@@ -262,8 +262,8 @@ public class INGCollege{
             courses.stream().filter(c->c instanceof NonAcademicCourse
                     && getText(0).equals(c.getCourseID())
             ).map(c->(NonAcademicCourse)c).forEach(c->c.register(
-                        courseLeader, courseName, startingDate, completionDate, examDate
-                    ));
+                    courseLeader, courseName, startingDate, completionDate, examDate
+            ));
         }
     }
 }
