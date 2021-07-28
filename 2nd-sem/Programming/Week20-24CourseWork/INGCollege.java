@@ -157,16 +157,18 @@ final class INGCollege{
     }
 
     private static final class EventHandler implements ActionListener{
+
         private static  String getText(int index){
             return textFields.get(index).getText();
         }
+
         private static int errorNumber;
 
         @Override
         public void actionPerformed(ActionEvent e){
             switch(e.getActionCommand()){
                 case "Clear":
-                    textFields.forEach(l->l.setText(""));
+                    for(JTextField t : textFields)t.setText("");
                     break;
                 case "Add Academic Course":
                     addAcademicCourse();
@@ -175,14 +177,27 @@ final class INGCollege{
                     addNonAcademicCourse();
                     break;
                 case "Display Academic Courses":
-                    courses.stream().filter(a->a instanceof AcademicCourse).map(c->(AcademicCourse)c).forEach(AcademicCourse::display);
+                    for(Course c : courses){
+                        if(c instanceof AcademicCourse){
+                            AcademicCourse ac = (AcademicCourse)c;
+                            ac.display();
+                        }
+                    }
                     break;
                 case "Display Non Academic Courses":
-                    courses.stream().filter(n->n instanceof NonAcademicCourse).map(c->(NonAcademicCourse)c).forEach(NonAcademicCourse::display);
+                    for(Course c : courses){
+                        if(c instanceof NonAcademicCourse){
+                            NonAcademicCourse nac = (NonAcademicCourse)c;
+                            nac.display();
+                        }
+                    }
                     break;
                 case "Remove":
-                    courses.removeIf(n->n instanceof NonAcademicCourse
-                            && n.getCourseID().equals(getText(10)));
+                    for(Course c : courses){
+                        if(c instanceof NonAcademicCourse && c.getCourseID().equals(getText(10))){
+                            courses.remove(c);
+                        }
+                    }
                     break;
                 case "Register Academic Course":
                     registerAcademicCourse();
@@ -246,11 +261,14 @@ final class INGCollege{
             String lecturerName = getText(8);
             String startingDate = getText(5);
             String completionDate = getText(4);
-            courses.stream().filter(c->c instanceof AcademicCourse
-                    && getText(0).equals(c.getCourseID())
-            ).map(c->(AcademicCourse)c).forEach(c->c.register(
+            for(Course c : courses){
+                if(c instanceof AcademicCourse && getText(0).equals(c.getCourseID())){
+                    AcademicCourse ac = (AcademicCourse)c;
+                    ac.register(
                         courseLeader, lecturerName, startingDate, completionDate
-                    ));
+                    );
+                }
+            }
         }
 
         private void registerNonAcademicCourse(){
@@ -259,11 +277,14 @@ final class INGCollege{
             String startingDate = getText(16);
             String completionDate = getText(18);
             String examDate = getText(17);
-            courses.stream().filter(c->c instanceof NonAcademicCourse
-                    && getText(10).equals(c.getCourseID())
-            ).map(c->(NonAcademicCourse)c).forEach(c->c.register(
+            for(Course c : courses){
+                if(c instanceof NonAcademicCourse && getText(10).equals(c.getCourseID())){
+                    NonAcademicCourse nac = (NonAcademicCourse)c;
+                    nac.register(
                         courseLeader, courseName, startingDate, completionDate, examDate
-                    ));
+                    );
+                }
+            }
         }
     }
 }
