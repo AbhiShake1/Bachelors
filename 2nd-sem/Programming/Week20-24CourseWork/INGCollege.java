@@ -152,17 +152,17 @@ final class INGCollege{
 
     private static final List<JTextField> textFields = new ArrayList<>();
 
-    public static final JFrame getFrame(){
+    public final JFrame getFrame(){
         return frame;
     }
 
     private static final class EventHandler implements ActionListener{
 
-        private static  String getText(int index){
+        private  String getText(int index){
             return textFields.get(index).getText();
         }
 
-        private static int errorNumber;
+        private int errorNumber;
 
         @Override
         public void actionPerformed(ActionEvent e){
@@ -220,7 +220,7 @@ final class INGCollege{
             }
         }
 
-        private static int parseInt(String s){
+        private int parseInt(String s){
             int value = 0;
             try{
                 value = Integer.parseInt(s);

@@ -38,8 +38,9 @@ public class NonAcademicCourse extends Course{
             super.courseLeader = courseLeader;
             isRegistered=true; //if block will not be executed next time if isRegertered is true
         }else{
+            
             JOptionPane.showMessageDialog(
-                INGCollege.getFrame(),"The course has already been registered.",
+                new INGCollege().getFrame(),"The course has already been registered.",
                 "Warning",JOptionPane.WARNING_MESSAGE
             ); //pop if course has already been registered
         }
