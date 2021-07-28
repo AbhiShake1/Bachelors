@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import java.util.ConcurrentModificationException;
 
 final class INGCollege{
     private JFrame frame;
@@ -17,13 +18,12 @@ final class INGCollege{
     private final List<Course> courses = new ArrayList<>();
 
     public static void main(String[] args){
-        new INGCollege();
+        ingCollege = new INGCollege();
     }
 
     //singleton instance. prevent 2 frames from showing up at a time
     private static INGCollege ingCollege;
     public static INGCollege getInstance(){
-        if (ingCollege==null)ingCollege = new INGCollege();
         return ingCollege;
     }
 
@@ -205,12 +205,7 @@ final class INGCollege{
                     }
                     break;
                 case "Remove":
-                    Iterator<Course> it = courses.iterator();
-                    while(it.hasNext()){
-                        Course c = it.next();
-                        if(c instanceof NonAcademicCourse && c.getCourseID().equals(getText(10)))
-                            it.remove();
-                    }
+                    removeNonAcademicCourse();
                     break;
                 case "Register Academic Course":
                     registerAcademicCourse();
@@ -246,6 +241,22 @@ final class INGCollege{
             return value;
         }
 
+        //to not reset on action event
+        private NonAcademicCourse removeNonAcademic;
+
+        private void removeNonAcademicCourse(){
+            String courseID = getText(10);
+            for(Course c : courses){
+                if(c instanceof NonAcademicCourse && c.getCourseID().equals(courseID)){
+                    removeNonAcademic = (NonAcademicCourse)c;
+                    courses.remove(c);
+                    break; //break loop and avoid concurrent modification exception
+                }
+            }
+            if(removeNonAcademic!=null && removeNonAcademic.getCourseID().equals(courseID))
+                removeNonAcademic.remove();
+        }
+
         private void addAcademicCourse(){
             errorNumber = 0;
             String courseID = getText(0);
@@ -255,7 +266,7 @@ final class INGCollege{
             int credit = parseInt(getText(6));
             int noOfAssessments = parseInt(getText(7));
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
-            courses.add(course);
+            addCourse(course);
         }
 
         private void addNonAcademicCourse(){
@@ -266,7 +277,25 @@ final class INGCollege{
             String level = getText(12);
             String prerequisite = getText(14);
             Course course = new NonAcademicCourse(courseID, courseName, duration, level, prerequisite);
+            addCourse(course);
+        }
+
+        private void addCourse(Course course){
+            boolean show = false;
             courses.add(course);
+            for(Course c : courses){
+                if(c.getCourseID().equals(getText(10))){
+                    if(show){
+                        JOptionPane.showMessageDialog(
+                            INGCollege.getInstance().getFrame(),"The course has already been added.",
+                            "Warning",JOptionPane.WARNING_MESSAGE
+                        );
+                        courses.remove(c);
+                        break;
+                    }
+                    show = true;
+                }
+            }
         }
 
         private void registerAcademicCourse(){

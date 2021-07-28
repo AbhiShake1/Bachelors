@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=void\ display()
 comment3.params=courseLeader\ instructorName\ startDate\ completionDate\ examDate
 comment3.target=void\ register(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
-numComments=4
+comment4.params=
+comment4.target=void\ remove()
+numComments=5
