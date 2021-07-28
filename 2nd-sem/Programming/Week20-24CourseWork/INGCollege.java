@@ -4,18 +4,30 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 final class INGCollege{
-    private static JFrame frame;
+    private JFrame frame;
 
-    private static JPanel academicPanel, nonAcademicPanel;
+    private JPanel academicPanel, nonAcademicPanel;
 
-    private static final EventHandler eventHandler = new EventHandler();
+    private final EventHandler eventHandler = new EventHandler();
 
     //store objects
-    private static final List<Course> courses = new ArrayList<>();
+    private final List<Course> courses = new ArrayList<>();
 
     public static void main(String[] args){
+        new INGCollege();
+    }
+
+    //singleton instance. prevent 2 frames from showing up at a time
+    private static INGCollege ingCollege;
+    public static INGCollege getInstance(){
+        if (ingCollege==null)ingCollege = new INGCollege();
+        return ingCollege;
+    }
+
+    private INGCollege(){
         frame = new JFrame("Course Registration");
         academicPanel = new JPanel(null); //with null layout manager for absolute position
         nonAcademicPanel = new JPanel(null);
@@ -39,7 +51,7 @@ final class INGCollege{
         frame.setVisible(true);
     }
 
-    private static void setUpNonAcademicPanel(JPanel p){
+    private void setUpNonAcademicPanel(JPanel p){
         addSwitcher(p);
 
         //labels
@@ -73,7 +85,7 @@ final class INGCollege{
         setButton(p,"Register Non Academic Course", 465, 380, 260);
     }
 
-    private static void setUpAcademicPanel(JPanel p){
+    private void setUpAcademicPanel(JPanel p){
         addSwitcher(p);
 
         //labels
@@ -108,9 +120,9 @@ final class INGCollege{
         setButton(p,"Register Academic Course", 465, 380, 260);
     }
 
-    private static JButton academicButton, nonAcademicButton;
+    private JButton academicButton, nonAcademicButton;
 
-    private static void addSwitcher(JPanel panel){
+    private void addSwitcher(JPanel panel){
         academicButton = new JButton("Academic");//enabled by default
         nonAcademicButton = new JButton("Non Academic");
         academicButton.setBackground(Color.BLUE);
@@ -125,7 +137,7 @@ final class INGCollege{
         setLabel(panel, "Which type of course do you want to enroll in?",0,0,350,30,15);
     }
 
-    private static void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize){
+    private void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize){
         JLabel label = new JLabel(text);
         label.setBounds(x, y, width, height);
         label.setFont(new Font(null, Font.PLAIN, fontSize));
@@ -135,14 +147,14 @@ final class INGCollege{
         panel.add(label);
     }
 
-    private static void setButton(JPanel panel, String text, int x, int y, int width){
+    private void setButton(JPanel panel, String text, int x, int y, int width){
         JButton button = new JButton(text);
         button.setBounds(x, y, width, 30);
         button.addActionListener(eventHandler);
         panel.add(button);
     }
 
-    private static void setTextField(JPanel panel, int x, int y, int width){
+    private void setTextField(JPanel panel, int x, int y, int width){
         JTextField textField = new JTextField();
         textField.setBounds(x, y, width, 25);
         textField.addActionListener(eventHandler);
@@ -150,13 +162,13 @@ final class INGCollege{
         panel.add(textField);
     }
 
-    private static final List<JTextField> textFields = new ArrayList<>();
+    private final List<JTextField> textFields = new ArrayList<>();
 
     public final JFrame getFrame(){
         return frame;
     }
 
-    private static final class EventHandler implements ActionListener{
+    private final class EventHandler implements ActionListener{
 
         private  String getText(int index){
             return textFields.get(index).getText();
@@ -193,10 +205,11 @@ final class INGCollege{
                     }
                     break;
                 case "Remove":
-                    for(Course c : courses){
-                        if(c instanceof NonAcademicCourse && c.getCourseID().equals(getText(10))){
-                            courses.remove(c);
-                        }
+                    Iterator<Course> it = courses.iterator();
+                    while(it.hasNext()){
+                        Course c = it.next();
+                        if(c instanceof NonAcademicCourse && c.getCourseID().equals(getText(10)))
+                            it.remove();
                     }
                     break;
                 case "Register Academic Course":

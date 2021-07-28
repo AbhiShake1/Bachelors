@@ -40,7 +40,7 @@ public class NonAcademicCourse extends Course{
         }else{
             
             JOptionPane.showMessageDialog(
-                new INGCollege().getFrame(),"The course has already been registered.",
+                INGCollege.getInstance().getFrame(),"The course has already been registered.",
                 "Warning",JOptionPane.WARNING_MESSAGE
             ); //pop if course has already been registered
         }
