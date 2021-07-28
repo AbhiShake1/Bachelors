@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class INGCollege{
+final class INGCollege{
     private static JFrame frame;
 
     private static JPanel academicPanel, nonAcademicPanel;
@@ -152,11 +152,11 @@ public class INGCollege{
 
     private static final List<JTextField> textFields = new ArrayList<>();
 
-    public static JFrame getFrame(){
+    public static final JFrame getFrame(){
         return frame;
     }
 
-    private static class EventHandler implements ActionListener{
+    private static final class EventHandler implements ActionListener{
         private static  String getText(int index){
             return textFields.get(index).getText();
         }
@@ -211,7 +211,7 @@ public class INGCollege{
                 value = Integer.parseInt(s);
             }catch(NumberFormatException nfe){
                 if(errorNumber == 0)
-                    //parent component->main frame
+                //parent component->main frame
                     JOptionPane.showMessageDialog(frame, "Please input valid integer", "Error", JOptionPane.ERROR_MESSAGE);
                 errorNumber++;
             }
@@ -230,7 +230,7 @@ public class INGCollege{
             courses.add(course);
         }
 
-        public void addNonAcademicCourse(){
+        private void addNonAcademicCourse(){
             errorNumber = 0;
             String courseID = getText(10);
             String courseName = getText(11);
@@ -241,7 +241,7 @@ public class INGCollege{
             courses.add(course);
         }
 
-        public void registerAcademicCourse(){
+        private void registerAcademicCourse(){
             String courseLeader = getText(9);
             String lecturerName = getText(8);
             String startingDate = getText(5);
@@ -249,21 +249,21 @@ public class INGCollege{
             courses.stream().filter(c->c instanceof AcademicCourse
                     && getText(0).equals(c.getCourseID())
             ).map(c->(AcademicCourse)c).forEach(c->c.register(
-                    courseLeader, lecturerName, startingDate, completionDate
-            ));
+                        courseLeader, lecturerName, startingDate, completionDate
+                    ));
         }
 
-        public void registerNonAcademicCourse(){
+        private void registerNonAcademicCourse(){
             String courseLeader = getText(15);
             String courseName = getText(11);
             String startingDate = getText(16);
             String completionDate = getText(18);
             String examDate = getText(17);
             courses.stream().filter(c->c instanceof NonAcademicCourse
-                    && getText(0).equals(c.getCourseID())
+                    && getText(10).equals(c.getCourseID())
             ).map(c->(NonAcademicCourse)c).forEach(c->c.register(
-                    courseLeader, courseName, startingDate, completionDate, examDate
-            ));
+                        courseLeader, courseName, startingDate, completionDate, examDate
+                    ));
         }
     }
 }
