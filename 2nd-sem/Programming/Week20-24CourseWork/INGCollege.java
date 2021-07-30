@@ -125,7 +125,7 @@ final class INGCollege{
     private void addSwitcher(JPanel panel){
         academicButton = new JButton("Academic");//enabled by default
         nonAcademicButton = new JButton("Non Academic");
-        academicButton.setBackground(Color.BLUE);
+        academicButton.setBackground(new Color(6,181,223));//light blue
         nonAcademicButton.setBackground(Color.GRAY);
         academicButton.setBounds(350,5,100,20);
         nonAcademicButton.setBounds(450,5,135,20);
