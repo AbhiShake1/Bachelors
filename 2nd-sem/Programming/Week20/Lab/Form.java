@@ -77,7 +77,7 @@ public class Form{
         //elements to string using declarative approach
         //(jdk8 feature) or streams
         BiFunction<Integer, Integer, String[]> generateArray =
-            (l,u)->IntStream.range(l,u+1)
+            (l,u)->IntStream.rangeClosed(l,u)
                 .mapToObj(String::valueOf)
                 .toArray(String[]::new);
 

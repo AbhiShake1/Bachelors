@@ -23,7 +23,7 @@ final class INGCollege{
 
     //singleton instance. prevent 2 frames from showing up at a time
     private static INGCollege ingCollege;
-    public static INGCollege getInstance(){
+    public static INGCollege getInstance() {
         return ingCollege;
     }
 
