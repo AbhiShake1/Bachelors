@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ConcurrentModificationException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 final class INGCollege{
     private JFrame frame;
@@ -47,7 +47,7 @@ final class INGCollege{
         frame.setSize(740,500);
         //frame.add(nonAcademicPanel);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(eventHandler);
         frame.setVisible(true);
     }
 
@@ -143,7 +143,7 @@ final class INGCollege{
         label.setFont(new Font(null, Font.PLAIN, fontSize));
         String txt = label.getText();
         if(txt.contains("Academic"))label.setForeground(Color.BLUE);
-        else if(txt.contains("Which"))label.setForeground(Color.MAGENTA);
+        else if(txt.contains("Which"))label.setForeground(new Color(223,48,6));
         panel.add(label);
     }
 
@@ -168,13 +168,19 @@ final class INGCollege{
         return frame;
     }
 
-    private final class EventHandler implements ActionListener{
+    private final class EventHandler extends WindowAdapter implements ActionListener{
 
         private  String getText(int index){
             return textFields.get(index).getText();
         }
 
         private int errorNumber;
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            JOptionPane.showMessageDialog(frame, "Thank you for trying");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
 
         @Override
         public void actionPerformed(ActionEvent e){
@@ -231,11 +237,15 @@ final class INGCollege{
         private int parseInt(String s){
             int value = 0;
             try{
-                value = Integer.parseInt(s);
+                //avoid crash if user enters decimal, parse and truncc down instead
+                value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe){
                 if(errorNumber == 0)
                 //parent component->main frame
                     JOptionPane.showMessageDialog(frame, "Please input valid integer", "Error", JOptionPane.ERROR_MESSAGE);
+                errorNumber++;
+            }catch(Exception e){ 
+                JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 errorNumber++;
             }
             return value;
@@ -274,9 +284,8 @@ final class INGCollege{
             String courseID = getText(10);
             String courseName = getText(11);
             int duration = parseInt(getText(13));
-            String level = getText(12);
             String prerequisite = getText(14);
-            Course course = new NonAcademicCourse(courseID, courseName, duration, level, prerequisite);
+            Course course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
             addCourse(course);
         }
 
