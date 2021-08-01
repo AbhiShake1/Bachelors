@@ -7,7 +7,6 @@
 import static java.lang.System.out; //import static variable 'out' from System class
 import javax.swing.JOptionPane;
 
-
 public class NonAcademicCourse extends Course/*inherits public,protected methods and variables from Course class*/{
     //private variables, can not be directly accessed by other classes
     private String instructorName, startDate, completionDate, examDate, prerequisite;
@@ -66,8 +65,8 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
             this.instructorName=instructorName;
         }else{
             JOptionPane.showMessageDialog(
-                    INGCollege.getInstance().getFrame(),"It is not possible to change instructor name since non academic course has already been registered",
-                    "Warning",JOptionPane.WARNING_MESSAGE
+                INGCollege.getInstance().getFrame(),"It is not possible to change instructor name since non academic course has already been registered",
+                "Warning",JOptionPane.WARNING_MESSAGE
             ); //pop if course has already been registered
         }
     }
@@ -81,8 +80,8 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
             isRegistered=true; //if block will not be executed next time if isRegertered is true
         }else{
             JOptionPane.showMessageDialog(
-                    INGCollege.getInstance().getFrame(),"The course has already been registered.",
-                    "Warning",JOptionPane.WARNING_MESSAGE
+                INGCollege.getInstance().getFrame(),"The course has already been registered.",
+                "Warning",JOptionPane.WARNING_MESSAGE
             ); //pop if course has already been registered
         }
     }
@@ -90,9 +89,9 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
     public void remove(){
         if(isRemoved){
             JOptionPane.showMessageDialog(
-                    INGCollege.getInstance().getFrame(),"The course has already been removed.",
-                    "Warning",JOptionPane.WARNING_MESSAGE
-                    );
+                INGCollege.getInstance().getFrame(),"The course has already been removed.",
+                "Warning",JOptionPane.WARNING_MESSAGE
+            );
         }else{
             //remove values of variables bellow(set values to empty string)
             super.setCourseLeader("");
