@@ -9,7 +9,7 @@ def getList():
         for i in range(len(content)):
             j = 0
             for c in content[i].split(","):
-                if j == 0: #for first index(there should normally be 4 because it is separated by comma in file)
+                if j == 0: #for first element(there should normally be 4 because it is separated by comma in file)
                     bookList.append(c)
                 elif j == 1:
                     authorList.append(c)
@@ -49,15 +49,15 @@ def returnBook():
                     Borrowed by: {name} 
                     Date: {getCurrentDate()}
                     Time: {getCurrentTime()}
-        S.N.\t\tBook Name\t\t\tAuthor\t\t\tCost\n''')
+        S.N.\t\tBook Name\t\t\tAuthor\t\t\tCost\n''')        
 
     total = 0.0
     for i in range(3):
         if bookList[i] in data:
-            with open(returnRec, "a") as f:                
-                f.write(f"\t{count} \t\t{bookList[i]}\t\t\t{authorList[i]}\t\t{priceList[i]}\n")                
+            with open(returnRec, "a") as f:
+                f.write(f"\t{count} \t\t{bookList[i]}\t\t\t{authorList[i]}\t\t{priceList[i]}\n")
                 quantityList[i] = int(quantityList[i]) + 1
-                count += 1            
+                count += 1
             total += float(priceList[i])
             
     print("\t\t\t\t\t\t\t" + "$" + str(total))
@@ -66,13 +66,13 @@ def returnBook():
         print("By how many days was the book returned late?")
         day = int(input())
         fine = 2 * day
-        with open(returnRec,"a")as f:
-            f.write("\t\t\t\t\tFine: $"+ str(fine)+"\n")
+        with open(returnRec, "a") as f:
+            f.write("\t\t\t\t\tFine: $" + str(fine) + "\n")
         total = total + fine
         
     print("Final Total: " + "$" + str(total))
     with open(returnRec, "a") as f:
-        f.write("\t\t\t\t\t\t\t\t\t\tTotal: $" + str(total))    
+        f.write("\t\t\t\t\t\t\t\t\t\tTotal: $" + str(total))
 
 def borrowBook():
     firstName = input("Enter your first name: ")
@@ -93,7 +93,7 @@ def borrowBook():
 
         try:
             index = int(input("Please input book number: "))
-            try: #can throw index out of bounds exception
+            try:  #can throw index out of bounds exception
                 if int(quantityList[index]) > 0:
                     print("Book is available")
                     with open(borrowRec, "a") as f:  #in append mode
@@ -102,22 +102,21 @@ def borrowBook():
                     quantityList[index] = int(quantityList[index]) - 1
                     with open("library.txt", "w+") as f:
                         for i in range(3):
-                            f.write(bookList[i] + "," + authorList[i] + "," + str(quantityList[i]) + ",$" + priceList[i] + "\n")                        
+                            f.write(bookList[i] + "," + authorList[i] + "," + str(quantityList[i]) + ",$" + priceList[i] + "\n")
                     yn = input("Do you want to borrow more books?(y/n): ")
                     if yn.lower() != "y":
                         break  #end loop
-                    count+=1
+                    count += 1
                 else:
                     print("Book is not available")
                     borrowBook()
-                    
             except IndexError:
                 print("\nPlease choose book as per their number.")
         except ValueError as err:
             print("\nPlease choose as suggested. " + str(err))
 
 def init():
-    while(True):  #infinite loop
+    while (True):  #infinite loop
         print(f'''
         Welcome to Library Management System
 {"-"*50} 
@@ -134,17 +133,17 @@ def init():
                 with open("library.txt") as f:
                     print(f.read() + "\n")
             elif (choice == 2):
-                getList() #initialize values of global lists
+                getList()  #initialize values of global lists
                 borrowBook()
             elif (choice == 3):
-                getList() #initialize values of global lists
+                getList()  #initialize values of global lists
                 returnBook()
             elif (choice == 4):
                 print("Thank you for using our service")
-                break #get out of loop and finish the program
+                break  #get out of loop and finish the program
             else:
                 print("Invalid number. Please read instructions carefully.")
-        except ValueError as err: #if input can not be parsed
+        except ValueError as err:  #if input can not be parsed
             print("Please input a valid number. " + str(err))
 
 
