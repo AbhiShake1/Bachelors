@@ -44,8 +44,6 @@ final class INGCollege{
         //Non academic panel
         nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         nonAcademicPanel.setSize(740,500);
-        frame.setSize(740,500);
-        //frame.add(nonAcademicPanel);
 
         frame.addWindowListener(eventHandler);
         frame.setVisible(true);

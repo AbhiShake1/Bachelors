@@ -140,7 +140,7 @@ def init():
                 returnBook()
             elif (choice == 4):
                 print("Thank you for using our service")
-                break  #get out of loop and finish the program
+                break  #get out of loop
             else:
                 print("Invalid number. Please read instructions carefully.")
         except ValueError as err:  #if input can not be parsed

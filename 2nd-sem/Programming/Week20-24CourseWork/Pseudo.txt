@@ -1,0 +1,240 @@
+CREATE class Course
+
+    DECLARE private instance variables courseID, courseName, courseLeader of type String
+    Declare private instance variable duration of type int
+    
+    CREATE CONSTRUCTOR Course(TAKE parameters courseID, courseName of String type AND duration of int type)
+        ASSIGN value of parameter courseID to instance variable courseID of the class
+        ASSIGN value of parameter coursenamme to instance variable coursename of the class
+        ASSIGN value of parameter duration to instance variable duration of the class
+        INITIALIZE courseLeader to empty string
+    END CONSTRUCTOR
+            
+    DEFINE METHOD getCourseID
+        RETURN courseID
+    END METHOD
+    
+    DEFINE METHOD getName
+        RETURN courseName
+    END METHOD
+    
+    DEFINE METHOD getCourseLeader
+        RETURN courseLeader
+    END METHOD
+    
+    DEFINE METHOD getDuration
+        RETURN duration
+    END METHOD
+    
+    DEFINE METHOD setCourseLeader(TAKE parameter courseLeader of type String)
+        ASSIGN value of courseLeader to instance variable courseLeader of the class
+    END METHOD 
+    
+    DEFINE METHOD display
+        PRINT "courseID: " AND value of courseID variable
+        PRINT "courseName: " AND value of courseName variable
+        PRINT "courseDuration: " AND value of courseDuration variable
+        IF courseLeader variable does not have an empty value ""
+            PRINT "courseLeader: " AND value of courseLeader variable
+        END IF
+    END METHOD
+    
+END CLASS
+
+
+
+CREATE CLASS NonAcademicCourse that EXTENDS Course class
+
+    DECLARE private instance variables instructorName, startDate, completionDate, examDate, prerequisite of type String
+    
+    Declare private instance variable duration of type int
+    
+    Declare private instance variables isRegistered, isRemoved of type boolean
+    
+    CREATE CONSTRUCTOR NonAcademicCourse(TAKE parameters courseID, courseName, prerequisite of type String, duration of type int)
+        CALL Course(PASS arguments courseID, courseName, duration)
+        ASSIGN value of parameter prerequisite to instance variable prerequisite of the class
+        INITIALIZE startDate, completionDate, examDate to empty String ""
+        INITIALIZE isRegistered to False
+    END CONSTRUCTOR
+    
+    DEFINE METHOD getInstructorName
+        RETURN instructorName
+    END METHOD
+    
+    DEFINE METHOD getDuration
+        RETURN duration
+    END METHOD
+    
+    DEFINE METHOD getStartDate
+        RETURN startDate
+    END METHOD
+    
+    DEFINE METHOD getCompletionDate
+        RETURN completionDate
+    END METHOD
+    
+    DEFINE METHOD getExamDate
+        RETURN examDate
+    END METHOD
+    
+    DEFINE METHOD getPrerequisite
+        RETURN prerequisite
+    END METHOD
+    
+    DEFINE METHOD getRegistered
+        RETURN isRegistered
+    END METHOD
+    
+    DEFINE METHOD getRemoved
+        RETURN isRemoved
+    END METHOD
+    
+    DEFINE METHOD setRemomved(TAKE parameter isRemoved of type boolean)
+        ASSIGN value of isRemoved to instance variable isRemoved of the class
+    END METHOD
+    
+    DEFINE METHOD setInstructorName(TAKE parameter instructorName of type String)
+        IF not isRegitered
+            ASSIGN value of instructorName to instance variable instructorName of the class
+        ELSE
+            PRINT "It is not possible to change instructor name since non academic course has already been registered"
+        END IF
+    END METHOD
+    
+    DEFINE METHOD register(TAKE parameters courseLeader, instructorName, startDate, completionDate, examDate of type String)
+        IF not isRegestered
+            CALL setInstuctorName PASS instructorName as argument
+            ASSIGN value of startDate to instance variable startDate of the class
+            ASSIGN value of completionDate to instance variable completionDate of the class
+            ASSIGN value of examDate to instance variable examDate of the class
+            SET value of isRegistered to true
+        ELSE
+            PRINT "The course has already been registered"
+        END IF
+    END METHOD
+    
+    DEFINE METHOD remove
+        IF isRemoved
+            PRINT "The course has already been removed"
+        ELSE
+            CALL from super class setCourseLeader PASS "" as argument
+            SET value of startDate to empty String ""
+            SET value of completionDate to empty String ""
+            SET value of examDate to empty String ""
+            SET value of isRegestered to false
+            SET value of isRemoved to true
+        END IF
+    END METHOD
+    
+END CLASS
+    
+CREATE CLASS AcademicCourse that EXTENDS Course class 
+    DECLARE private instance variables lecturerName, level, credit, startingDate, completionDate of type String
+    DECLARE private variable noOfAssessments of type int
+    DECLARE private variables isRegistered, courseRemovedStatus of type boolean
+        
+    CREATE CONSTRUCTOR AcademicCourse(TAKE parameters courseID, courseName, level, credit of type String, duration, noOfAssessments of type int)
+        CALL Course(PASS arguments courseID, courseName, duration) from superclass
+        INITIALIZE lecturerName to empty String ""
+        INITIALIZE startingDate to empty String ""
+        INITIALIZE completionDate to empty String ""
+        SET value isRegistered to false
+    END CONSTRUCTOR 
+        
+    DEFINE METHOD getLecturerName
+        RETURN lecturerName
+    END METHOD
+        
+    DEFINE METHOD getLevel
+        RETURN level
+    END METHOD
+        
+    DEFINE METHOD getCredit
+        RETURN credit
+    END METHOD
+        
+    DEFINE METHOD getStartingDate
+        RETURN startingDate
+    END METHOD
+        
+    DEFINE METHOD getCompletionDate
+        RETURN completionDate
+    END METHOD
+        
+    DEFINE METHOD getRegistered
+        RETURN isRegistered
+    END METHOD
+        
+    DEFINE METHOD getNoOfAssessments
+        RETURN noOfAssessments
+    END METHOD
+        
+    DEFINE METHOD setLecturerName(TAKE parameters lecturerName of type String)
+        ASSIGN value of lecturerName to instance variable lecturerName of the class
+    END METHOD
+        
+    DEFINE METHOD setNoOfAssessments(TAKE parameters noOfAssessments of type int)
+        ASSIGN value of noOfAssessments to instance variable noOfAssessments of the class
+    END METHOD
+        
+    DEFINE METHOD register(TAKE parameters courseLeader, lecturerName, startingDate, completionDate of type String)
+        IF isRegistered
+            PRINT "Instructor name: " AND lecturerName
+               PRINT "Starting date: " AND startingDate
+               PRINT "Completion date: " AND completionDate
+           ELSE 
+            ASSIGN value of lecturerName to instance variable lecturerName of the class
+            ASSIGN value of startingDate to instance variable startingDate of the class
+               ASSIGN value of completionDate to instance variable completionDate of the class
+               CALL setCourseLeader(PASS argument courseLeader) from superclass
+               SET value of isRegisreted to true
+               SET value of courseRemovedStatus to false
+        END IF
+       END METHOD 
+           
+       DEFINE METHOD display
+           CALL display METHOD from superclass
+           IF isRegistered
+               PRINT "Lecturer name: " AND lecturerName
+               PRINT "Lebel: " AND level
+               PRINT "Starting date: " AND startingDate
+               PRINT "Completion date: " AND completionDate    
+               PRINT "Number of Assessments: " AND noOfAssessments
+          END IF
+     END METHOD 
+          
+END CLASS
+
+CREATE CLASS INGCollege
+    DECLARE private instance variable frame of type JFrame
+    
+    DECLARE private instsnace variables academicPanel and nonAcademicPanel of type JPanel
+    
+    DECLARE private instance constant eventHandler of type EventHandler and INITIALIZE it to new instance of EventHandler class
+    
+    DECLARE private final List course that carries objects of Course classe and its sub classes and INITIALIZE it to new instance of ArrayList class
+    
+    DECLARE variable ingCollege of type INGCollege
+    
+    DEFINE MAIN METHOD
+        INITIALIZE INGCollege to new instance of INGCollege class
+    END MAIN METHOD
+    
+    CREATE CONSTRUCTOR INGCollege
+        INITIALIZE frame variable to new instance of JFrame class(PASS "Course Registration" as argument)
+        INITIALIZE academicPanel variable to new instance of JPanel class PASS null as argument
+        INITIALIZE nonAcademicPanel variable to new instance of JPanel class PASS null as argument
+        CALL setUpAcademicPanel(PASS academicPanel as argument)
+        CALL setUpNonAcademicPanel(PASS nonAcademicPanel as argument)
+        
+        SET blue colored border in academicPanel
+        SET size of academicPanel 740x500
+        SET size of frame 740x500
+        ADD academicPanel to frame
+        
+        SET blue colored border in nonAcademicPanel
+        SET size of nonAcademicPanel 740x500
+        
+        ADD windowListener to frame PASS eventHandler as argument
+        MAKE frame visible
