@@ -172,7 +172,7 @@ final class INGCollege{
             return textFields.get(index).getText();
         }
 
-        private int errorNumber;
+        private boolean errorNumber;
 
         @Override
         public void windowClosing(WindowEvent e) {
@@ -238,13 +238,13 @@ final class INGCollege{
                 //avoid crash if user enters decimal, parse and truncc down instead
                 value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe){
-                if(errorNumber == 0)
+                if(!errorNumber)
                 //parent component->main frame
                     JOptionPane.showMessageDialog(frame, "Please input valid integer", "Error", JOptionPane.ERROR_MESSAGE);
-                errorNumber++;
+                errorNumber = true;
             }catch(Exception e){ 
                 JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                errorNumber++;
+                errorNumber = true;
             }
             return value;
         }
@@ -266,7 +266,7 @@ final class INGCollege{
         }
 
         private void addAcademicCourse(){
-            errorNumber = 0;
+            errorNumber = false;
             String courseID = getText(0);
             String courseName = getText(1);
             int duration = parseInt(getText(2));
@@ -278,7 +278,7 @@ final class INGCollege{
         }
 
         private void addNonAcademicCourse(){
-            errorNumber = 0;
+            errorNumber = false;
             String courseID = getText(10);
             String courseName = getText(11);
             int duration = parseInt(getText(13));
@@ -288,10 +288,14 @@ final class INGCollege{
         }
 
         private void addCourse(Course course){
+            String text;
             boolean show = false;
+            Course mCourse;
+            if(course instanceof AcademicCourse)text = getText(0);
+            else text = getText(10);
             courses.add(course);
             for(Course c : courses){
-                if(c.getCourseID().equals(getText(10))){
+                if(c.getCourseID().equals(text)){
                     if(show){
                         JOptionPane.showMessageDialog(
                             INGCollege.getInstance().getFrame(),"The course has already been added.",

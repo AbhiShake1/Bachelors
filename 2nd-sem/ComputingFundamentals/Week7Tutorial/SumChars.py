@@ -1,8 +1,12 @@
+def sumOfString(nums) -> int:
+    sum_ = 0
+
+    for num in nums:
+        if num.isnumeric():
+            sum_ += int(num) #convert to int and add
+
+    return sum_
+
 nums = input("Enter a number: ")
 
-sum_ = 0
-
-for num in nums:
-    sum_ += int(num)
-
-print("The sum is", sum_)
+print("The sum is", sumOfString(nums))
