@@ -238,3 +238,64 @@ CREATE CLASS INGCollege
         
         ADD windowListener to frame PASS eventHandler as argument
         MAKE frame visible
+    END CONSTRUCTOR
+    
+    DEFINE METHOD setUpNonAcademicPanel(TAKE parameter p of type JPanel)
+        CALL addSwitcher(PASS p as argument)
+        
+        CALL setLabel(title="Non Academic Course", bounds=250,0,800,100, font size = 30)
+        CALL setLabel(title="CourseID", bounds=20,90,70,20, font size = 15)
+        CALL setLabel(title="Course Name", bounds=20,140,125,20, font size = 15)
+        CALL setLabel(title="Instructor Name", bounds=400,90,125,20, font size = 15)
+        CALL setLabel(title="Duration", bounds=400,140,130,20, font size = 15)
+        CALL setLabel(title="prerequisite", bounds=20,195,125,20, font size = 15)
+        CALL setLabel(title="Duration", bounds=400,290,130,20, font size = 15)
+    
+        CALL setTextField(PASS argument p, x=180, y=85, width=170)
+        CALL setTextField(PASS argument p, x=180, y=135, width=170)
+        CALL setTextField(PASS argument p, x=535, y=85, width=160)
+        CALL setTextField(PASS argument p, x=535, y=135, width=160)
+        CALL setTextField(PASS argument p, x=180, y=190, width=170)
+        CALL setTextField(PASS argument p, x=180, y=240, width=170)
+        CALL setTextField(PASS argument p, x=535, y=185, width=160)
+        CALL setTextField(PASS argument p, x=535, y=285, width=160)
+        CALL setTextField(PASS argument p, x=535, y=235, width=160)
+    
+        CALL setButton(PASS argument p, title="Remove", x=290, y=330, height=130)
+        CALL setButton(PASS argument p, title="Add Non Academic Course", x=5, y=380, height=250)
+        CALL setButton(PASS argument p, title="Display Non Academic Course", x=5, y=330, height=250)
+        CALL setButton(PASS argument p, title="Clear", x=465, y=330, height=260)
+        CALL setButton(PASS argument p, title="Register Non Academic Course", x=465, y=380, height=260)
+    END METHOD
+    
+    DEFINE METHOD setUpAcademicPanel(TAKE parameter p of type JPanel)
+        CALL addSwitcher(PASS p as argument)
+        
+        CALL setLabel(PASS argument p, title="Academic Course", bounds=250, 0, 800, 100, font size=30)
+        CALL setLabel(PASS argument p, title="CourseID:", bounds=20, 90, 70, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Duration:", bounds=20, 140, 70, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Completion Date:", bounds=390, 290, 130, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Level:", bounds=400, 190, 70, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Course Name:", bounds=400, 90, 125, 20, font size=15)
+        CALL setLabel(PASS argument p, title="No. of Assessments:", bounds=370, 140, 185, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Start Date:", bounds=400, 240, 125, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Credit:", bounds=20, 240, 125, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Lecturer Name:", bounds=20, 190, 125, 20, font size=15)
+        CALL setLabel(PASS argument p, title="Course Leader:", bounds=20, 290, 125, 20, font size=15)
+        
+        CALL setTextField(PASS argument p, x=180, y=85, width=170)
+        CALL setTextField(PASS argument p, x=535, y=85, width=160)
+        CALL setTextField(PASS argument p, x=180, y=135, width=170)
+        CALL setTextField(PASS argument p, x=535, y=190, width=160)
+        CALL setTextField(PASS argument p, x=535, y=285, width=160)
+        CALL setTextField(PASS argument p, x=535, y=235, width=160)
+        CALL setTextField(PASS argument p, x=180, y=235, width=170)
+        CALL setTextField(PASS argument p, x=535, y=135, width=160)
+        CALL setTextField(PASS argument p, x=180, y=190, width=170)
+        CALL setTextField(PASS argument p, x=180, y=235, width=170)
+        
+        CALL setButton(PASS argument p, title="Add Academic Course", x=5, y=380, height=250)
+        CALL setButton(PASS argument p, title="Display Academic Course", x=5, y=330, height=250)
+        CALL setButton(PASS argument p, title="Clear", x=465, y=330, height=260)
+        CALL setButton(PASS argument p, title="Register Academic Course", x=465, y=380, height=260)
+    END METHOD

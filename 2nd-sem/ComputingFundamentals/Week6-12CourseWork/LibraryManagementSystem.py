@@ -108,7 +108,7 @@ def borrowBook():
                         break  #end loop
                     count += 1
                 else:
-                    print("Book is not available")
+                    print("Book is not available in stock")
                     borrowBook()
             except IndexError:
                 print("\nPlease choose book as per their number.")
