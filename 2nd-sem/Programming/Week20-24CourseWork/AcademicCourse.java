@@ -1,4 +1,4 @@
-/**
+/*
  * AcademicCourse is subclass of Course class and extends it with additional attributes and properties
  * Created on Sat May 01 19:57 2021
  * @Author: Abhishek Pandey
