@@ -122,7 +122,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                     { //default constructor without parameters (instance initializer)
                         setBounds(x, y, width, height);
                         setFont(new Font(null, Font.PLAIN, fontSize));
-                        
+
                         /*block scope, do not expose txt variable to anything except this block scope
                          * (not even to anything beyond that inside this method)
                          */
@@ -131,7 +131,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                             if(txt.contains("Academic"))setForeground(Color.BLUE);
                             else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
                         }
-                        
+
                         panel.add(this); //add this JLabel instance to panel
                     }
                 };
@@ -178,12 +178,15 @@ class INGCollege{ //since constructor is private, class is final without the key
         //border around panel
         nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         nonAcademicPanel.setSize(740,500);
+        nonAcademicPanel.setVisible(false); //hide by default
 
         //anonymous class extending JFrame's object
         frame = new JFrame("Course Registration"){ //title->Course Registration
             { //default constructor without parameters (instance initializer)
                 setSize(740,500);
-                add(academicPanel);
+                add(academicPanel); //show by defareult
+                add(nonAcademicPanel); //hide by default
+                setLocationRelativeTo(null); //center the frame by default(0,0 otherwise)
                 //do not add non academic panel to frame initially
                 addWindowListener(eventHandler); //when user presses X button to close program
                 setVisible(true);
@@ -244,16 +247,14 @@ class INGCollege{ //since constructor is private, class is final without the key
                 case "Register Academic Course"->registerAcademicCourse();
                 case "Register Non Academic Course"->registerNonAcademicCourse();
                 case "Academic"->{
-                        frame.remove(nonAcademicPanel);
-                        frame.add(academicPanel);
-                        frame.repaint(); //refresh
+                        academicPanel.setVisible(true);
+                        nonAcademicPanel.setVisible(false);
                     }
                 case "Non Academic"->{
                         nonAcademicButton.setBackground(Color.RED);
                         academicButton.setBackground(Color.GRAY);
-                        frame.remove(academicPanel);
-                        frame.add(nonAcademicPanel);
-                        frame.repaint(); //refresh
+                        academicPanel.setVisible(false);
+                        nonAcademicPanel.setVisible(true);
                     }
             }
         }
