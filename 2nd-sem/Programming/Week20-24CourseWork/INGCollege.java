@@ -122,9 +122,16 @@ class INGCollege{ //since constructor is private, class is final without the key
                     { //default constructor without parameters (instance initializer)
                         setBounds(x, y, width, height);
                         setFont(new Font(null, Font.PLAIN, fontSize));
-                        String txt = getText();
-                        if(txt.contains("Academic"))setForeground(Color.BLUE);
-                        else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
+                        
+                        /*block scope, do not expose txt variable to anything except this block scope
+                         * (not even to anything beyond that inside this method)
+                         */
+                        {
+                            String txt = getText();
+                            if(txt.contains("Academic"))setForeground(Color.BLUE);
+                            else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
+                        }
+                        
                         panel.add(this); //add this JLabel instance to panel
                     }
                 };
@@ -152,34 +159,36 @@ class INGCollege{ //since constructor is private, class is final without the key
             }
         }
 
-        frame = new JFrame("Course Registration"); //title->Course Registration
         academicPanel = new JPanel(null); //with null layout manager for absolute position
         nonAcademicPanel = new JPanel(null);
 
-        /*block scope, do not expose panel variable to anything except this block scope
-         * (not even to anything beyond that inside this method)
-         */
-        {
-            Panel panel = new Panel();
-            panel.setUpAcademicPanel(academicPanel);
-            panel.setUpNonAcademicPanel(nonAcademicPanel);
-        }
+        new Panel(){
+            {//default constructor without parameters (instance initializer)
+                setUpAcademicPanel(academicPanel);
+                setUpNonAcademicPanel(nonAcademicPanel);
+            }
+        };
 
-        //academic panel
+        //Academic panel
         //border around panel
         academicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         academicPanel.setSize(740,500);
-        frame.setSize(740,500);
-        frame.add(academicPanel);
 
         //Non academic panel
         //border around panel
         nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         nonAcademicPanel.setSize(740,500);
-        //do not add non academic panel to frame initially
 
-        frame.addWindowListener(eventHandler); //when user presses X button to close program
-        frame.setVisible(true);
+        //anonymous class extending JFrame's object
+        frame = new JFrame("Course Registration"){ //title->Course Registration
+            { //default constructor without parameters (instance initializer)
+                setSize(740,500);
+                add(academicPanel);
+                //do not add non academic panel to frame initially
+                addWindowListener(eventHandler); //when user presses X button to close program
+                setVisible(true);
+            }
+        };
     }
 
     private JButton academicButton, nonAcademicButton;
@@ -256,7 +265,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                 value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe) {
                 //parent component->main frame
-                if(!hideError)JOptionPane.showMessageDialog(frame, "Please input valid integer", "Number error", JOptionPane.ERROR_MESSAGE);
+                if(!hideError)JOptionPane.showMessageDialog(frame, "Please input valid integer", "Number Error", JOptionPane.ERROR_MESSAGE);
                 hideError = true;
             }catch(Exception e) {  //any exception except number format
                 if(!hideError)JOptionPane.showMessageDialog(frame, e.getMessage(), "Unexpected Error", JOptionPane.ERROR_MESSAGE);
