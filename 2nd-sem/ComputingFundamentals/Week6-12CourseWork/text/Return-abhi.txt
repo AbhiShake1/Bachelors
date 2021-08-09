@@ -1,0 +1,10 @@
+Library Management System: 
+
+
+
+    Borrowed by: abhi 
+    Date: 2021-08-09
+    Time: 13:17:24.625755
+    S.N.	Book Name						Author				Cost
+	1 		Harry Potter					Jk Rowling			2
+										                        Total: $2.0
