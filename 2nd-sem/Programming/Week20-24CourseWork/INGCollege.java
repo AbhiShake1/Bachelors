@@ -256,7 +256,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                 value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe) {
                 //parent component->main frame
-                if(!hideError)JOptionPane.showMessageDialog(frame, "Please input valid integer", "Number Error", JOptionPane.ERROR_MESSAGE);
+                if(!hideError)JOptionPane.showMessageDialog(frame, "Please input valid integer", "Number error", JOptionPane.ERROR_MESSAGE);
                 hideError = true;
             }catch(Exception e) {  //any exception except number format
                 if(!hideError)JOptionPane.showMessageDialog(frame, e.getMessage(), "Unexpected Error", JOptionPane.ERROR_MESSAGE);
