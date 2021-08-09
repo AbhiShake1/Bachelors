@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
  * Created on Fri Aug 06 20:12 2021
  * @Author: Abhishek Pandey
  */
-final class INGCollege{
+class INGCollege{ //since constructor is private, class is final without the keyword
     private final JFrame frame;
 
     private final JPanel academicPanel, nonAcademicPanel;
@@ -119,7 +119,7 @@ final class INGCollege{
 
             void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize) {
                 new JLabel(text) { //creating anonymous class extending JLabel's object
-                    { //default constructor without parameters
+                    { //default constructor without parameters (instance initializer)
                         setBounds(x, y, width, height);
                         setFont(new Font(null, Font.PLAIN, fontSize));
                         String txt = getText();
@@ -132,7 +132,7 @@ final class INGCollege{
 
             void setButton(JPanel panel, String text, int x, int y, int width) {
                 new JButton(text) { //creating anonymous class extending JButton's object
-                    { //default constructor without parameters
+                    { //default constructor without parameters (instance initializer)
                         setBounds(x, y, width, 30);
                         addActionListener(eventHandler);
                         panel.add(this); //add this JButton instance to panel
@@ -256,10 +256,10 @@ final class INGCollege{
                 value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe) {
                 //parent component->main frame
-                JOptionPane.showMessageDialog(frame, "Please input valid integer", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+                if(!hideError)JOptionPane.showMessageDialog(frame, "Please input valid integer", "Number Error", JOptionPane.ERROR_MESSAGE);
                 hideError = true;
             }catch(Exception e) {  //any exception except number format
-                JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                if(!hideError)JOptionPane.showMessageDialog(frame, e.getMessage(), "Unexpected Error", JOptionPane.ERROR_MESSAGE);
                 hideError = true;
             }//do not need finally block since program will not terminate so 0 will be returned
             return value;
@@ -276,8 +276,9 @@ final class INGCollege{
                     courses.remove(c);
                     break; //break loop and avoid concurrent modification exception
                 }
-            if(removeNonAcademic!=null && removeNonAcademic.getCourseID().equals(courseID))
-                removeNonAcademic.remove(); //remove if exists
+            //removeNonAcademic is not null means that if condition in above loop
+            //was true in some point. So we dont need to check text
+            if(removeNonAcademic!=null)removeNonAcademic.remove(); //remove if exists
         }
 
         private void addAcademicCourse() {
