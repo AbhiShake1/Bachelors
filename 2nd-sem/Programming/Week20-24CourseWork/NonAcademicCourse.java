@@ -5,7 +5,8 @@
  */
 
 import static java.lang.System.out; //import static variable 'out' from System class
-import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
 
 public class NonAcademicCourse extends Course/*inherits public,protected methods and variables from Course class*/{
     //private variables, can not be directly accessed by other classes
@@ -64,9 +65,9 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
         if(!isRegistered){//sets instructorName as per parameter if not set previously or set and cleared
             this.instructorName=instructorName;
         }else{
-            JOptionPane.showMessageDialog(
+            showMessageDialog(
                 INGCollege.getInstance().getFrame(),"It is not possible to change instructor name since non academic course has already been registered",
-                "Warning",JOptionPane.WARNING_MESSAGE
+                "Warning",WARNING_MESSAGE
             ); //pop if course has already been registered
         }
     }
@@ -79,18 +80,18 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
             this.examDate=examDate;
             isRegistered=true; //if block will not be executed next time if isRegertered is true
         }else{
-            JOptionPane.showMessageDialog(
+            showMessageDialog(
                 INGCollege.getInstance().getFrame(),"The course has already been registered.",
-                "Warning",JOptionPane.WARNING_MESSAGE
+                "Warning",WARNING_MESSAGE
             ); //pop if course has already been registered
         }
     }
     //reset values
     public void remove(){
         if(isRemoved){
-            JOptionPane.showMessageDialog(
+            showMessageDialog(
                 INGCollege.getInstance().getFrame(),"The course has already been removed.",
-                "Warning",JOptionPane.WARNING_MESSAGE
+                "Warning",WARNING_MESSAGE
             );
         }else{
             //remove values of variables bellow(set values to empty string)

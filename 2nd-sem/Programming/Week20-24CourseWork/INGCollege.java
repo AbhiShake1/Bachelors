@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import static javax.swing.JOptionPane.*;
 
 /*
  * Created on Fri Aug 06 20:12 2021
  * @Author: Abhishek Pandey
  */
 class INGCollege{ //since constructor is private, class is final without the keyword
+    //final keyword in field creates a constant
     private final JFrame frame;
 
     private final JPanel academicPanel, nonAcademicPanel;
@@ -26,7 +28,7 @@ class INGCollege{ //since constructor is private, class is final without the key
     private final List<JTextField> textFields = new ArrayList<>();
 
     public static void main(String[] args) {
-        ingCollege = new INGCollege();
+        ingCollege = new INGCollege(); //first create and run object, then initialize the variable
     }
 
     //singleton instance. prevent 2 frames from showing up at a time
@@ -41,11 +43,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                 addSwitcher(p);
 
                 //labels
-                setLabel(p,"Non Academic Course", 250, 0, 800, 100, 30);
+                setLabel(p,"Non Academic Course", 181, 0, 800, 100, 30);
                 setLabel(p,"CourseID:", 20, 90, 70, 20, 15);
-                setLabel(p,"Course Name:", 20, 140, 125, 20, 15);
-                setLabel(p,"Instructor Name:", 400, 90, 125, 20, 15);
-                setLabel(p,"Duration:", 400, 140, 130, 20, 15);
+                setLabel(p,"Instructor Name:", 400, 140, 130, 20, 15);
+                setLabel(p,"Course Name:", 400, 90, 125, 20, 15);
+                setLabel(p,"Duration:", 20, 140, 125, 20, 15);
                 setLabel(p,"Prerequisite:", 20, 195, 125, 20, 15);
                 setLabel(p,"Course Leader:", 20, 245, 125, 20, 15);
                 setLabel(p,"Start Date:", 400, 190, 130, 20, 15);
@@ -54,14 +56,14 @@ class INGCollege{ //since constructor is private, class is final without the key
 
                 //text fields
                 setTextField(p,180, 85, 170); //course id
-                setTextField(p,180, 135, 170); //course name
-                setTextField(p,535, 85, 160); //level
-                setTextField(p,535, 135, 160); //duration
+                setTextField(p,180, 135, 170); //duration
+                setTextField(p,535, 85, 160); //course name
+                setTextField(p,535, 135, 160); //instructor name
                 setTextField(p,180, 190, 170); //prerequisite
                 setTextField(p,180, 240, 170); //course leader
                 setTextField(p,535, 185, 160); //start date
                 setTextField(p,535, 285, 160); //exam date
-                setTextField(p,535, 235, 160); //completion date
+                setTextField(p,535, 240, 160); //completion date
 
                 //buttons
                 setButton(p,"Remove", 290, 330, 130);
@@ -78,11 +80,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setLabel(p,"Academic Course", 250, 0, 800, 100, 30);
                 setLabel(p,"CourseID:", 20, 90, 70, 20, 15);
                 setLabel(p,"Duration:", 20, 140, 70, 20, 15);
-                setLabel(p,"Completion Date:", 390, 290, 130, 20, 15);
-                setLabel(p,"Level:", 400, 190, 70, 20, 15);
+                setLabel(p,"Completion Date:", 400, 240, 130, 20, 15);
+                setLabel(p,"Level:", 440, 290, 130, 20, 15);
                 setLabel(p,"Course Name:", 400, 90, 125, 20, 15);
                 setLabel(p,"No. of Assessments:", 370, 140, 185, 20, 15);
-                setLabel(p,"Start Date:", 400, 240, 125, 20, 15);
+                setLabel(p,"Start Date:", 400, 190, 130, 20, 15);
                 setLabel(p,"Credit:", 20, 240, 125, 20, 15);
                 setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
                 setLabel(p,"Course Leader:", 20, 290, 125, 20, 15);
@@ -91,13 +93,13 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setTextField(p,180, 85, 170); //course id
                 setTextField(p,535, 85, 160); //course name
                 setTextField(p,180, 135, 170); //duration
-                setTextField(p,535, 190, 160); //level
-                setTextField(p,535, 285, 160); //completion date
-                setTextField(p,535, 235, 160); //start date
-                setTextField(p,180, 235, 170); //credit
+                setTextField(p, 535, 285, 160); //level
+                setTextField(p,535, 240, 160); //completion date
+                setTextField(p,535, 185, 160); //start date
+                setTextField(p,180, 285, 170); //credit
                 setTextField(p,535, 135, 160); //number of assessments
                 setTextField(p,180, 190, 170); //lecturer name
-                setTextField(p,180, 285, 170); //course leader
+                setTextField(p,180, 240, 170); //course leader
 
                 //buttons
                 setButton(p,"Add Academic Course", 5, 380, 250);
@@ -113,6 +115,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                 nonAcademicButton.setBackground(Color.GRAY);
                 academicButton.setBounds(350,5,100,20);
                 nonAcademicButton.setBounds(450,5,135,20);
+                //when something is clicked
                 academicButton.addActionListener(eventHandler);
                 nonAcademicButton.addActionListener(eventHandler);
                 panel.add(academicButton);
@@ -122,7 +125,7 @@ class INGCollege{ //since constructor is private, class is final without the key
             }
 
             void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize) {
-                new JLabel(text) { //creating anonymous class extending JLabel's object
+                new JLabel(text) { //creating anonymous class extending JLabel with this object
                     { //default constructor without parameters (instance initializer)
                         setBounds(x, y, width, height);
                         setFont(new Font(null, Font.PLAIN, fontSize));
@@ -142,20 +145,19 @@ class INGCollege{ //since constructor is private, class is final without the key
             }
 
             void setButton(JPanel panel, String text, int x, int y, int width) {
-                new JButton(text) { //creating anonymous class extending JButton's object
+                new JButton(text) { //creating anonymous class extending JButton with this object
                     { //default constructor without parameters (instance initializer)
-                        setBounds(x, y, width, 30);
-                        addActionListener(eventHandler);
+                        setBounds(x, y, width, 30); //position and size of button
+                        addActionListener(eventHandler); //when button is clicked
                         panel.add(this); //add this JButton instance to panel
                     }
                 };
             }
 
             void setTextField(JPanel panel, int x, int y, int width) {
-                new JTextField() { //creating anonymous class extending JTextField's object
+                new JTextField() { //creating anonymous class extending JTextField with this object
                     { //default constructor without parameters
                         setBounds(x, y, width, 25);
-                        addActionListener(eventHandler);
                         textFields.add(this);
                         panel.add(this); //add this JTextField instance to panel
                     }
@@ -181,10 +183,10 @@ class INGCollege{ //since constructor is private, class is final without the key
         //Non academic panel
         //border around panel
         nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        nonAcademicPanel.setSize(740,500);
+        nonAcademicPanel.setSize(740,500); //width, height
         nonAcademicPanel.setVisible(false); //hide by default
 
-        //anonymous class extending JFrame's object
+        //anonymous class extending JFrame with this object
         frame = new JFrame("Course Registration"){ //title->Course Registration
             { //default constructor without parameters (instance initializer)
                 setSize(740,500);
@@ -199,7 +201,7 @@ class INGCollege{ //since constructor is private, class is final without the key
     }
 
     public JFrame getFrame() {
-        return frame;
+        return frame; //return current frame
     }
 
     //WindowAdapter is an abstract class, ActionListener is an interface
@@ -214,7 +216,7 @@ class INGCollege{ //since constructor is private, class is final without the key
 
         @Override //when user presses X button to close program
         public void windowClosing(WindowEvent e) {
-            JOptionPane.showMessageDialog(frame, "Thank you for trying");
+            showMessageDialog(frame, "Thank you for trying");
             System.exit(0); //terminate program with safe signal
         }
 
@@ -266,10 +268,10 @@ class INGCollege{ //since constructor is private, class is final without the key
                 value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe) {
                 //parent component->main frame
-                if(!hideError)JOptionPane.showMessageDialog(frame, "Please input valid integer", "Number Error", JOptionPane.ERROR_MESSAGE);
+                if(!hideError)showMessageDialog(frame, "Please input valid integer", "Number Error", ERROR_MESSAGE);
                 hideError = true;
             }catch(Exception e) {  //any exception except number format
-                if(!hideError)JOptionPane.showMessageDialog(frame, e.getMessage(), "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+                if(!hideError)showMessageDialog(frame, e.getMessage(), "Unexpected Error", ERROR_MESSAGE);
                 hideError = true;
             }//do not need finally block since program will not terminate so 0 will be returned
             return value;
@@ -296,8 +298,8 @@ class INGCollege{ //since constructor is private, class is final without the key
             final String courseID = getText(0);
             final String courseName = getText(1);
             final int duration = parseInt(getText(2));
-            final String level = getText(3);
-            final int credit = parseInt(getText(6));
+            final String level = getText(4);
+            final int credit = parseInt(getText(9));
             final int noOfAssessments = parseInt(getText(7));
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
             addCourse(course);
@@ -306,8 +308,8 @@ class INGCollege{ //since constructor is private, class is final without the key
         private void addNonAcademicCourse() {
             hideError = false; //reset
             final String courseID = getText(10);
-            final String courseName = getText(11);
-            final int duration = parseInt(getText(13));
+            final String courseName = getText(12);
+            final int duration = parseInt(getText(11));
             final String prerequisite = getText(14);
             Course course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
             addCourse(course);
@@ -324,10 +326,10 @@ class INGCollege{ //since constructor is private, class is final without the key
             for(Course c : courses)
                 if(c.getCourseID().equals(text)) {
                     if(show) {
-                        JOptionPane.showMessageDialog(
+                        showMessageDialog(
                             //'this' can not be used directly as this block is in an internal class
                             INGCollege.this.getFrame(),"The course has already been added.",
-                            "Warning",JOptionPane.WARNING_MESSAGE
+                            "Warning",WARNING_MESSAGE
                         );
                         courses.remove(c);
                         break; //break after removing object to prevent concurrent modification exception
@@ -337,10 +339,10 @@ class INGCollege{ //since constructor is private, class is final without the key
         }
 
         private void registerAcademicCourse() {
-            final String courseLeader = getText(9);
+            final String courseLeader = getText(6);
             final String lecturerName = getText(8);
-            final String startingDate = getText(5);
-            final String completionDate = getText(4);
+            final String startingDate = getText(3);
+            final String completionDate = getText(5);
             for(Course c : courses)
                 if(c instanceof AcademicCourse && getText(0).equals(c.getCourseID())) {
                     AcademicCourse ac = (AcademicCourse)c;
@@ -352,7 +354,7 @@ class INGCollege{ //since constructor is private, class is final without the key
 
         private void registerNonAcademicCourse() {
             final String courseLeader = getText(15);
-            final String courseName = getText(11);
+            final String instructorName = getText(13);
             final String startingDate = getText(16);
             final String completionDate = getText(18);
             final String examDate = getText(17);
@@ -360,7 +362,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                 if(c instanceof NonAcademicCourse && getText(10).equals(c.getCourseID())) {
                     NonAcademicCourse nac = (NonAcademicCourse)c;
                     nac.register(
-                        courseLeader, courseName, startingDate, completionDate, examDate
+                        courseLeader, instructorName, startingDate, completionDate, examDate
                     );
                 }
         }

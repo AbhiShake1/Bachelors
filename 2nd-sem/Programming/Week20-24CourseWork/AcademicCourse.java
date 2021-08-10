@@ -18,6 +18,7 @@ public class AcademicCourse extends Course{ //inherit public, protected methods 
         startingDate="";
         completionDate="";
         this.noOfAssessments = noOfAssessments;
+        this.level = level;
         isRegistered=false;/*non premitive datatype gets defaultValue false but the value has to be set here for the variable to reset 
         its value every time the constructor object is invoked(called)*/
     }
