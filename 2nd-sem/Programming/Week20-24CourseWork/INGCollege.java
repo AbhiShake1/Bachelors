@@ -93,13 +93,13 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setTextField(p,180, 85, 170); //course id
                 setTextField(p,535, 85, 160); //course name
                 setTextField(p,180, 135, 170); //duration
-                setTextField(p, 535, 285, 160); //level
-                setTextField(p,535, 240, 160); //completion date
                 setTextField(p,535, 185, 160); //start date
-                setTextField(p,180, 285, 170); //credit
-                setTextField(p,535, 135, 160); //number of assessments
-                setTextField(p,180, 190, 170); //lecturer name
+                setTextField(p, 535, 285, 160); //level
+                setTextField(p,535, 240, 160); //completion date                
                 setTextField(p,180, 240, 170); //course leader
+                setTextField(p,180, 285, 170); //credit
+                setTextField(p,180, 190, 170); //lecturer name
+                setTextField(p,535, 135, 160); //number of assessments 
 
                 //buttons
                 setButton(p,"Add Academic Course", 5, 380, 250);
@@ -262,7 +262,7 @@ class INGCollege{ //since constructor is private, class is final without the key
                 value = (int)Double.parseDouble(s);
             }catch(NumberFormatException nfe) {
                 //parent component->main frame
-                if(!hideError)showMessageDialog(frame, "Please input valid integer", "Number Error", ERROR_MESSAGE);
+                if(!hideError)showMessageDialog(frame, "Please input valid integer\n"+nfe.getMessage(), "Number Error", ERROR_MESSAGE);
                 hideError = true;
             }catch(Exception e) {  //any exception except number format
                 if(!hideError)showMessageDialog(frame, e.getMessage(), "Unexpected Error", ERROR_MESSAGE);
@@ -293,10 +293,10 @@ class INGCollege{ //since constructor is private, class is final without the key
             final String courseName = getText(1);
             final int duration = parseInt(getText(2));
             final String level = getText(4);
-            final int credit = parseInt(getText(8));
+            final int credit = parseInt(getText(7));
             final int noOfAssessments = parseInt(getText(9));
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
-            addCourse(course);
+            if(!hideError)addCourse(course);
         }
 
         private void addNonAcademicCourse() {
