@@ -114,7 +114,7 @@ class INGCollege{ //since constructor is private, class is final without the key
 
                 //border around panel
                 p.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-                p.setSize(732,432);
+                p.setSize(740,440);
             }
 
             void addSwitcher(JPanel panel) {
@@ -319,25 +319,22 @@ class INGCollege{ //since constructor is private, class is final without the key
 
         private void addCourse(Course course) {
             String text;
-            boolean show = false;
+            boolean add = true;
             //if add academic course button is pressed, check courseID from AcademicPanel
             if(course instanceof AcademicCourse)text = getText(0); //AcademicCourseID
             //if add non academic course button is pressed, check courseID from NonAcademicPanel
             else text = getText(10); //NonAcademicCourseID
-            courses.add(course);
+
             for(Course c : courses)
                 if(c.getCourseID().equals(text)) {
-                    if(show) {
-                        showMessageDialog(
-                            //'this' can not be used directly as this block is in an internal class
-                            INGCollege.this.getFrame(),"The course has already been added.",
-                            "Warning",WARNING_MESSAGE
-                        );
-                        courses.remove(c);
-                        break; //break after removing object to prevent concurrent modification exception
-                    }
-                    show = true;
+                    showMessageDialog(
+                        //'this' can not be used directly as this block is in an internal class
+                        INGCollege.this.getFrame(),"The course has already been added.",
+                        "Warning",WARNING_MESSAGE
+                    );
+                    add = false;
                 }
+            if(add)courses.add(course); //if if-condition inside loop above is never true
         }
 
         private void registerAcademicCourse() {
