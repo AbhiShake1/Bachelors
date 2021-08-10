@@ -286,7 +286,6 @@ class INGCollege{ //since constructor is private, class is final without the key
         }
 
         private void addAcademicCourse() {
-            Course course = null; //declare here to access outside trycatch block
             try{
                 final String courseID = getText(0);
                 final String courseName = getText(1);
@@ -294,33 +293,26 @@ class INGCollege{ //since constructor is private, class is final without the key
                 final String level = getText(4);
                 final int credit = parseInt(getText(7));
                 final int noOfAssessments = parseInt(getText(9));
-                course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
-            }catch(NumberFormatException nfe){
-                showParseError(nfe);
-                return; //terminate method;
-            }catch(Exception e){ //exceptions except number format
-                showParseError(e);
-                return; //terminate method;
+                Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
+                //if any exception occurs, it will never reach bellow block
+                addCourse(course);
+            }catch(Exception e){ //all exceptions
+                showParseError(e); //NumberFormatException is separately handled inside this method
             }
-            addCourse(course); //add only if no exception while parsing
         }
 
         private void addNonAcademicCourse() {
-            Course course; //declare here to access outside trycatch block
             try{
                 final String courseID = getText(10);
                 final String courseName = getText(12);
                 final int duration = parseInt(getText(11));
                 final String prerequisite = getText(14);
-                course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
-            }catch(NumberFormatException nfe){
-                showParseError(nfe);
-                return; //terminate method;
-            }catch(Exception e){ //exceptions except number format
-                showParseError(e);
-                return; //terminate method;
+                Course course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
+                //if any exception occurs, it will never reach bellow block
+                addCourse(course);
+            }catch(Exception e){ //all exceptions
+                showParseError(e); //NumberFormatException is separately handled inside this method
             }
-            addCourse(course);
         }
 
         private void addCourse(Course course) {
