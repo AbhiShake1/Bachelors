@@ -374,13 +374,13 @@ CREATE CLASS INGCollege
                 "Add Academic Course" : CALL METHOD addAcademicCourse
                 "Add Non Academic Course" : CALL METHOD addNonAcademicCourse
                 "Display Academic Courses" :
-                    IF an element e from courses ArrayList is instance of AcademicCourse
+                    IF an element e from courses ArrayList is AcademicCourse
                         CAST e to AcademicCourse and store in nac
                         CALL METHOD display from nac
                     END IF
                 END 
                 "Display Non Academic Courses" :
-                    IF an element e from courses ArrayList is instance of NonAcademicCourse
+                    IF an element e from courses ArrayList is NonAcademicCourse
                         CAST e to NonAcademicCourse and store in nac
                         CALL METHOD display from nac
                     END IF
@@ -413,7 +413,7 @@ CREATE CLASS INGCollege
         DEFINE METHOD removeNonAcademicCourse
             DECLARE constant courseID of type String
             CALL getText(PASS 10 as argument) and store result in courseID
-            IF an element c in courses ArrayList is instance of NonAcademicCourse AND its courseID is equal to courseID variable
+            IF an element c in courses ArrayList is NonAcademicCourse AND its courseID is equal to courseID variable
                 CAST c to NonAcademicCourse and ASSIGN the value to removeNonAcademic variable
                 remove c from courses ArrayList
             END IF
@@ -423,7 +423,6 @@ CREATE CLASS INGCollege
         END METHOD
         
         DEFINE METHOD addAcademicCourse
-	    DECLARE variable course of type Course
 	    TRY
             	DECLARE constant courseID of type String
             	CALL getText(PASS 0 as argument) and store result in courseID
@@ -438,20 +437,17 @@ CREATE CLASS INGCollege
             	DECLARE constant noOfAssessments of type int
             	CALL parseInt(PASS getText(PASS 7 as argument) as argument) and store result in noOfAssessments
             	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, level, credit, noOfAssessments as arguments)
+		add course to courses ArrayList
 	    CATCH NumberFormatException as nfe
 		CALL showParseError(PASS nfe as argument)
-		END METHOD
 	    END CATCH
 	    CATCH Exception as e
 		CALL showParseError(PASS e as argument)
-		END METHOD
 	    END CATCH
 	    END TRY
-            add course to courses ArrayList
         END METHOD
         
         DEFINE METHOD addNonAcademicCourse
-	    DECLARE variable course of type Course
 	    TRY
             	DECLARE constant courseID of type String
             	CALL getText(PASS 10 as argument) and store result in courseID
@@ -462,34 +458,29 @@ CREATE CLASS INGCollege
             	DECLARE prerequisite level of type String
             	CALL getText(PASS 14 as argument) and store result in prerequisite
             	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, prerequisite as arguments)
+		ADD course to courses ArrayList
             CATCH NumberFormatException as nfe
 		CALL showParseError(PASS nfe as argument)
-		END METHOD
 	    END CATCH
 	    CATCH Exception as e
 		CALL showParseError(PASS e as argument)
-		END METHOD
 	    END CATCH
 	    END TRY
-	    ADD course to courses ArrayList
         END METHOD
         
         DEFINE METHOD addCourse(TAKE course of type Course as parameter)
             DECLARE variable text of type String
             DECLARE variable show of type boolean and INITIALIZE by false
-            IF course is instance of Academic Course
+            IF course is Academic Course
                 THEN ASSIGN value of getText(PASS 0 as argument) to text
                 ELSE ASSIGN value of getText(PASS 10 as argument) to text
             END IF
-            ADD course to courses ArrayList
             IF value returned by getCourseID of an element c in courses ArrayList is equal to text
-                IF value of show is true
-                    SHOW warning message dialog "The course has already been added"
-                    REMOVE c object from courses ArrayList
-                    BREAK out of loop
-                END IF
-                REASSIGN value of show to true
+                SHOW warning message dialog "The course has already been added"
+                REMOVE c object from courses ArrayList
+                END METHOD
             END IF
+	    ADD course to courses ArrayList
         END METHOD
         
         DEFINE METHOD registerAcademicCourse
@@ -501,7 +492,7 @@ CREATE CLASS INGCollege
             CALL getText(PASS 5 as argument) and store result in startingDate
             DECLARE constant completionDate of type String
             CALL getText(PASS 4 as argument) and store result in completionDate
-            IF an element c in courses ArrayList is instance of AcademicCourse AND getText(PASS 0 as argument) is equal to getCourseID of c object
+            IF an element c in courses ArrayList is AcademicCourse AND getText(PASS 0 as argument) is equal to getCourseID of c object
                 DECLARE variable ac of type AcademicCourse, CAST c to AcademicCourse and store result in ac
                 CALL register method of ac object(PASS courseLeader, lecturerName, startingDate, completionDate as arguments)
             END IF
@@ -516,7 +507,7 @@ CREATE CLASS INGCollege
             CALL getText(PASS 16 as argument) and store result in startingDate
             DECLARE constant completionDate of type String
             CALL getText(PASS 18 as argument) and store result in completionDate
-            IF an element c in courses ArrayList is instance of NonAcademicCourse AND getText(PASS 10 as argument) is equal to getCourseID of c object
+            IF an element c in courses ArrayList is NonAcademicCourse AND getText(PASS 10 as argument) is equal to getCourseID of c object
                 DECLARE variable nac of type NonAcademicCourse, CAST c to AcademicCourse and store result in nac
                 CALL register method of nac object(PASS courseLeader, courseName, startingDate, completionDate as arguments)
             END IF
