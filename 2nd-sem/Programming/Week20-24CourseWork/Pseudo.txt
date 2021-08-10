@@ -363,8 +363,6 @@ CREATE CLASS INGCollege
             RETURN text of index-th object from textFields
         END METHOD
         
-        DECLARE variable hideError of type boolean
-        
         DEFINE METHOD windowClosing(TAKE e of type WindowEvent as parameter)
             SHOW message dialog "Thank you for trying"
             TERMINATE the program
@@ -403,22 +401,11 @@ CREATE CLASS INGCollege
             END CASE
         END METHOD
         
-        DEFINE METHOD parseInt(TAKE s of type String as parameter)
-            DECLARE variable value and INITIALIZE by 0
-            TRY
-                CONVERT value to double and CAST to INT
-                CATCH NumberFormatException
-                    IF hideError is false
-                        SHOW error message dialog "Please input a valid integer"
-                        REASSIGN value true to hideError
-                    END IF
-                END CATCH
-                CATCH Exception
-                    SHOW error message dialog "Unexpected error"
-                    REASSIGN value true to hideError
-                END CATCH
-            END TRY
-            RETURN value
+        DEFINE METHOD showParseError(TAKE e of type Exception as parameter)
+            DECLARE variable log and INITIALIZE by message of e
+	    IF e is NumberFormatException
+		PREPEND "Please input valid integer" to log
+	    END IF
         END METHOD
         
         DECLARE variable removeNonAcademic of type NonAcademicCourse
@@ -436,35 +423,55 @@ CREATE CLASS INGCollege
         END METHOD
         
         DEFINE METHOD addAcademicCourse
-            REASSIGN value of hideError to false
-            DECLARE constant courseID of type String
-            CALL getText(PASS 0 as argument) and store result in courseID
-            DECLARE constant courseName of type String
-            CALL getText(PASS 1 as argument) and store result in courseName
-            DECLARE constant duration of type int
-            CALL getText(PASS 2 as argument) and store result in duration
-            DECLARE constant level of type String
-            CALL getText(PASS 3 as argument) and store result in level
-            DECLARE constant credit of type int
-            CALL parseInt(PASS getText(PASS 6 as argument) as argument) and store result in credit
-            DECLARE constant noOfAssessments of type int
-            CALL parseInt(PASS getText(PASS 7 as argument) as argument) and store result in noOfAssessments
-            DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, level, credit, noOfAssessments as arguments)
+	    DECLARE variable course of type Course
+	    TRY
+            	DECLARE constant courseID of type String
+            	CALL getText(PASS 0 as argument) and store result in courseID
+            	DECLARE constant courseName of type String
+            	CALL getText(PASS 1 as argument) and store result in courseName
+            	DECLARE constant duration of type int
+            	CALL getText(PASS 2 as argument) and store result in duration
+            	DECLARE constant level of type String
+            	CALL getText(PASS 3 as argument) and store result in level
+            	DECLARE constant credit of type int
+            	CALL parseInt(PASS getText(PASS 6 as argument) as argument) and store result in credit
+            	DECLARE constant noOfAssessments of type int
+            	CALL parseInt(PASS getText(PASS 7 as argument) as argument) and store result in noOfAssessments
+            	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, level, credit, noOfAssessments as arguments)
+	    CATCH NumberFormatException as nfe
+		CALL showParseError(PASS nfe as argument)
+		END METHOD
+	    END CATCH
+	    CATCH Exception as e
+		CALL showParseError(PASS e as argument)
+		END METHOD
+	    END CATCH
+	    END TRY
             add course to courses ArrayList
         END METHOD
         
         DEFINE METHOD addNonAcademicCourse
-            REASSIGN value of hideError to false
-            DECLARE constant courseID of type String
-            CALL getText(PASS 10 as argument) and store result in courseID
-            DECLARE constant courseName of type String
-            CALL getText(PASS 11 as argument) and store result in courseName
-            DECLARE constant duration of type int
-            CALL getText(PASS 13 as argument) and store result in duration
-            DECLARE prerequisite level of type String
-            CALL getText(PASS 14 as argument) and store result in prerequisite
-            DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, prerequisite as arguments)
-            ADD course to courses ArrayList
+	    DECLARE variable course of type Course
+	    TRY
+            	DECLARE constant courseID of type String
+            	CALL getText(PASS 10 as argument) and store result in courseID
+            	DECLARE constant courseName of type String
+            	CALL getText(PASS 11 as argument) and store result in courseName
+            	DECLARE constant duration of type int
+            	CALL getText(PASS 13 as argument) and store result in duration
+            	DECLARE prerequisite level of type String
+            	CALL getText(PASS 14 as argument) and store result in prerequisite
+            	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, prerequisite as arguments)
+            CATCH NumberFormatException as nfe
+		CALL showParseError(PASS nfe as argument)
+		END METHOD
+	    END CATCH
+	    CATCH Exception as e
+		CALL showParseError(PASS e as argument)
+		END METHOD
+	    END CATCH
+	    END TRY
+	    ADD course to courses ArrayList
         END METHOD
         
         DEFINE METHOD addCourse(TAKE course of type Course as parameter)

@@ -7,6 +7,7 @@ import java.util.List;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import static javax.swing.JOptionPane.*;
+import static java.lang.Integer.parseInt;
 
 /*
  * Created on Fri Aug 06 20:12 2021
@@ -209,8 +210,6 @@ class INGCollege{ //since constructor is private, class is final without the key
     //WindowAdapter is an abstract class, ActionListener is an interface
     private class EventHandler extends WindowAdapter implements ActionListener{
 
-        private boolean hideError; //primitive boolean, false by default
-
         private String getText(int index) {
             //get text at index-th index
             return textFields.get(index).getText();
@@ -263,20 +262,11 @@ class INGCollege{ //since constructor is private, class is final without the key
             }
         }
 
-        private int parseInt(String s) {
-            int value = 0;
-            try{
-                //avoid crash if user enters decimal, parse and truncc down instead
-                value = (int)Double.parseDouble(s);
-            }catch(NumberFormatException nfe) {
-                //parent component->main frame
-                if(!hideError)showMessageDialog(frame, "Please input valid integer\n"+nfe.getMessage(), "Number Error", ERROR_MESSAGE);
-                hideError = true;
-            }catch(Exception e) {  //any exception except number format
-                if(!hideError)showMessageDialog(frame, e.getMessage(), "Unexpected Error", ERROR_MESSAGE);
-                hideError = true;
-            }//do not need finally block since program will not terminate so 0 will be returned
-            return value;
+        private void showParseError(Exception e) {
+            String log = e.getMessage();
+            if(e instanceof NumberFormatException)
+                log = "Please input valid integer\n" + log; //prepend
+            showMessageDialog(frame, log, "Error", ERROR_MESSAGE);
         }
 
         //to not reset on action event
@@ -296,30 +286,45 @@ class INGCollege{ //since constructor is private, class is final without the key
         }
 
         private void addAcademicCourse() {
-            hideError = false; //reset
-            final String courseID = getText(0);
-            final String courseName = getText(1);
-            final int duration = parseInt(getText(2));
-            final String level = getText(4);
-            final int credit = parseInt(getText(7));
-            final int noOfAssessments = parseInt(getText(9));
-            Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
-            if(!hideError)addCourse(course); //add only if no error while parsing
+            Course course = null; //declare here to access outside trycatch block
+            try{
+                final String courseID = getText(0);
+                final String courseName = getText(1);
+                final int duration = parseInt(getText(2));
+                final String level = getText(4);
+                final int credit = parseInt(getText(7));
+                final int noOfAssessments = parseInt(getText(9));
+                course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
+            }catch(NumberFormatException nfe){
+                showParseError(nfe);
+                return; //terminate method;
+            }catch(Exception e){ //exceptions except number format
+                showParseError(e);
+                return; //terminate method;
+            }
+            addCourse(course); //add only if no exception while parsing
         }
 
         private void addNonAcademicCourse() {
-            hideError = false; //reset
-            final String courseID = getText(10);
-            final String courseName = getText(12);
-            final int duration = parseInt(getText(11));
-            final String prerequisite = getText(14);
-            Course course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
+            Course course; //declare here to access outside trycatch block
+            try{
+                final String courseID = getText(10);
+                final String courseName = getText(12);
+                final int duration = parseInt(getText(11));
+                final String prerequisite = getText(14);
+                course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
+            }catch(NumberFormatException nfe){
+                showParseError(nfe);
+                return; //terminate method;
+            }catch(Exception e){ //exceptions except number format
+                showParseError(e);
+                return; //terminate method;
+            }
             addCourse(course);
         }
 
         private void addCourse(Course course) {
             String text;
-            boolean add = true;
             //if add academic course button is pressed, check courseID from AcademicPanel
             if(course instanceof AcademicCourse)text = getText(0); //AcademicCourseID
             //if add non academic course button is pressed, check courseID from NonAcademicPanel
@@ -332,9 +337,9 @@ class INGCollege{ //since constructor is private, class is final without the key
                         INGCollege.this.getFrame(),"The course has already been added.",
                         "Warning",WARNING_MESSAGE
                     );
-                    add = false;
+                    return; //terminate this method
                 }
-            if(add)courses.add(course); //if if-condition inside loop above is never true
+            courses.add(course); //if condition inside loop above is never true
         }
 
         private void registerAcademicCourse() {
