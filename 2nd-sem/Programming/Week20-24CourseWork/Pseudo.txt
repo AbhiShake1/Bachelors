@@ -438,9 +438,6 @@ CREATE CLASS INGCollege
             	CALL parseInt(PASS getText(PASS 7 as argument) as argument) and store result in noOfAssessments
             	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, level, credit, noOfAssessments as arguments)
 		add course to courses ArrayList
-	    CATCH NumberFormatException as nfe
-		CALL showParseError(PASS nfe as argument)
-	    END CATCH
 	    CATCH Exception as e
 		CALL showParseError(PASS e as argument)
 	    END CATCH
@@ -459,9 +456,6 @@ CREATE CLASS INGCollege
             	CALL getText(PASS 14 as argument) and store result in prerequisite
             	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, prerequisite as arguments)
 		ADD course to courses ArrayList
-            CATCH NumberFormatException as nfe
-		CALL showParseError(PASS nfe as argument)
-	    END CATCH
 	    CATCH Exception as e
 		CALL showParseError(PASS e as argument)
 	    END CATCH
