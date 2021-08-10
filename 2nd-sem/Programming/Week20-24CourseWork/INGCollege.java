@@ -85,9 +85,15 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setLabel(p,"Course Name:", 400, 90, 125, 20, 15);
                 setLabel(p,"No. of Assessments:", 370, 140, 185, 20, 15);
                 setLabel(p,"Start Date:", 400, 190, 130, 20, 15);
+<<<<<<< Updated upstream
                 setLabel(p,"Credit:", 20, 290, 125, 20, 15);
                 setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
                 setLabel(p,"Course Leader:", 20, 240, 125, 20, 15);
+=======
+                setLabel(p,"Credit:", 20, 240, 125, 20, 15);
+                setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
+                setLabel(p,"Course Leader:", 20, 290, 125, 20, 15);
+>>>>>>> Stashed changes
 
                 //text fields
                 setTextField(p,180, 85, 170); //course id
@@ -113,8 +119,13 @@ class INGCollege{ //since constructor is private, class is final without the key
                 nonAcademicButton = new JButton("Non Academic");
                 academicButton.setBackground(new Color(6,181,223));//light blue
                 nonAcademicButton.setBackground(Color.GRAY);
+<<<<<<< Updated upstream
                 academicButton.setBounds(310,5,100,20);
                 nonAcademicButton.setBounds(410,5,135,20);
+=======
+                academicButton.setBounds(350,5,100,20);
+                nonAcademicButton.setBounds(450,5,135,20);
+>>>>>>> Stashed changes
                 //when something is clicked
                 academicButton.addActionListener(eventHandler);
                 nonAcademicButton.addActionListener(eventHandler);
@@ -122,7 +133,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                 panel.add(academicButton);
                 panel.add(nonAcademicButton);
                 //question
+<<<<<<< Updated upstream
                 setLabel(panel, "Which type of course do you want to enroll in?",5,0,350,30,15);
+=======
+                setLabel(panel, "Which type of course do you want to enroll in?",0,0,350,30,15);
+>>>>>>> Stashed changes
             }
 
             void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize) {
@@ -132,7 +147,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                         setFont(new Font(null, Font.PLAIN, fontSize));
                         String txt = getText();
                         if(txt.contains("Academic"))setForeground(Color.BLUE);
+<<<<<<< Updated upstream
                         else if(txt.contains("Which"))setFont(new Font(null, Font.ITALIC, fontSize)); //red
+=======
+                        else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
+>>>>>>> Stashed changes
                         panel.add(this); //add this JLabel instance to panel
                     }
                 };
@@ -293,8 +312,13 @@ class INGCollege{ //since constructor is private, class is final without the key
             final String courseName = getText(1);
             final int duration = parseInt(getText(2));
             final String level = getText(4);
+<<<<<<< Updated upstream
             final int credit = parseInt(getText(8));
             final int noOfAssessments = parseInt(getText(9));
+=======
+            final int credit = parseInt(getText(9));
+            final int noOfAssessments = parseInt(getText(7));
+>>>>>>> Stashed changes
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
             addCourse(course);
         }

@@ -40,9 +40,15 @@ public class Course{
     }
     //display suitable values
     public void display(){
+<<<<<<< Updated upstream
         out.println("Course ID: "+courseID);
         out.println("Course Name: "+courseName);
         out.println("Duration: "+duration);
+=======
+        out.println("courseID: "+courseID);
+        out.println("courseName: "+courseName);
+        out.println("duration: "+duration);
+>>>>>>> Stashed changes
         if(!courseLeader.trim().isEmpty()){ //check if courseLeader variable is empty("" or length is equal to 0). trim() removes spaces 
             //from the given String. Equivalent of .replace(" ", "")
             out.println("courseLeader: "+courseLeader);
