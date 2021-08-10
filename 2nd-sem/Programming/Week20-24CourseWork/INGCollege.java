@@ -20,7 +20,7 @@ class INGCollege{ //since constructor is private, class is final without the key
 
     //store objects
     private final List<Course> courses = new ArrayList<>();
-    
+
     private JButton academicButton, nonAcademicButton;
 
     private final List<JTextField> textFields = new ArrayList<>();
@@ -204,7 +204,7 @@ class INGCollege{ //since constructor is private, class is final without the key
 
     //WindowAdapter is an abstract class, ActionListener is an interface
     private class EventHandler extends WindowAdapter implements ActionListener{
-        
+
         private boolean hideError; //primitive boolean, false by default
 
         private String getText(int index) {
