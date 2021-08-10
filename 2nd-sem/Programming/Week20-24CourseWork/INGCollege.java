@@ -71,6 +71,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setButton(p,"Display Non Academic Courses", 5, 330, 250);
                 setButton(p,"Clear", 465, 330, 260);
                 setButton(p,"Register Non Academic Course", 465, 380, 260);
+
+                //border around panel
+                p.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+                p.setSize(740,440); //width, height
+                p.setVisible(false); //hide by default
             }
 
             void setUpAcademicPanel(JPanel p) {
@@ -106,21 +111,35 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setButton(p,"Display Academic Courses", 5, 330, 250);
                 setButton(p,"Clear", 465, 330, 260);
                 setButton(p,"Register Academic Course", 465, 380, 260);
+
+                //border around panel
+                p.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+                p.setSize(732,432);
             }
 
             void addSwitcher(JPanel panel) {
-                academicButton = new JButton("Academic");//enabled by default
-                nonAcademicButton = new JButton("Non Academic");
-                academicButton.setBackground(new Color(6,181,223));//light blue
-                nonAcademicButton.setBackground(Color.GRAY);
-                academicButton.setBounds(350,5,100,20);
-                nonAcademicButton.setBounds(450,5,135,20);
-                //when something is clicked
-                academicButton.addActionListener(eventHandler);
-                nonAcademicButton.addActionListener(eventHandler);
-                //add components to respective panels
-                panel.add(academicButton);
-                panel.add(nonAcademicButton);
+                //anonymous class extending JButton with this object
+                academicButton = new JButton("Academic"){//enabled by default
+                    { //default constructor without parameters (instance initializer)
+                        setBackground(new Color(6,181,223));//light blue
+                        setBounds(350,5,100,20);
+                        //when button is clicked
+                        addActionListener(eventHandler);
+                        //add this components instance to panel
+                        panel.add(this);
+                    }
+                };
+                //anonymous class extending JButton with this object
+                nonAcademicButton = new JButton("Non Academic"){
+                    { //default constructor without parameters (instance initializer)
+                        setBackground(Color.GRAY);
+                        setBounds(450,5,135,20);
+                        //when button is clicked
+                        addActionListener(eventHandler);
+                        //add this components instance to panel
+                        panel.add(this);
+                    }
+                };
                 //question
                 setLabel(panel, "Which type of course do you want to enroll in?",5,0,350,30,15);
             }
@@ -168,17 +187,6 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setUpNonAcademicPanel(nonAcademicPanel);
             }
         };
-
-        //Academic panel
-        //border around panel
-        academicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        academicPanel.setSize(740,440);
-
-        //Non academic panel
-        //border around panel
-        nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        nonAcademicPanel.setSize(740,440); //width, height
-        nonAcademicPanel.setVisible(false); //hide by default
 
         //anonymous class extending JFrame with this object
         frame = new JFrame("Course Registration"){ //title->Course Registration
@@ -296,7 +304,7 @@ class INGCollege{ //since constructor is private, class is final without the key
             final int credit = parseInt(getText(7));
             final int noOfAssessments = parseInt(getText(9));
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
-            if(!hideError)addCourse(course);
+            if(!hideError)addCourse(course); //add only if no error while parsing
         }
 
         private void addNonAcademicCourse() {
