@@ -40,9 +40,9 @@ public class Course{
     }
     //display suitable values
     public void display(){
-        out.println("courseID: "+courseID);
-        out.println("courseName: "+courseName);
-        out.println("duration: "+duration);
+        out.println("Course ID: "+courseID);
+        out.println("Course Name: "+courseName);
+        out.println("Duration: "+duration);
         if(!courseLeader.trim().isEmpty()){ //check if courseLeader variable is empty("" or length is equal to 0). trim() removes spaces 
             //from the given String. Equivalent of .replace(" ", "")
             out.println("courseLeader: "+courseLeader);

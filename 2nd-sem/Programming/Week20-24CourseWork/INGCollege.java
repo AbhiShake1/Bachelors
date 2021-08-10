@@ -85,9 +85,9 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setLabel(p,"Course Name:", 400, 90, 125, 20, 15);
                 setLabel(p,"No. of Assessments:", 370, 140, 185, 20, 15);
                 setLabel(p,"Start Date:", 400, 190, 130, 20, 15);
-                setLabel(p,"Credit:", 20, 240, 125, 20, 15);
+                setLabel(p,"Credit:", 20, 290, 125, 20, 15);
                 setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
-                setLabel(p,"Course Leader:", 20, 290, 125, 20, 15);
+                setLabel(p,"Course Leader:", 20, 240, 125, 20, 15);
 
                 //text fields
                 setTextField(p,180, 85, 170); //course id
@@ -113,15 +113,16 @@ class INGCollege{ //since constructor is private, class is final without the key
                 nonAcademicButton = new JButton("Non Academic");
                 academicButton.setBackground(new Color(6,181,223));//light blue
                 nonAcademicButton.setBackground(Color.GRAY);
-                academicButton.setBounds(350,5,100,20);
-                nonAcademicButton.setBounds(450,5,135,20);
+                academicButton.setBounds(310,5,100,20);
+                nonAcademicButton.setBounds(410,5,135,20);
                 //when something is clicked
                 academicButton.addActionListener(eventHandler);
                 nonAcademicButton.addActionListener(eventHandler);
+                //add components to respective panels
                 panel.add(academicButton);
                 panel.add(nonAcademicButton);
                 //question
-                setLabel(panel, "Which type of course do you want to enroll in?",0,0,350,30,15);
+                setLabel(panel, "Which type of course do you want to enroll in?",5,0,350,30,15);
             }
 
             void setLabel(JPanel panel, String text, int x, int y, int width, int height, int fontSize) {
@@ -129,16 +130,9 @@ class INGCollege{ //since constructor is private, class is final without the key
                     { //default constructor without parameters (instance initializer)
                         setBounds(x, y, width, height);
                         setFont(new Font(null, Font.PLAIN, fontSize));
-
-                        /*block scope, do not expose txt variable to anything except this block scope
-                         * (not even to anything beyond that inside this method)
-                         */
-                        {
-                            String txt = getText();
-                            if(txt.contains("Academic"))setForeground(Color.BLUE);
-                            else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
-                        }
-
+                        String txt = getText();
+                        if(txt.contains("Academic"))setForeground(Color.BLUE);
+                        else if(txt.contains("Which"))setFont(new Font(null, Font.ITALIC, fontSize)); //red
                         panel.add(this); //add this JLabel instance to panel
                     }
                 };
@@ -178,18 +172,18 @@ class INGCollege{ //since constructor is private, class is final without the key
         //Academic panel
         //border around panel
         academicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        academicPanel.setSize(740,500);
+        academicPanel.setSize(740,440);
 
         //Non academic panel
         //border around panel
         nonAcademicPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        nonAcademicPanel.setSize(740,500); //width, height
+        nonAcademicPanel.setSize(740,440); //width, height
         nonAcademicPanel.setVisible(false); //hide by default
 
         //anonymous class extending JFrame with this object
         frame = new JFrame("Course Registration"){ //title->Course Registration
             { //default constructor without parameters (instance initializer)
-                setSize(740,500);
+                setSize(756,483);
                 add(academicPanel); //show by defareult
                 add(nonAcademicPanel); //hide by default
                 setLocationRelativeTo(null); //center the frame by default(0,0 otherwise)
@@ -299,8 +293,8 @@ class INGCollege{ //since constructor is private, class is final without the key
             final String courseName = getText(1);
             final int duration = parseInt(getText(2));
             final String level = getText(4);
-            final int credit = parseInt(getText(9));
-            final int noOfAssessments = parseInt(getText(7));
+            final int credit = parseInt(getText(8));
+            final int noOfAssessments = parseInt(getText(9));
             Course course = new AcademicCourse(courseID, courseName, duration, level, credit, noOfAssessments);
             addCourse(course);
         }
