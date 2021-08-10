@@ -20,6 +20,10 @@ class INGCollege{ //since constructor is private, class is final without the key
 
     //store objects
     private final List<Course> courses = new ArrayList<>();
+    
+    private JButton academicButton, nonAcademicButton;
+
+    private final List<JTextField> textFields = new ArrayList<>();
 
     public static void main(String[] args) {
         ingCollege = new INGCollege();
@@ -194,23 +198,19 @@ class INGCollege{ //since constructor is private, class is final without the key
         };
     }
 
-    private JButton academicButton, nonAcademicButton;
-
-    private final List<JTextField> textFields = new ArrayList<>();
-
     public JFrame getFrame() {
         return frame;
     }
 
     //WindowAdapter is an abstract class, ActionListener is an interface
     private class EventHandler extends WindowAdapter implements ActionListener{
+        
+        private boolean hideError; //primitive boolean, false by default
 
         private String getText(int index) {
             //get text at index-th index
             return textFields.get(index).getText();
         }
-
-        private boolean hideError; //primitive boolean, false by default
 
         @Override //when user presses X button to close program
         public void windowClosing(WindowEvent e) {
@@ -325,7 +325,8 @@ class INGCollege{ //since constructor is private, class is final without the key
                 if(c.getCourseID().equals(text)) {
                     if(show) {
                         JOptionPane.showMessageDialog(
-                            INGCollege.getInstance().getFrame(),"The course has already been added.",
+                            //'this' can not be used directly as this block is in an internal class
+                            INGCollege.this.getFrame(),"The course has already been added.",
                             "Warning",JOptionPane.WARNING_MESSAGE
                         );
                         courses.remove(c);

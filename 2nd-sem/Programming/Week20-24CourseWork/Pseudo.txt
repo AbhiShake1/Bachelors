@@ -216,6 +216,10 @@ CREATE CLASS INGCollege
     
     DECLARE private constant List course that carries objects of Course classe and its sub classes and INITIALIZE it to new instance of ArrayList class
     
+    DECLARE variable academicButton and nonAcademicButton of type JButton
+    
+    DECLARE constant textFields of type ArrayList that stores JTextField objects
+    
     DECLARE variable ingCollege of type INGCollege
     
     DEFINE MAIN METHOD
@@ -349,10 +353,6 @@ CREATE CLASS INGCollege
         ADD windowListener to frame PASS eventHandler as argument
         MAKE frame visible
     END CONSTRUCTOR
-    
-    DECLARE variable academicButton and nonAcademicButton of type JButton
-    
-    DECLARE constant textFields of type ArrayList that stores JTextField objects
     
     DEFINE METHOD getFrame
         RETURN frame
