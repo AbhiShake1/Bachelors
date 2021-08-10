@@ -48,6 +48,9 @@ public class Course{
         out.println("courseID: "+courseID);
         out.println("courseName: "+courseName);
         out.println("duration: "+duration);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         if(!courseLeader.trim().isEmpty()){ //check if courseLeader variable is empty("" or length is equal to 0). trim() removes spaces 
             //from the given String. Equivalent of .replace(" ", "")

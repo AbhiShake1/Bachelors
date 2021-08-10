@@ -86,9 +86,15 @@ class INGCollege{ //since constructor is private, class is final without the key
                 setLabel(p,"No. of Assessments:", 370, 140, 185, 20, 15);
                 setLabel(p,"Start Date:", 400, 190, 130, 20, 15);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 setLabel(p,"Credit:", 20, 290, 125, 20, 15);
                 setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
                 setLabel(p,"Course Leader:", 20, 240, 125, 20, 15);
+=======
+                setLabel(p,"Credit:", 20, 240, 125, 20, 15);
+                setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
+                setLabel(p,"Course Leader:", 20, 290, 125, 20, 15);
+>>>>>>> Stashed changes
 =======
                 setLabel(p,"Credit:", 20, 240, 125, 20, 15);
                 setLabel(p,"Lecturer Name:", 20, 190, 125, 20, 15);
@@ -120,8 +126,13 @@ class INGCollege{ //since constructor is private, class is final without the key
                 academicButton.setBackground(new Color(6,181,223));//light blue
                 nonAcademicButton.setBackground(Color.GRAY);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 academicButton.setBounds(310,5,100,20);
                 nonAcademicButton.setBounds(410,5,135,20);
+=======
+                academicButton.setBounds(350,5,100,20);
+                nonAcademicButton.setBounds(450,5,135,20);
+>>>>>>> Stashed changes
 =======
                 academicButton.setBounds(350,5,100,20);
                 nonAcademicButton.setBounds(450,5,135,20);
@@ -134,7 +145,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                 panel.add(nonAcademicButton);
                 //question
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 setLabel(panel, "Which type of course do you want to enroll in?",5,0,350,30,15);
+=======
+                setLabel(panel, "Which type of course do you want to enroll in?",0,0,350,30,15);
+>>>>>>> Stashed changes
 =======
                 setLabel(panel, "Which type of course do you want to enroll in?",0,0,350,30,15);
 >>>>>>> Stashed changes
@@ -148,7 +163,11 @@ class INGCollege{ //since constructor is private, class is final without the key
                         String txt = getText();
                         if(txt.contains("Academic"))setForeground(Color.BLUE);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         else if(txt.contains("Which"))setFont(new Font(null, Font.ITALIC, fontSize)); //red
+=======
+                        else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
+>>>>>>> Stashed changes
 =======
                         else if(txt.contains("Which"))setForeground(new Color(223,48,6)); //red
 >>>>>>> Stashed changes
@@ -313,8 +332,13 @@ class INGCollege{ //since constructor is private, class is final without the key
             final int duration = parseInt(getText(2));
             final String level = getText(4);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             final int credit = parseInt(getText(8));
             final int noOfAssessments = parseInt(getText(9));
+=======
+            final int credit = parseInt(getText(9));
+            final int noOfAssessments = parseInt(getText(7));
+>>>>>>> Stashed changes
 =======
             final int credit = parseInt(getText(9));
             final int noOfAssessments = parseInt(getText(7));
