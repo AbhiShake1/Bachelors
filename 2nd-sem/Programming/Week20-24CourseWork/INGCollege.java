@@ -113,8 +113,8 @@ class INGCollege{ //since constructor is private, class is final without the key
                 nonAcademicButton = new JButton("Non Academic");
                 academicButton.setBackground(new Color(6,181,223));//light blue
                 nonAcademicButton.setBackground(Color.GRAY);
-                academicButton.setBounds(310,5,100,20);
-                nonAcademicButton.setBounds(410,5,135,20);
+                academicButton.setBounds(350,5,100,20);
+                nonAcademicButton.setBounds(450,5,135,20);
                 //when something is clicked
                 academicButton.addActionListener(eventHandler);
                 nonAcademicButton.addActionListener(eventHandler);
@@ -183,7 +183,7 @@ class INGCollege{ //since constructor is private, class is final without the key
         //anonymous class extending JFrame with this object
         frame = new JFrame("Course Registration"){ //title->Course Registration
             { //default constructor without parameters (instance initializer)
-                setSize(756,483);
+                setSize(748,472);
                 add(academicPanel); //show by defareult
                 add(nonAcademicPanel); //hide by default
                 setLocationRelativeTo(null); //center the frame by default(0,0 otherwise)
