@@ -318,9 +318,9 @@ class INGCollege{ //since constructor is private, class is final without the key
         private void addCourse(Course course) {
             String text;
             //if add academic course button is pressed, check courseID from AcademicPanel
-            if(course instanceof AcademicCourse)text = getText(0); //AcademicCourseID
             //if add non academic course button is pressed, check courseID from NonAcademicPanel
-            else text = getText(10); //NonAcademicCourseID
+            //ternary if                     //AcademicCourseID   //NonAcademicCourseID
+            text = (course instanceof AcademicCourse) ? getText(0) : getText(10);
 
             for(Course c : courses)
                 if(c.getCourseID().equals(text)) {
