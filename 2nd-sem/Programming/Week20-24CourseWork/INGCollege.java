@@ -207,6 +207,40 @@ class INGCollege{ //since constructor is private, class is final without the key
         return frame; //return current frame
     }
 
+    void showTempDialogBox(String message){
+        JOptionPane pane = new JOptionPane();
+        //Do not use showMessageDialog() since we need more control for this scenario
+        JDialog dialog = pane.createDialog(frame, message);
+
+        /*
+         * Dialog box position logic
+         * For X axis: 
+         * X = get curent X coordinate of frame
+         * W = get current width of frame
+         * X = X+(W/2)-(width of dialog box / 2)
+         * For Y axis: 
+         * Y = get curent Y coordinate of frame
+         * H = get current width of frame
+         * Y = Y + H- height of dialog box
+         * This algorithm should make dialog box position dynamic
+         */
+
+        final int w = 150; //width
+        final int h = 30; //height
+        dialog.setBounds(frame.getX()+(frame.getWidth()/2)-(w/2),
+            frame.getY()+frame.getHeight()-h, w, h);
+
+        //make dialog behaviour non blocking, asynchronous 
+        dialog.setModalityType(Dialog.ModalityType.MODELESS);
+        dialog.setVisible(true); //show/enable
+        try{
+            Thread.sleep(500); //sleep thread (block everything if not parallel) for half a second
+        }finally{//we don't need catch block if finally block returns from method
+            dialog.setVisible(false); //hide/disable
+            return;
+        }
+    }
+
     //WindowAdapter is an abstract class, ActionListener is an interface
     private class EventHandler extends WindowAdapter implements ActionListener{
 
@@ -282,7 +316,10 @@ class INGCollege{ //since constructor is private, class is final without the key
                 }
             //removeNonAcademic is not null means that if condition in above loop
             //was true in some point. So we dont need to check text
-            if(removeNonAcademic!=null)removeNonAcademic.remove(); //remove if exists
+            if(removeNonAcademic!=null){
+                removeNonAcademic.remove(); //remove if exists
+                showTempDialogBox("Removing..");
+            }
         }
 
         private void addAcademicCourse() {
@@ -329,9 +366,10 @@ class INGCollege{ //since constructor is private, class is final without the key
                         INGCollege.this.getFrame(),"The course has already been added.",
                         "Warning",WARNING_MESSAGE
                     );
-                    return; //terminate this method
+                    return; //terminate this method, do not add to arraylist
                 }
             courses.add(course); //if condition inside loop above is never true
+            showTempDialogBox("Adding..");
         }
 
         private void registerAcademicCourse() {

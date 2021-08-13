@@ -181,6 +181,8 @@ CREATE CLASS AcademicCourse that EXTENDS Course class
         
     DEFINE METHOD register(TAKE parameters courseLeader, lecturerName, startingDate, completionDate of type String)
         IF isRegistered
+            CALL showTempDialogBox(PASS “printing..” as argument) from 
+	    INGCollege class
             PRINT "Instructor name: " AND lecturerName
                PRINT "Starting date: " AND startingDate
                PRINT "Completion date: " AND completionDate
@@ -191,6 +193,8 @@ CREATE CLASS AcademicCourse that EXTENDS Course class
                 CALL setCourseLeader(PASS argument courseLeader) from superclass
                 SET value of isRegisreted to true
                 SET value of courseRemovedStatus to false
+		CALL showTempDialogBox(PASS “registering..” as argument) from 
+	        INGCollege class
         END IF
        END METHOD 
            
@@ -227,65 +231,65 @@ CREATE CLASS INGCollege
     END MAIN METHOD
     
     CREATE CONSTRUCTOR INGCollege
-        CREATE ANONYMOUS CLASS
+        CREATE LOCAL CLASS Panel
             DEFINE METHOD setUpNonAcademicPanel(TAKE parameter p of type JPanel)
                 CALL addSwitcher(PASS p as argument)
         
-                CALL setLabel(title="Non Academic Course", bounds=250,0,800,100, font size = 30)
-                CALL setLabel(title="CourseID", bounds=20,90,70,20, font size = 15)
-                CALL setLabel(title="Course Name", bounds=20,140,125,20, font size = 15)
-                CALL setLabel(title="Instructor Name", bounds=400,90,125,20, font size = 15)
-                CALL setLabel(title="Duration", bounds=400,140,130,20, font size = 15)
-                CALL setLabel(title="prerequisite", bounds=20,195,125,20, font size = 15)
-                CALL setLabel(title="Duration", bounds=400,290,130,20, font size = 15)
+                CALL setLabel(title="Non Academic Course", bounds=250,0,800,100, font size = 30) for panel p
+                CALL setLabel(title="CourseID", bounds=20,90,70,20, font size = 15) for panel p
+                CALL setLabel(title="Course Name", bounds=20,140,125,20, font size = 15) for panel p
+                CALL setLabel(title="Instructor Name", bounds=400,90,125,20, font size = 15) for panel p
+                CALL setLabel(title="Duration", bounds=400,140,130,20, font size = 15) for panel p
+                CALL setLabel(title="prerequisite", bounds=20,195,125,20, font size = 15) for panel p
+                CALL setLabel(title="Duration", bounds=400,290,130,20, font size = 15) for panel p
     
-                CALL setTextField(PASS argument p, x=180, y=85, width=170)
-                CALL setTextField(PASS argument p, x=180, y=135, width=170)
-                CALL setTextField(PASS argument p, x=535, y=85, width=160)
-                CALL setTextField(PASS argument p, x=535, y=135, width=160)
-                CALL setTextField(PASS argument p, x=180, y=190, width=170)
-                CALL setTextField(PASS argument p, x=180, y=240, width=170)
-                CALL setTextField(PASS argument p, x=535, y=185, width=160)
-                CALL setTextField(PASS argument p, x=535, y=285, width=160)
-                CALL setTextField(PASS argument p, x=535, y=235, width=160)
+                CALL setTextField(x=180, y=85, width=170) for panel p
+                CALL setTextField(x=180, y=135, width=170) for panel p
+                CALL setTextField(x=535, y=85, width=160) for panel p
+                CALL setTextField(x=535, y=135, width=160) for panel p
+                CALL setTextField(x=180, y=190, width=170) for panel p
+                CALL setTextField(x=180, y=240, width=170) for panel p
+                CALL setTextField(x=535, y=185, width=160) for panel p
+                CALL setTextField(x=535, y=285, width=160) for panel p
+                CALL setTextField(x=535, y=235, width=160) for panel p
     
-                CALL setButton(PASS argument p, title="Remove", x=290, y=330, height=130)
-                CALL setButton(PASS argument p, title="Add Non Academic Course", x=5, y=380, height=250)
-                CALL setButton(PASS argument p, title="Display Non Academic Course", x=5, y=330, height=250)
-                CALL setButton(PASS argument p, title="Clear", x=465, y=330, height=260)
-                CALL setButton(PASS argument p, title="Register Non Academic Course", x=465, y=380, height=260)
+                CALL setButton(title="Remove", x=290, y=330, height=130) for panel p
+                CALL setButton(title="Add Non Academic Course", x=5, y=380, height=250) for panel p
+                CALL setButton(title="Display Non Academic Course", x=5, y=330, height=250) for panel p
+                CALL setButton(title="Clear", x=465, y=330, height=260) for panel p
+                CALL setButton(title="Register Non Academic Course", x=465, y=380, height=260) for panel p
             END METHOD
     
             DEFINE METHOD setUpAcademicPanel(TAKE parameter p of type JPanel)
                 CALL addSwitcher(PASS p as argument)
         
-                CALL setLabel(PASS argument p, title="Academic Course", bounds=250, 0, 800, 100, font size=30)
-                CALL setLabel(PASS argument p, title="CourseID:", bounds=20, 90, 70, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Duration:", bounds=20, 140, 70, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Completion Date:", bounds=390, 290, 130, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Level:", bounds=400, 190, 70, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Course Name:", bounds=400, 90, 125, 20, font size=15)
-                CALL setLabel(PASS argument p, title="No. of Assessments:", bounds=370, 140, 185, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Start Date:", bounds=400, 240, 125, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Credit:", bounds=20, 240, 125, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Lecturer Name:", bounds=20, 190, 125, 20, font size=15)
-                CALL setLabel(PASS argument p, title="Course Leader:", bounds=20, 290, 125, 20, font size=15)
+                CALL setLabel(title="Academic Course", bounds=250, 0, 800, 100, font size=30) for panel p
+                CALL setLabel(title="CourseID:", bounds=20, 90, 70, 20, font size=15) for panel p
+                CALL setLabel(title="Duration:", bounds=20, 140, 70, 20, font size=15) for panel p
+                CALL setLabel(title="Completion Date:", bounds=390, 290, 130, 20, font size=15) for panel p
+                CALL setLabel(title="Level:", bounds=400, 190, 70, 20, font size=15) for panel p
+                CALL setLabel(title="Course Name:", bounds=400, 90, 125, 20, font size=15) for panel p
+                CALL setLabel(title="No. of Assessments:", bounds=370, 140, 185, 20, font size=15) for panel p
+                CALL setLabel(title="Start Date:", bounds=400, 240, 125, 20, font size=15) for panel p
+                CALL setLabel(title="Credit:", bounds=20, 240, 125, 20, font size=15) for panel p
+                CALL setLabel(title="Lecturer Name:", bounds=20, 190, 125, 20, font size=15) for panel p
+                CALL setLabel(title="Course Leader:", bounds=20, 290, 125, 20, font size=15) for panel p
         
-                CALL setTextField(PASS argument p, x=180, y=85, width=170)
-                CALL setTextField(PASS argument p, x=535, y=85, width=160)
-                CALL setTextField(PASS argument p, x=180, y=135, width=170)
-                CALL setTextField(PASS argument p, x=535, y=190, width=160)
-                CALL setTextField(PASS argument p, x=535, y=285, width=160)
-                CALL setTextField(PASS argument p, x=535, y=235, width=160)
-                CALL setTextField(PASS argument p, x=180, y=235, width=170)
-                CALL setTextField(PASS argument p, x=535, y=135, width=160)
-                CALL setTextField(PASS argument p, x=180, y=190, width=170)
-                CALL setTextField(PASS argument p, x=180, y=235, width=170)
+                CALL setTextField(PASS argument p, x=180, y=85, width=170) for panel p
+                CALL setTextField(PASS argument p, x=535, y=85, width=160 for panel p
+                CALL setTextField(PASS argument p, x=180, y=135, width=170) for panel p
+                CALL setTextField(PASS argument p, x=535, y=190, width=160) for panel p
+                CALL setTextField(PASS argument p, x=535, y=285, width=160) for panel p
+                CALL setTextField(PASS argument p, x=535, y=235, width=160) for panel p
+                CALL setTextField(PASS argument p, x=180, y=235, width=170) for panel p
+                CALL setTextField(PASS argument p, x=535, y=135, width=160) for panel p
+                CALL setTextField(PASS argument p, x=180, y=190, width=170) for panel p
+                CALL setTextField(PASS argument p, x=180, y=235, width=170) for panel p
         
-                CALL setButton(PASS argument p, title="Add Academic Course", x=5, y=380, height=250)
-                CALL setButton(PASS argument p, title="Display Academic Course", x=5, y=330, height=250)
-                CALL setButton(PASS argument p, title="Clear", x=465, y=330, height=260)
-                CALL setButton(PASS argument p, title="Register Academic Course", x=465, y=380, height=260)
+                CALL setButton(title="Add Academic Course", x=5, y=380, height=250) for panel p
+                CALL setButton(title="Display Academic Course", x=5, y=330, height=250) for panel p
+                CALL setButton(title="Clear", x=465, y=330, height=260) for panel p
+                CALL setButton(title="Register Academic Course", x=465, y=380, height=260) for panel p
             END METHOD
             
             DEFINE METHOD addSwitcher(TAKE panel of type JPanel as parameter)
@@ -300,41 +304,32 @@ CREATE CLASS INGCollege
             END METHOD
             
             DEFINE METHOD setLabel(TAKE panel of type JPanel, text of type String, x, y, width, height, fontSize of type int as parameter)
-                CREATE ANONYMOUS CLASS that extends JLabel(TAKE text as parameter)
-                    CREATE CONSTRUCTOR
-                        SET bounds = x, y, width, height from parameter
-                        SET fontSize = fontSize from parameter 
-                        IF text contains "Academic"
-                            SET blue foreground color
-                        END IF
-                        ELSE IF text cotains "Which"
-                            SET red foreground color
-                        END IF
-                        ADD this JLabel to panel
-                    END CONSTRUCTOR
-                END ANONYMOUS CLASS
+                CREATE object of JLabel(TAKE text as parameter)
+                SET bounds = x, y, width, height from parameter
+                SET fontSize = fontSize from parameter 
+                IF text contains "Academic"
+                	SET blue foreground color
+                END IF
+                ELSE IF text cotains "Which"
+                	SET red foreground color
+                END IF
+                ADD this JLabel to panel
             END METHOD
             
             DEFINE METHOD setButton(TAKE panel of type JPanel, text of type String, x, y, width of type int as parameter)
-                CREATE ANONYMOUS CLASS that extends JButton(TAKE text as parameter)
-                    CREATE CONSTRUCTOR
-                        SET bounds = x, y, width from parameter, 30
-                        ADD action listener
-                        ADD this JButton to panel
-                    END CONSTRUCTOR
-                END ANONYMOUS CLASS
+                 CREATE object of JButton(TAKE text as parameter)
+                 SET bounds = x, y, width from parameter, 30
+                 ADD action listener
+                 ADD button JButton to panel
             END METHOD
             
             DEFINE METHOD setTextField(TAKE panel of type JPanel, x, y, width of type int as parameter)
-                CREATE ANONYMOUS CLASS that extends JTextField
-                    CREATE CONSTRUCTOR
-                        SET bounds = x, y, width from parameter, 25
-                        ADD action listener
-                        ADD this JTextField to panel
-                    END CONSTRUCTOR
-                END ANONYMOUS CLASS
+		CREATE object of JTextField
+                SET bounds = x, y, width from parameter, 25
+                ADD action listener
+                ADD this JTextField to panel
             END METHOD
-        END ANONYMOUS CLASS
+        END LOCAL CLASS
     
         INITIALIZE frame variable to new instance of JFrame class(PASS "Course Registration" as argument)
         INITIALIZE academicPanel variable to new instance of JPanel class PASS null as argument
@@ -355,8 +350,23 @@ CREATE CLASS INGCollege
     END CONSTRUCTOR
     
     DEFINE METHOD getFrame
-        RETURN frame
+        RETURN data of frame variable
     END METHOD
+
+    DEFINE method showTempDialogBox(TAKE message of type String as parameter){
+        CREATE message dialog with message from parameter as text
+        CREATE constant w and set its value as 150
+        CREATE constant h and set its value as 30
+        SET bounds(x = X axis of frame, width of frame/2)-(w/2),
+        y = X axis of frame, height of frame-h, width = w, height = h);
+        SET modality type to modeless
+        MAKE dialog visible
+        TRY
+            SLEEP for 0.5 seconds
+        END TRY
+	MAKE frame invisible
+    END METHOD
+
     
     CREATE INNER CLASS EventHandler that extends WindowAdapter and implements ActionListener
         DEFINE METHOD getText(TAKE index of type int as parameter)
@@ -374,16 +384,26 @@ CREATE CLASS INGCollege
                 "Add Academic Course" : CALL METHOD addAcademicCourse
                 "Add Non Academic Course" : CALL METHOD addNonAcademicCourse
                 "Display Academic Courses" :
-                    IF an element e from courses ArrayList is AcademicCourse
-                        CAST e to AcademicCourse and store in nac
-                        CALL METHOD display from nac
-                    END IF
+                    FOR all elements e in courses ArrayList
+
+			IF e is AcademicCourse
+                            CAST e to AcademicCourse and store in nac
+                            CALL METHOD display from nac
+                    	END IF
+
+		    END FOR
+
                 END 
                 "Display Non Academic Courses" :
-                    IF an element e from courses ArrayList is NonAcademicCourse
-                        CAST e to NonAcademicCourse and store in nac
-                        CALL METHOD display from nac
-                    END IF
+		    FOR all elements e in courses ArrayList
+			
+			IF e is NonAcademicCourse
+                            CAST e to NonAcademicCourse and store in nac
+                            CALL METHOD display from nac
+                    	END IF
+
+		    END FOR
+                    
                 END 
                 "Remove" : CALL METHOD removeNonAcademicCourse
                 "Register Academic Course" : CALL METHOD registerAcademicCourse
@@ -403,9 +423,11 @@ CREATE CLASS INGCollege
         
         DEFINE METHOD showParseError(TAKE e of type Exception as parameter)
             DECLARE variable log and INITIALIZE by message of e
+
 	    IF e is NumberFormatException
 		PREPEND "Please input valid integer" to log
 	    END IF
+
         END METHOD
         
         DECLARE variable removeNonAcademic of type NonAcademicCourse
@@ -413,13 +435,19 @@ CREATE CLASS INGCollege
         DEFINE METHOD removeNonAcademicCourse
             DECLARE constant courseID of type String
             CALL getText(PASS 10 as argument) and store result in courseID
-            IF an element c in courses ArrayList is NonAcademicCourse AND its courseID is equal to courseID variable
-                CAST c to NonAcademicCourse and ASSIGN the value to removeNonAcademic variable
-                remove c from courses ArrayList
+
+	    FOR all elements c in courses ArrayList
+		IF c NonAcademicCourse AND courseID is equal to courseID variable
+                    CAST c to NonAcademicCourse and ASSIGN the value to removeNonAcademic variable
+                    remove c from courses ArrayList
+            	END IF
+	    END FOR
+
+            IF removeNonAcademic is not null
+                CALL remove method from removeNonAcademic object
+		CALL showTempDialogBox(PASS “removing..” as argument)
             END IF
-            IF removeNonAcademic is not null AND courseID of removeNonAcademic object is equal to courseID variable
-                CALL remove methid from removeNonAcademic object
-            END IF
+
         END METHOD
         
         DEFINE METHOD addAcademicCourse
@@ -438,9 +466,11 @@ CREATE CLASS INGCollege
             	CALL parseInt(PASS getText(PASS 7 as argument) as argument) and store result in noOfAssessments
             	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, level, credit, noOfAssessments as arguments)
 		add course to courses ArrayList
+
 	    CATCH Exception as e
 		CALL showParseError(PASS e as argument)
 	    END CATCH
+
 	    END TRY
         END METHOD
         
@@ -456,25 +486,37 @@ CREATE CLASS INGCollege
             	CALL getText(PASS 14 as argument) and store result in prerequisite
             	DECLARE variable course AND INITIALIZE it by new instance of AcademicCourse(PASS courseID, courseName, duration, prerequisite as arguments)
 		ADD course to courses ArrayList
+
 	    CATCH Exception as e
 		CALL showParseError(PASS e as argument)
 	    END CATCH
+
 	    END TRY
         END METHOD
         
         DEFINE METHOD addCourse(TAKE course of type Course as parameter)
+	    FOR all elements e in textFields
+	    	IF text of e is blank
+		    SHOW message dialog "Please make sure you have filled all values"
+		END IF
+	    END FOR
+
             DECLARE variable text of type String
             DECLARE variable show of type boolean and INITIALIZE by false
+
             IF course is Academic Course
                 THEN ASSIGN value of getText(PASS 0 as argument) to text
                 ELSE ASSIGN value of getText(PASS 10 as argument) to text
             END IF
+
             IF value returned by getCourseID of an element c in courses ArrayList is equal to text
                 SHOW warning message dialog "The course has already been added"
                 REMOVE c object from courses ArrayList
                 END METHOD
             END IF
+
 	    ADD course to courses ArrayList
+	    CALL showTempDialogBox(PASS “removing..” as argument)
         END METHOD
         
         DEFINE METHOD registerAcademicCourse
@@ -486,10 +528,16 @@ CREATE CLASS INGCollege
             CALL getText(PASS 5 as argument) and store result in startingDate
             DECLARE constant completionDate of type String
             CALL getText(PASS 4 as argument) and store result in completionDate
-            IF an element c in courses ArrayList is AcademicCourse AND getText(PASS 0 as argument) is equal to getCourseID of c object
-                DECLARE variable ac of type AcademicCourse, CAST c to AcademicCourse and store result in ac
-                CALL register method of ac object(PASS courseLeader, lecturerName, startingDate, completionDate as arguments)
-            END IF
+
+	    FOR all elements c in courses ArrayList
+
+		IF c is AcademicCourse AND its getText(PASS 0 as argument) is equal to getCourseID of c object
+                    DECLARE variable ac of type AcademicCourse, CAST c to AcademicCourse and store result in ac
+                    CALL register method of ac object(PASS courseLeader, lecturerName, startingDate, completionDate as arguments)
+            	END IF
+
+	    END FOR
+
         END METHOD
         
         DEFINE METHOD registerNonAcademicCourse
@@ -501,10 +549,14 @@ CREATE CLASS INGCollege
             CALL getText(PASS 16 as argument) and store result in startingDate
             DECLARE constant completionDate of type String
             CALL getText(PASS 18 as argument) and store result in completionDate
-            IF an element c in courses ArrayList is NonAcademicCourse AND getText(PASS 10 as argument) is equal to getCourseID of c object
-                DECLARE variable nac of type NonAcademicCourse, CAST c to AcademicCourse and store result in nac
-                CALL register method of nac object(PASS courseLeader, courseName, startingDate, completionDate as arguments)
-            END IF
+
+	    FOR all elements c in courses ArrayList
+	    	IF c is NonAcademicCourse AND getText(PASS 10 as argument) is equal to getCourseID of c object
+                    DECLARE variable nac of type NonAcademicCourse, CAST c to AcademicCourse and store result in nac
+                    CALL register method of nac object(PASS courseLeader, courseName, startingDate, completionDate as arguments)
+            	END IF
+	    END FOR
+
         END METHOD
     END INNER CLASS
 END CLASS

@@ -79,6 +79,7 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
             this.completionDate=completionDate;
             this.examDate=examDate;
             isRegistered=true; //if block will not be executed next time if isRegertered is true
+            INGCollege.getInstance().showTempDialogBox("Registering..");
         }else{
             showMessageDialog(
                 INGCollege.getInstance().getFrame(),"The course has already been registered.",

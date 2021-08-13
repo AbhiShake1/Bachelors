@@ -62,6 +62,7 @@ public class AcademicCourse extends Course{ //inherit public, protected methods 
     //else display values
     public void register(String courseLeader, String lecturerName, String startingDate, String completionDate){
         if(isRegistered){
+            INGCollege.getInstance().showTempDialogBox("Printing..");
             out.println("Instructor name: "+this.lecturerName);
             out.println("Starting date: "+this.startingDate);
             out.println("Completion date: "+this.completionDate);
@@ -72,6 +73,7 @@ public class AcademicCourse extends Course{ //inherit public, protected methods 
             super.setCourseLeader(courseLeader);
             isRegistered=true;
             courseRemovedStatus=false;
+            INGCollege.getInstance().showTempDialogBox("Registering..");
             //register(courseLeader, lecturerName, startingDate, completionDate); //recursion
         }
     }
