@@ -1,4 +1,4 @@
-import datetime as dt
+import datetime as dt #library from python api. Not user defined
 dt = dt.datetime.now()
 
 #-> str is just an annotation telling what the method should return, doesn't affect anything

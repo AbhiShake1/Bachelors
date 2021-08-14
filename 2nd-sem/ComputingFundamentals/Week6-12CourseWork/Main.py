@@ -7,12 +7,12 @@ def init() -> None: #-> None is an annotation indicating the method should alway
     while (True):  #infinite loop
         print(f'''
         Welcome to Library Management System
-{"-"*50} 
-        Enter 1 to display,
-              2 to borrow a book,
+{"-"*100} 
+        Enter 1 to display
+              2 to borrow a book
               3 to return a book
               4 to exit
-{"-"*50} 
+{"-"*100} 
         ''')
 
         try:
@@ -33,7 +33,7 @@ def init() -> None: #-> None is an annotation indicating the method should alway
             else:
                 print("Invalid number. Please read instructions carefully.")
         except ValueError as err:  #if input can not be parsed
-            print("Please input a valid number. " + str(err))
+            print(f"Please input a valid number. {err}")
 
 
 #initialize the program

@@ -5,10 +5,10 @@ def borrowBook() -> None: #-> None is an annotation indicating the method should
     firstName = input("Enter your first name: ")
     lastName = input("Enter your last name: ")
 
-    borrowRec = "text/Borrowed-" + firstName + ".txt"
+    borrowRec = f"text/Borrowed-{firstName}.txt"
     f = open(borrowRec, "w+")
     f.write(f'''Library Management System: \n\n\n
-Borrowed by: {firstName+" "+lastName} 
+Borrowed by: {firstName} {lastName} 
 Date: {dt.getCurrentDate()}
 Time: {dt.getCurrentTime()}
 \tS.N.\t\tBook Name\t\t\t\t\t\tAuthor\t\t\t\tCost\n''')
@@ -31,7 +31,7 @@ Time: {dt.getCurrentTime()}
                     lib.quantityList[index] = int(lib.quantityList[index]) - 1
                     f = open("text/library.txt", "w+")
                     for i in range(3):
-                        f.write(lib.bookList[i] + "," + lib.authorList[i] + "," + str(lib.quantityList[i]) + ",$" + lib.priceList[i] + "\n")
+                        f.write(f"{lib.bookList[i]},{lib.authorList[i]},{lib.quantityList[i]},${lib.priceList[i]}\n")
                     f.close()
                     yn = input("Do you want to borrow more books?(y/n): ")
                     if yn.lower() != "y":
@@ -43,4 +43,4 @@ Time: {dt.getCurrentTime()}
             except IndexError:
                 print("\nPlease choose book as per their number.")
         except ValueError as err:
-            print("\nPlease choose as suggested. " + str(err))
+            print(f"\nPlease choose as suggested. {err}")
