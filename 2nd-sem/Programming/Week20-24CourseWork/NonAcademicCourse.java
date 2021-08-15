@@ -100,6 +100,7 @@ public class NonAcademicCourse extends Course/*inherits public,protected methods
             startDate="";
             completionDate="";
             examDate="";
+            INGCollege.getInstance().showTempDialogBox("Removing..");
             isRegistered=false; //code blocks to set values can run on next check(method call) again
             isRemoved=true;
         }
