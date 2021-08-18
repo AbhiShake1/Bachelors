@@ -339,7 +339,7 @@ class INGCollege{ //since constructor is private, class is final without the key
         }
 
         private void addNonAcademicCourse() {
-            try{
+            //try{
                 final String courseID = getText(10);
                 final String courseName = getText(12);
                 final int duration = parseInt(getText(11));
@@ -347,9 +347,9 @@ class INGCollege{ //since constructor is private, class is final without the key
                 Course course = new NonAcademicCourse(courseID, courseName, duration, prerequisite);
                 //if any exception occurs, it will never reach bellow block
                 addCourse(course);
-            }catch(Exception e){ //all exceptions
-                showParseError(e); //NumberFormatException is separately handled inside this method
-            }
+            //}catch(Exception e){ //all exceptions
+                //showParseError(e); //NumberFormatException is separately handled inside this method
+            //}
         }
 
         private void addCourse(Course course) {

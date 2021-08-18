@@ -1,0 +1,36 @@
+ALGORITHM init:
+    BEGIN
+        OUTPUT "Welcome to Library Management System"
+        OUTPUT 100 "-" characters
+        OUTPUT "Enter 1 to display
+                      2 to borrow a book
+                      3 to return a book
+                      4 to exit"
+        OUTPUT 100 "-" characters
+
+        TRY
+
+            INPUT "Please select a number from 1 to 4: " and STORE in choice variable
+            CONVERT value of choice variable to integer
+            IF value of choice is 1
+                READ from text/library.txt file and OUTPUT
+            ELSE IF value of choice is 2
+                CALL getList method from Library module
+                CALL borrowBook method from Borrow module
+            ELSE IF value of choice is 3
+                CALL getList method from Library module
+                CALL returnBook method from Return module
+            ELSE IF value of choice is 4
+                OUTPUT "Thank you for using our service"
+                END
+            ELSE 
+                OUTPUT "Invalid number. Please read instructions carefully."
+            END IF
+
+        CATCH e
+            OUTPUT "Please input valid number." AND e
+        END TRY
+END ALGORITHM
+
+
+CALL ALGORITHM init
