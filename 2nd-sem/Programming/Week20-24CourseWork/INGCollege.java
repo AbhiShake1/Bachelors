@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
 import static javax.swing.JOptionPane.*;
 import static java.lang.Integer.parseInt;
 
@@ -173,6 +175,19 @@ class INGCollege{ //since constructor is private, class is final without the key
                     { //default constructor without parameters
                         setBounds(x, y, width, 25);
                         textFields.add(this);
+                        //on change
+                        getDocument().addDocumentListener(new DocumentListener(){
+                                @Override
+                                public void changedUpdate(DocumentEvent e){}
+
+                                @Override
+                                public void removeUpdate(DocumentEvent e){}
+
+                                @Override
+                                public void insertUpdate(DocumentEvent e){
+                                    eventHandler.removeNonAcademic = null; //reset
+                                }
+                            });
                         panel.add(this); //add this JTextField instance to panel
                     }
                 };
@@ -301,12 +316,13 @@ class INGCollege{ //since constructor is private, class is final without the key
             if(e instanceof NumberFormatException)
                 log = "Please input valid integer\n" + log; //prepend
             showMessageDialog(frame, log, "Error", ERROR_MESSAGE);
-        }
-
-        //to not reset on action event
+        }  
+        //to not reset on every click
         private NonAcademicCourse removeNonAcademic;
 
         private void removeNonAcademicCourse() {
+            //reset at every press
+
             final String courseID = getText(10);
             for(Course c : courses)
                 if(c instanceof NonAcademicCourse && c.getCourseID().equals(courseID)) {
@@ -316,10 +332,8 @@ class INGCollege{ //since constructor is private, class is final without the key
                 }
             //removeNonAcademic is not null means that if condition in above loop
             //was true in some point. So we dont need to check text
-            if(removeNonAcademic!=null){
-                removeNonAcademic.remove(); //remove if exists
-                showTempDialogBox("Removing..");
-            }
+            if(removeNonAcademic!=null)removeNonAcademic.remove(); //remove if exists  
+            else showTempDialogBox("Not added yet");
         }
 
         private void addAcademicCourse() {

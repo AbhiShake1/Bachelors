@@ -430,9 +430,8 @@ CREATE CLASS INGCollege
 
         END METHOD
         
-        DECLARE variable removeNonAcademic of type NonAcademicCourse
-        
         DEFINE METHOD removeNonAcademicCourse
+	    DECLARE variable removeNonAcademic of type NonAcademicCourse and INITIALIZE to null value
             DECLARE constant courseID of type String
             CALL getText(PASS 10 as argument) and store result in courseID
 
@@ -445,7 +444,7 @@ CREATE CLASS INGCollege
 
             IF removeNonAcademic is not null
                 CALL remove method from removeNonAcademic object
-		CALL showTempDialogBox(PASS “removing..” as argument)
+	        ELSE CALL showTempDialogBox(PASS "Not added yet as argument")
             END IF
 
         END METHOD
@@ -516,7 +515,7 @@ CREATE CLASS INGCollege
             END IF
 
 	    ADD course to courses ArrayList
-	    CALL showTempDialogBox(PASS “removing..” as argument)
+	    CALL showTempDialogBox(PASS “Adding..” as argument)
         END METHOD
         
         DEFINE METHOD registerAcademicCourse
