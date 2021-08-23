@@ -1,0 +1,1 @@
+highest: 100, lowest: 90, average: 95.0
