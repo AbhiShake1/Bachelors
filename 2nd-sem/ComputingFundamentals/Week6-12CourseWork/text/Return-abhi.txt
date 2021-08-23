@@ -2,8 +2,11 @@ Library Management System:
 
 
 
-    Borrowed by: abhi 
-    Date: 2021-08-14
-    Time: 10:23:56.414325
-    S.N.	Book Name						Author					Cost
+        Borrowed by: abhi 
+        Date: 2021-08-24
+        Time: 00:13:03.738821
+        S.N.	Book Name						Author					Cost
 	1 		Harry Potter					Jk Rowling				2
+	2 		Start With Why					Simon Sinek				1.5
+	3 		Programming With Python					John Smith				1.5
+																	Total: $5.0

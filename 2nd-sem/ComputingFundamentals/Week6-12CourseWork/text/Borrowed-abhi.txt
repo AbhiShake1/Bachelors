@@ -2,9 +2,9 @@ Library Management System:
 
 
 
-Borrowed by: abhi shake 
-Date: 2021-08-14
-Time: 10:19:48.311642
-	S.N.		Book Name						Author				Cost
+    Borrowed by: abhi shake 
+    Date: 2021-08-24
+    Time: 00:14:10.921290
+    S.N.	Book Name						Author				Cost
 	1 		Harry Potter				Jk Rowling				2
-	2 		Harry Potter				Jk Rowling				2
+	2 		Programming With Python				John Smith				1.5
