@@ -1,4 +1,6 @@
-from Utils import *
+import Library as lib
+import Borrow
+import Return
 
 
 def init() -> None:  # -> None is an annotation indicating the method should always return void, doesn't affect anything
@@ -21,11 +23,11 @@ def init() -> None:  # -> None is an annotation indicating the method should alw
                 print(f.read() + "\n")
                 f.close()
             elif choice == 2:
-                Lib()  # initialize values of global lists
-                Borrow()
+                lib.fillData()  # initialize values of global lists
+                Borrow.borrow_book()
             elif choice == 3:
-                Lib()  # initialize values of global lists
-                Return()
+                lib.fillData()  # initialize values of global lists
+                Return.return_book()
             elif choice == 4:
                 print("Thank you for using our service")
                 break  # get out of loop

@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2646db0d-009d-4e81-b483-a594829585cb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pseudo/Borrow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pseudo/Utils.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pseudo/DateTime.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pseudo/Library.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pseudo/Return.txt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Borrow.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DateTime.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Return.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text/Return-a b h.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text/Return-abh.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pseudo/Main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pseudo/Main.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/Borrowed-abhi.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text/Borrowed-abhi.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/Return-abhi.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text/Return-abhi.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/library.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text/library.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
