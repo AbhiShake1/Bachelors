@@ -1,8 +1,0 @@
-Library Management System: 
-
-
-
-        Borrowed by: abh 
-        Date: 2021-08-24
-        Time: 19:30:46.464199
-        S.N.	Book Name						Author					Cost

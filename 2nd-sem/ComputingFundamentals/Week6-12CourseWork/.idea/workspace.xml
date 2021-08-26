@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2646db0d-009d-4e81-b483-a594829585cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Borrow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DateTime.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Return.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text/Return-a b h.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/text/Return-abh.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Borrow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Borrow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library.py" beforeDir="false" afterPath="$PROJECT_DIR$/Library.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Return.py" beforeDir="false" afterPath="$PROJECT_DIR$/Return.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pseudo/Main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pseudo/Main.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/Borrowed-abhi.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text/Borrowed-abhi.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pseudo/Utils.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/Return-a b h.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/Return-abh.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/text/Return-abhi.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text/Return-abhi.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text/library.txt" beforeDir="false" afterPath="$PROJECT_DIR$/text/library.txt" afterDir="false" />
     </list>
@@ -47,23 +47,25 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Week6-12CourseWork" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="/usr/bin/python3.9" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />

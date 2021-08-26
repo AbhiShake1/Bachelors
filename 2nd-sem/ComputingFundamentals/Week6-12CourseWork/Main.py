@@ -23,18 +23,18 @@ def init() -> None:  # -> None is an annotation indicating the method should alw
                 print(f.read() + "\n")
                 f.close()
             elif choice == 2:
-                lib.fillData()  # initialize values of global lists
+                lib.fill_data()  # initialize values of global lists
                 Borrow.borrow_book()
             elif choice == 3:
-                lib.fillData()  # initialize values of global lists
+                lib.fill_data()  # initialize values of global lists
                 Return.return_book()
             elif choice == 4:
                 print("Thank you for using our service")
                 break  # get out of loop
             else:
                 print("Invalid number. Please read instructions carefully.")
-        except ValueError as err:  # if input can not be parsed
-            print(f"Please input a valid number. {err}")
+        except ValueError:  # if input can not be parsed
+            print(f"Please input a valid number.")
 
 
 # initialize the program

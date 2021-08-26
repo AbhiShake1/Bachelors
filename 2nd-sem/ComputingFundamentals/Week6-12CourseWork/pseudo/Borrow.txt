@@ -1,0 +1,33 @@
+ALGORITHM borrow_book
+    INPUT "Enter your first name: " and STORE in variable first_name
+    INPUT "Enter your last name: " and STORE in variable last_name
+
+    CREATE variable borrow_rec and INITIALIZE to "text/Borrowed-" AND data of first_name AND ".txt"
+
+    IN file that matches data of borrow_rec, WRITE "Library Management System:" AND 3 line breaks AND
+    "Borrowed by: " AND first_name AND last_name
+    "Date: " AND value returned by getCurrentDate function from DateTime module
+    "Time: " AND value returned by getCurrentTime function from DateTime module
+    "S.N." AND tab AND "Book Name" AND 6 tabs AND "Author" AND 4 tabs AND "Cost" AND line break
+
+    CREATE variable count and INITIALIZE to 1
+
+    INFINITE LOOP
+        OUTPUT "Please select an option: "
+
+        FOR i = 0 to size of bookList array from Library module
+            OUTPUT "Enter " AND value of i AND "to borrow book " AND i-th element of bookList array from Library module
+        END FOR
+
+        TRY
+            INPUT "Please enter book number: " CONVERT to integer and STORE the value in variable index
+
+            TRY
+                IF index-th element of quantityList array from Library module converted to integer is less than 0
+                    OUTPUT "Book is available"
+
+                    APPEND tab AND value of count variable AND 2 tabs AND index-th index of bookList array AND 4 tabs AND
+                            index-th element of authorList AND 4 tabs AND index-th element of priceList from Library module AND line break
+
+                
+    

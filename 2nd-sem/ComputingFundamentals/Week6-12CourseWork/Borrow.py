@@ -23,9 +23,9 @@ def borrow_book():
         [print(f"Enter {i} to borrow book {lib.bookList[i]}") for i in range(len(lib.bookList))]
 
         try:
-            index = int(input("Please input book number: "))
-            try:  # can throw index out of bounds exception
-                if int(lib.quantityList[index]) > 0:
+            index = int(input("Please enter book number: "))
+            try:  # can ra index out of bounds exception
+                if lib.quantityList[index] > 0:
                     print("Book is available")
                     f = open(borrow_rec, "a")  # in append mode
                     f.write(
@@ -33,7 +33,7 @@ def borrow_book():
                         f"{lib.priceList[index]}\n")
                     f.close()
 
-                    lib.quantityList[index] = str(int(lib.quantityList[index]) - 1)
+                    lib.quantityList[index] = lib.quantityList[index] - 1
                     f = open("text/library.txt", "w+")
                     for i in range(3):
                         f.write(

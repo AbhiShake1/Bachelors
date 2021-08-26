@@ -16,10 +16,10 @@ def return_book():
         f.close()
         f = open(return_rec, "w+")
         f.write(f'''Library Management System: \n\n\n
-                Borrowed by: {name} 
-                Date: {dt.getCurrentDate()}
-                Time: {dt.getCurrentTime()}
-                S.N.\tBook Name\t\t\t\t\t\tAuthor\t\t\t\t\tCost\n''')
+        Borrowed by: {name} 
+        Date: {dt.getCurrentDate()}
+        Time: {dt.getCurrentTime()}
+        S.N.\tBook Name\t\t\t\t\t\tAuthor\t\t\t\t\tCost\n''')
         f.close()
 
         total = 0.0
@@ -30,10 +30,10 @@ def return_book():
                 f.write(f"\t{count_} \t\t{book}\t\t\t\t\t{lib.authorList[i]}\t\t\t\t{lib.priceList[i]}\n")
                 count_ += 1
                 f.close()
-                total += float(lib.priceList[i])
+                total += lib.priceList[i]
 
                 f = open(borrow_rec)  # open in read mode
-                lib.quantityList[i] = str(int(lib.quantityList[i]) + f.read().count(
+                lib.quantityList[i] = str(lib.quantityList[i] + f.read().count(
                     book))  # get how many times this string has repeated in file
                 f.close()
 
@@ -56,8 +56,8 @@ def return_book():
         f = open("text/library.txt", "w+")
         for i in range(3):
             # writing new data to library record file
-            f.write(f"{lib.bookList[i]},{lib.authorList[i]},{str(lib.quantityList[i])},${lib.priceList[i]}\n")
+            f.write(f"{lib.bookList[i]},{lib.authorList[i]},{lib.quantityList[i]},${lib.priceList[i]}\n")
         f.close()
-    except FileNotFoundError:
+    except FileNotFoundError:  # if non existing name is inputted
         print("Please enter correct name")
         return_book()  # recurse
