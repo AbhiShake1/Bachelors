@@ -1,3 +1,3 @@
-Harry Potter,Jk Rowling,24,$2.0
-Start With Why,Simon Sinek,19,$1.5
+Harry Potter,Jk Rowling,22,$2.0
+Start With Why,Simon Sinek,27,$1.5
 Programming With Python,John Smith,19,$1.5

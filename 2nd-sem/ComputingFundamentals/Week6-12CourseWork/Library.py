@@ -1,4 +1,4 @@
-"""Stores info about books in a 2D array(list) data structure"""
+"""Stores info about books in a 1D array(list) data structure"""
 bookList = []
 authorList = []
 quantityList = []
@@ -14,7 +14,7 @@ def fill_data():
         j = 0  # internal counter
         for c in content[i].split(","):
             if j == 0:  # for first element(there should normally be 4 because it is separated by comma in file)
-                bookList.append(c)  # 2d list
+                bookList.append(c)  # 1d list
             elif j == 1:
                 authorList.append(c)
             # convert to int before appending

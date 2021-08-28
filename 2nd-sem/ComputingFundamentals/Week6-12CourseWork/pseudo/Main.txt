@@ -14,11 +14,11 @@ ALGORITHM init:
         IF value of choice is 1
             READ from text/library.txt file and OUTPUT
         ELSE IF value of choice is 2
-            CALL fill_data method from Library module
-            CALL borrow_book method from Borrow module
+            CALL fill_data algorithm from Library module
+            CALL borrow_book algorithm from Borrow module
         ELSE IF value of choice is 3
-            CALL fill_data method from Library module
-            CALL return_book method from Return module
+            CALL fill_data algorithm from Library module
+            CALL return_book algorithm from Return module
         ELSE IF value of choice is 4
             OUTPUT "Thank you for using our service"
             END

@@ -3,8 +3,7 @@ Library Management System:
 
 
     Borrowed by: abhi shake 
-    Date: 2021-08-24
-    Time: 19:28:09.856297
+    Date: 2021-08-28
+    Time: 09:00:32.529965
     S.N.	Book Name						Author				Cost
-	1 		Harry Potter				Jk Rowling				2
-	2 		Harry Potter				Jk Rowling				2
+	1 		Harry Potter				Jk Rowling				2.0

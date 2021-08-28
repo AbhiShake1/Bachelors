@@ -24,7 +24,7 @@ def borrow_book():
 
         try:
             index = int(input("Please enter book number: "))
-            try:  # can ra index out of bounds exception
+            try:  # can throw index out of bounds exception
                 if lib.quantityList[index] > 0:
                     print("Book is available")
                     f = open(borrow_rec, "a")  # in append mode
@@ -45,8 +45,7 @@ def borrow_book():
                     count += 1
                 else:
                     print("Book is not available in stock")
-                    borrow_book()
             except IndexError:
                 print("\nPlease choose book as per their number.")
-        except ValueError as err:
-            print(f"\nPlease choose as suggested. {err}")
+        except ValueError:
+            print(f"\nPlease enter a valid number.")

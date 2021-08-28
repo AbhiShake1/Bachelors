@@ -1,0 +1,25 @@
+DECLARE variable __dt and INITIALIZE to current date and time of system
+
+ALGORITHM getCurrentDate
+    RETURN value returned by date algorithm of __dt object converted to string
+END ALGORITHM
+
+ALGORITHM getCurrentTime
+    RETURN value returned by time algorithm of __dt object converted to string
+END ALGORITHM
+
+ALGORITHM getDate
+    CREATE variable date and INITIALIZE to value returned by getCurrentDate splitted to array of "-"
+    RETURN  date(PASS 0th, 1st and 2nd index of date array as argument) from datetime module
+END ALGORITHM
+
+ALGORITHM getBorrowedDate(TAKE parameter file of type string)
+    READ file and store in an array where each line is an element of array and STORE in lines variable
+    
+    FOR data_line in lines
+        IF data_line contains "Date:"
+            REMOVE non numeric characters including line break from data_line and STORE the result in data variable
+            RETURN  date(PASS 0th, 1st and 2nd index of date array as argument) from datetime module
+        END IF
+    END FOR
+END ALGORITHM

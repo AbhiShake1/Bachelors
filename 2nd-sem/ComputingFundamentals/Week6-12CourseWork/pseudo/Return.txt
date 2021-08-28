@@ -1,0 +1,58 @@
+ALGORITHM return_book
+    CREATE variable count_ and INITIALIZE by 1
+    INPUT "Enter your first name: " and STORE the value in name variable
+    CREATE variable borrow_rec and INITIALIZE to "text/Borrowed-" AND value of name AND ".txt"
+    CREATE variable return_rec and INITIALIZE to "text/Return-" AND value of name AND ".txt"
+    
+    TRY
+        IN a file that matches value stored in borrow_rec by name, READ and STORE in variable data OUTPUT its contents
+        
+        IN a file that matches value stored in borrow_rec by name, 
+        WRITE 
+        "Library Management System " AND 3 line breaks AND "Borrowed by: " AND name AND "Date: " AND value returned by getCurrentDate or DateTime module
+        AND "Time: " AND value return getCurrentTime of DateTime module AND
+        "S.N." AND tab AND "Book Name" AND 5 tabs AND "Author" AND 5 tabs AND "Cost"
+        
+        CREATE variable total and INITIALIZE to 0.0
+        
+        FOR i in 0 to 3
+            CREATE variable book and INITIALIZE to element at i-th index of bookList array
+            
+            IF value stored in data variable contains value stored in book variable
+                IN a file that matches value stored in borrow_rec by name, GET how many times the data stored in book has repeated and STORE in book_repeated variable
+                INCREMENT i-th index of quantityList by value of book_repeated
+                
+                IN a file that matches value stored in return_rec by name, APPEND tab AND value of count_ AND 2 tabs AND value of book AND 5 tabs and i-th index of authorList array AND 4 tabs AND i-th index of priceList array AND 4 tabs AND value of book_repeated
+                
+                INCREMENT value of count_ by 1
+                INCREMENT value of total by PRODUCT OF value of i-th index of priceList AND value of book_repeated
+            END IF
+        END FOR
+        
+        OUTPUT 13 tabs AND "$" AND value stored in total variable
+        
+        CREATE variable stat and INITIALIZE to the difference between values returned by getDate and getBorrowedDate(PASS borrow_rec as argument) from DateTime module
+        
+        OUTPUT "You have returned after " AND value of stat variable AND " days"
+        
+        IF value of stat is greater than 10
+            CREATE variable fine and INITIALIZE to 2 MULTIPLIED BY (DIFFERENCE between 10 and value of stat)
+            
+            APPEND 21 tabs AND "Fine: $" AND value of fine variable
+            INCREMENT value of total variable by value stored in fine
+            
+            OUTPUT "Final Total: $" AND value of total variable
+            
+            IN a file that matches value stored in return_rec by name, APPEND 17 tabs AND "Total: $" AND value of total variable
+            
+            FOR i in 0 to 3
+                IN file library.txt inside text folder, WRITE values stored in i-th indexes of bookList, authorList, quantityList and priceList arrays separated by a commma
+            END FOR
+        END IF
+    
+    CATCH File Not Found Error:
+        INPUT "Please enter correct name: "
+        CALL return_book algorithm
+    END TRY
+    
+    

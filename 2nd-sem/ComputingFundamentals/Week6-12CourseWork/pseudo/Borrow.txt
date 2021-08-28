@@ -4,7 +4,7 @@ ALGORITHM borrow_book
 
     CREATE variable borrow_rec and INITIALIZE to "text/Borrowed-" AND data of first_name AND ".txt"
 
-    IN file that matches data of borrow_rec, WRITE "Library Management System:" AND 3 line breaks AND
+    IN a file that matches data of borrow_rec by namr, WRITE "Library Management System:" AND 3 line breaks AND
     "Borrowed by: " AND first_name AND last_name
     "Date: " AND value returned by getCurrentDate function from DateTime module
     "Time: " AND value returned by getCurrentTime function from DateTime module
@@ -23,11 +23,38 @@ ALGORITHM borrow_book
             INPUT "Please enter book number: " CONVERT to integer and STORE the value in variable index
 
             TRY
-                IF index-th element of quantityList array from Library module converted to integer is less than 0
+                IF index-th element of quantityList array from Library module is positive
                     OUTPUT "Book is available"
 
                     APPEND tab AND value of count variable AND 2 tabs AND index-th index of bookList array AND 4 tabs AND
                             index-th element of authorList AND 4 tabs AND index-th element of priceList from Library module AND line break
-
+                            
+                    DECREMENT value of index-th element of quantityList array by 1
+                    
+                    APPEND index-th element of bookList, authorList, quantityList, priceList to library.txt inside 'text' folder of this project
+                    
+                    INPUT "Do you want to borrow more books?(y/n): " and STORE in yn variable
+                    
+                    CONVERT value stored in yn to lower case
+                    
+                    IF yn is equal to "y"
+                        BREAK INFINITE LOOP
+                    END IF
+                    
+                ELSE
+                    OUTPUT "Book is not available in stock"
                 
-    
+                END IF
+                
+            CATCH Index Error
+                PRINT "Please choose book as per their number."
+            
+            END TRY
+            
+        CATCH Value Error
+            OUTPUT "Please enter a valid number."
+        
+        END TRY
+
+END ALGORITHM
+                    

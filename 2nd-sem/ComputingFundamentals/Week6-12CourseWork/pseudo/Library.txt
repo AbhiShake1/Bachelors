@@ -1,0 +1,28 @@
+DECLARE variable bookList, authorList, quantityList, priceList and INITIALIZE all of them to empty list
+
+ALGORITHM fill_data
+    READ data of library.txt inside text folder, REMOVE line breaks and STORE line by line in a list
+    CREATE variable content and INITIALIZE to list 
+    
+    FOR i in 0 to length of content array
+        CREATE variable j and INITIALIZE to 0
+        
+        FOR c in i-th index of content splitted by "," to array
+            IF value of j is equal to 0
+                APPEND c to bookList
+                
+            ELSE IF value of j is equal to 1
+                APPEND c to authorList
+                
+            ELSE IF value of j is equal to 2
+                CONVERT c to integer and APPEND c to quantityList
+                
+            ELSE IF value of j is equal to 3
+                REMOVE "$" characters from c, CONVERT c to float and APPEND c to priceList
+                
+            END IF
+        END FOR
+        
+    END FOR
+    
+END ALGORITHM

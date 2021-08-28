@@ -16,26 +16,29 @@ def return_book():
         f.close()
         f = open(return_rec, "w+")
         f.write(f'''Library Management System: \n\n\n
-        Borrowed by: {name} 
-        Date: {dt.getCurrentDate()}
-        Time: {dt.getCurrentTime()}
-        S.N.\tBook Name\t\t\t\t\t\tAuthor\t\t\t\t\tCost\n''')
+    Borrowed by: {name} 
+    Date: {dt.getCurrentDate()}
+    Time: {dt.getCurrentTime()}
+    S.N.\tBook Name\t\t\t\t\t\tAuthor\t\t\t\t\tCost\t\t\tQuantity\n''')
         f.close()
 
         total = 0.0
         for i in range(3):
             book = lib.bookList[i]
             if book in data:
+                f = open(borrow_rec)  # open in read mode
+                # get how many times this string has repeated in file
+                book_repeated = f.read().count(book)
+                lib.quantityList[i] += book_repeated
+                f.close()
+
                 f = open(return_rec, "a")  # open in append mode
-                f.write(f"\t{count_} \t\t{book}\t\t\t\t\t{lib.authorList[i]}\t\t\t\t{lib.priceList[i]}\n")
+                f.write(f"\t{count_} \t\t{book}\t\t\t\t\t{lib.authorList[i]}\t\t\t\t{lib.priceList[i]}"
+                        # strings can be split without contacting, useful when current line is too long
+                        f"\t\t\t\t{book_repeated}\n")
                 count_ += 1
                 f.close()
-                total += lib.priceList[i]
-
-                f = open(borrow_rec)  # open in read mode
-                lib.quantityList[i] = str(lib.quantityList[i] + f.read().count(
-                    book))  # get how many times this string has repeated in file
-                f.close()
+                total += lib.priceList[i] * book_repeated
 
         print(f"\t\t\t\t\t\t\t\t\t\t\t\t\t${total}")
         stat = (dt.getDate() - dt.getBorrowedDate(borrow_rec)).days
@@ -45,7 +48,7 @@ def return_book():
             f = open(return_rec, "a")
             f.write(f"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFine: ${fine}\n")
             f.close()
-            total = total + fine
+            total += fine
 
         print(f"Final Total: ${total}")
 
